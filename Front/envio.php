@@ -12,6 +12,3 @@
  
 </body>
 </html>
-
-
-Read more: http://www.linhadecodigo.com.br/artigo/3578/php-upload-de-arquivos.aspx#ixzz49byDzXrk
