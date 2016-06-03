@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/* Para Importar este arquivo CSS basta copiar a linha abaixo para dentro do head da sua pagina !!
+
+    	  <link rel="stylesheet" href="style.css">
+
+    */
+body {
+    text-align: center;
+    padding: 0;
+    width: 750px;
+    margin:auto;
+    color: black;
+    font-size: 14pt;
+    font-family:sans-serif;
+    background-color: #dfdfdf;
+}
+
+.botao{
+    font-family: sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding:5px;
+    background-color: #b9b9b9;
+    border-color: #007c00;
+    border: medium;
+    color: #000400;
+    text-decoration: none;
+    margin-left:25px;
+    width: 50px;
+    border: double;
+}
