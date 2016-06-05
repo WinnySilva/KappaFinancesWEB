@@ -4,6 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+	//require_once "../Back/config.php";
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -45,7 +48,13 @@ and open the template in the editor.
 				margin-top: 20px;
 			}
 			select{
-				width: 300px;
+				width: 267px;
+			}
+			#idcadastrar {
+				font-size:18px;
+				font-family:sans-serif;
+				margin-left: 20px;
+				margin-top: 5px;
 			}
 			<?php
 
@@ -54,13 +63,13 @@ and open the template in the editor.
     </head>
     <body>
 
-       <form method="post" id="idcadastro" action="">
+       <form method="post" id="idcadastro" action="?go=idcadastrar">
        		<fieldset id="cadastro"><legend>Identificação do Usuário</legend>
-       			<p>Nome: <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo"/>
-       			<p>Senha: <input type="password" name="tsenha" id="idsenha" size="15" maxlength="25" placeholder="Máximo 15 Digitos"/>
-       			<p>E-mail: <input type="email" name="temail" id="idemail" size="20" maxlength="20"/>
-       			<p>CPF: <input type="text" name="tcpf" id="idcpf" size="11" maxlength="11" placeholder="Somente Numeros"/>
-				<p>Data de Nascimento: <input type="date" name="tdata" id="iddata"</p>
+       			<p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo"/>
+       			<p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos"/>
+       			<p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="20"/>
+       			<p>CPF:&#160;&#160;&#160;&#160; <input type="text" name="tcpf" id="idcpf" size="25" maxlength="11" placeholder="Somente Numeros"/>
+				<p>Data Nascimento: <input type="date" name="tdata" id="iddata"</p>
 				<p><label for="idestado">Estado:</label>
 				<select name="nestado" id="idestado">
 					<option value="AC">Acre</option>
@@ -92,7 +101,7 @@ and open the template in the editor.
 					<option value="TO">Tocantins</option>
 				</select>
 				<p><label for="idcidade">Cidade:</label>
-				<input type="text" name="ncidade" id="idcidade" maxlength="20" size="20" placeholder="Digite sua Cidade" list="cidades">
+				<input type="text" name="ncidade" id="idcidade" maxlength="20" size="25" placeholder="Digite sua Cidade" list="cidades">
 				<datalist id="cidades" >
 					<option value="pelotas">Pelotas</option>
 					<option value="porto alegre">Porto Alegre</option>
@@ -110,7 +119,7 @@ and open the template in the editor.
 					<input type="radio" name="tsexo" id="idfem"/><label for="idfem">Feminino</label>
 				</fieldset>
 				<div>
-					<a href="Inicial.php" class="botao">Cadastrar</a>
+					<input type="submit" value="Cadastrar" id="idcadastrar">
 				</div>
        		</fieldset>
 
