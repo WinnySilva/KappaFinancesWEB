@@ -4,6 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Login Form</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -24,7 +25,7 @@
     </div>
 
     <div class="login-help">
-      <p>Cadastre-se <a href="index.html">aqui</a>.</p>
+      <p>Cadastre-se <a href="Cadastro.php">aqui</a>.</p>
     </div>
   </section>
 <!--
