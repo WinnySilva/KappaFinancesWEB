@@ -1,8 +1,16 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+class Carrega{
+    private $arqnome,$arquivo, $usuario;
+    
+    function le($filepath){
+        $this->arqnome = $filepath;
+        $this->arquivo =file($filepath);
+        
+        foreach($this->arquivo as $line_num){
+            echo $line_num;
+        }
+        
+    }
+    
+}
+?>

@@ -6,16 +6,6 @@ include 'AdmDB.php';
  * and open the template in the editor.
  */
 //$us = new Usuario();
-$us = new Usuario("0234599",
-        "joana", 
-        "minhacidade", 
-        "meuestado",
-        "meupais", 
-        2, 
-        "2016-06-09", 
-        "sasa", 
-        "2015-05-15");
-$us->salvarDB();
 
 /**
  * Description of usuario
@@ -65,26 +55,22 @@ class Usuario {
         $query =  "SELECT CPF FROM USUARIO"
                 . " WHERE CPF = ".$this->cpf;       
         $conn = new AdmDB;
-        if ($conn->testSelection($query)){
+       /* if ($conn->testSelection($query)){
             echo "JAH EXISTE<p>UPDATE<p>";
             $this->atualizarUsuariodb();
             return;
         }       
         echo "inserindo";
-        $this->inserirUsuariodb();
-                
-        
-        
-                
+       */ $this->inserirUsuariodb();      
     }
     
     public function deletarUsuariodb(){
         $query = "DELETE FROM `usuario` "
                 . "WHERE cpf = ".$this->cpf;
         $conn = new AdmDB;
-        $conn->executeQuery($stringQuery);
+        $conn->executeQuery($query);
     }
-    private function atualizarUsuariodb(){
+    public function atualizarUsuariodb(){
         $idcidade = $this->inserirCidadedb();
         
         $query = "UPDATE `usuario` SET "
@@ -100,7 +86,7 @@ class Usuario {
         $conn->executeQuery($query);
         
     }
-    private function inserirUsuariodb(){
+    public function inserirUsuariodb(){
         $conn = new AdmDB;
         $idcidade = $this->inserirCidadedb();
         $query = "INSERT INTO `usuario`(`cpf`, `nome`, `data_nasc`, `senha`,"
@@ -119,74 +105,65 @@ class Usuario {
     }
     //retorna id da cidade
     private function inserirCidadedb(){
-        $conn = new AdmDB;
+        $conn = new AdmDB;       
+        //-------------------------      
         $query =  "SELECT NOME FROM PAIS WHERE"
                 ." NOME = '".$this->pais."'";
-        //se o PAIS JAH FOI INSERIDO OU NAO
-        if (!$conn->testSelection($query) ){
+        $result1= $conn->executeQuery($query);
+        $row1 = mysql_fetch_array($result1);
+        if($row1){
+            $idPais = $row1{"idPais"};
+        }else{
             $query = "INSERT INTO `pais`(`idPais`, `nome`)"
                     . " VALUES (0,'".$this->pais."')";
             $conn->executeQuery($query);
-            
-            //pega o numero do pais
-            $query =  "SELECT idPais FROM PAIS WHERE"
+            $query =  "SELECT NOME FROM PAIS WHERE"
                 ." NOME = '".$this->pais."'";
-            $result2= $conn->executeQuery($query);
-            $row2 = mysql_fetch_array($result2);
-                       
-            //insere o estado
-            $query = "INSERT INTO `estado`(`idestado`, `nome`, `idPais`)"
-                    . " VALUES (0,'".$this->estado."',".$row2{"idPais"}.")" ;
-            $conn->executeQuery($query);
+            $result1= $conn->executeQuery($query);
+            $row1 = mysql_fetch_array($result5);
+             $idPais = $row1{"idPais"};
             
-            //pega o numero do estado
-            $query =  "SELECT idestado FROM estado WHERE"
-                ." NOME = '".$this->estado."'";
-            $result3= $conn->executeQuery($query);
-            $row3 = mysql_fetch_array($result3);
-            
-            //insere cidade
-            $query = "INSERT INTO `cidade`(`id_cidade`, `nome`, `idEstado`)"
-                    . " VALUES (0,'".$this->cidade."',".$row3{"idestado"}.")" ;
-            $conn->executeQuery($query);
+        }       
+       //---------------------------------
+        $query =  "SELECT idestado FROM estado WHERE"
+            ." NOME = '".$this->estado."'";
+        $result2= $conn->executeQuery($query);
+        $row2 = mysql_fetch_array($result2);
+        if($row2){
+            $idEstado = $row2{"idestado"};
         }else{
-            //pega o numero do estado
-            $query =  "SELECT idestado FROM estado WHERE"
-                ." NOME = '".$this->estado."'";
-            
-            //testa se existe o estado
-            if(!$conn->testSelection($query)){
-            //insere o estado
-            $query = "INSERT INTO `estado`(`idestado`, `nome`, `idPais`)"
-                    . " VALUES (0,'".$this->estado."',".$row2{"idPais"}.")" ;
-            $conn->executeQuery($query);           
-            }
-            
-            $query =  "SELECT * FROM cidade WHERE"
-                ." NOME = '".$this->cidade."'";
-           
-            //testa se existe a cidade
-            if(!$conn->testSelection($query)){
-            //pega o numero do estado
-            $query =  "SELECT idestado FROM estado WHERE"
-                ." NOME = '".$this->estado."'";
-            $result5= $conn->executeQuery($query);
-            $row5 = mysql_fetch_array($result5);    
-            //insere cidade
-            $query = "INSERT INTO `cidade`(`id_cidade`, `nome`, `idEstado`)"
-                    . " VALUES (0,'".$this->cidade."',".$row5{"idestado"}.")" ;
-            $conn->executeQuery($query);
-            }
-            
+        //insere o estado
+        $query = "INSERT INTO `estado`(`idestado`, `nome`, `idPais`)"
+                . " VALUES (0,'".$this->estado."',".$idPais.")" ;
+        $conn->executeQuery($query);
+        $result2= $conn->executeQuery($query);
+        $row2 = mysql_fetch_array($result2);
+        $idEstado = $row1{"idestado"};
         }
+//--------------------------------------------------------------                       
+        $query =  "SELECT * FROM cidade WHERE"
+            ." NOME = '".$this->cidade."'";
+        $result3= $conn->executeQuery($query);
+        $row3 = mysql_fetch_array($result3);
+        //testa se existe a cidade
+        if($row3){
+            $idCidade = $row3{"id_cidade"};
+            return $idCidade;
+        }else{      
+        //insere cidade
+        $query = "INSERT INTO `cidade`(`id_cidade`, `nome`, `idEstado`)"
+                . " VALUES (0,'".$this->cidade."',".$idEstado.")" ;
+        $conn->executeQuery($query);
+        }
+//------------------------------------        
         $query =  "SELECT id_cidade FROM cidade WHERE"
-                ." NOME = '".$this->cidade."'";
-            $result5= $conn->executeQuery($query);
-            $row5 = mysql_fetch_array($result5);
-        
+            ." NOME = '".$this->cidade."'";
+        $result5= $conn->executeQuery($query);
+        $row5 = mysql_fetch_array($result5);   
         return $row5{"id_cidade"};
+        
     }
-    
+
     
     public function getCPF(){
         return $this->cpf;        
