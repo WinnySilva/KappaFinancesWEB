@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-	//require_once "../Back/config.php";
+//	require_once "../Back/config.php";
 ?>
 <html>
     <head>
@@ -56,14 +57,11 @@ and open the template in the editor.
 				margin-left: 20px;
 				margin-top: 5px;
 			}
-			<?php
-
-			?>
 		</style>
     </head>
     <body>
 
-       <form method="post" id="idcadastro" action="?go=idcadastrar">
+       <form method="post" id="idcadastro" action="?go=cadastrar">
        		<fieldset id="cadastro"><legend>Identificação do Usuário</legend>
        			<p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo"/>
        			<p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos"/>
@@ -115,8 +113,8 @@ and open the template in the editor.
 					<option value="florianopolis">Florianopolis</option>
 				</datalist>
 				<fieldset id="sexo"><legend>Sexo</legend>
-       				<input type="radio" name="tsexo" id="idmasc" checked/><label for="idmasc">Masculino</label><br/>
-					<input type="radio" name="tsexo" id="idfem"/><label for="idfem">Feminino</label>
+       				<input type="radio" name="tsexo" id="idmasc" checked value=1 /><label for="idmasc">Masculino</label><br/>
+					<input type="radio" name="tsexo" id="idfem" value=2 /><label for="idfem">Feminino</label>
 				</fieldset>
 				<div>
 					<input type="submit" value="Cadastrar" id="idcadastrar">
@@ -126,3 +124,45 @@ and open the template in the editor.
        </form>
     </body>
 </html>
+
+<?php
+include '../Back/usuario.php';
+
+if (@$_GET['go'] == 'cadastrar'){
+    $nome = $_POST['tnome'];
+    $senha = $_POST['tsenha'];
+    $email = $_POST['temail'];
+    $cpf = $_POST['tcpf']; 
+	$data_nasc = $_POST['tdata'];
+    $estado = $_POST['nestado'];
+    $cidade = $_POST['ncidade'];
+    $sexo = $_POST['tsexo'];
+	$pais = "Brasil";
+
+	if(empty($nome)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.1'); history.back();</script>";
+    }elseif(empty($senha)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.2'); history.back();</script>";
+    }elseif(empty($email)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.3'); history.back();</script>";
+    }elseif(empty($cpf)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.4'); history.back();</script>";
+    }elseif(empty($data_nasc)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.5'); history.back();</script>";
+    }elseif(empty($estado)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.6'); history.back();</script>";
+    }elseif(empty($cidade)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.7'); history.back();</script>";
+    }elseif(empty($sexo)){
+        echo "<script>alert('Preencha todos os campos para se cadastrar.8'); history.back();</script>";
+    }else{
+        //$query1 = @mysql_query("SELECT * FROM usuario WHERE cpf = $cpf");
+        //if (@mysql_num_rows($query1)> 0){
+            //echo "<script>alert('CPF já em uso.'); history.back();</script>";
+			$usuario=new Usuario($cpf,$nome,$cidade ,$estado ,$pais , $sexo ,$data_nasc , $senha ,"2015-04-23" );
+			$usuario->salvarDB();
+			echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
+			@header("Location: Inicial.php");
+    }
+}
+?>

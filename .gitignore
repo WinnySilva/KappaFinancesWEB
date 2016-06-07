@@ -1,3 +1,7 @@
 *.xml
 *.properties
 Back/config.php
+.idea/modules.xml___jb_tmp___
+.idea/workspace.xml___jb_tmp___
+.idea/vcs.xml___jb_tmp___
+*.iml
