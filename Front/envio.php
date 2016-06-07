@@ -19,8 +19,8 @@ if(@$_GET['go']=='enviar'){
     $filepath= $_FILES['arquivo']['tmp_name'];
     
     /* Conectar com o banco de dados da aplicação */
-    //$link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
-    //mysql_select_db('KappaDB',$link) or die('Erro ao conectar com o banco de dados');
+    $link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
+    mysqli_select_db($link, 'KappaDB') or die('Erro ao conectar com o banco de dados');
     
     //Verifica se o arquivo existe
     if($filepath)
@@ -30,25 +30,72 @@ if(@$_GET['go']=='enviar'){
         
         if($file_extension == 'xml'){
             
-            $file = file($filepath);    
-            
-            // IMPRIME ARQUIVO. AQUI TEM QUE ADICIONAR NO BANCO.
-            // Não está imprimindo as tags do XML. Acho que tem que usar
-            // um método diferente de ler arquivo, exemplo simplexml_load_file()
-            foreach($file as $line_num){ 
-                echo $line_num."<p>";
-            }
             
             // Abre arquivo como um XML
-            //$xml = simplexml_load_file($filepath); /* Lê o arquivo XML e recebe um objeto com as informações */
+            $xml = simplexml_load_file($filepath); /* Lê o arquivo XML e recebe um objeto com as informações */
             
-            /* Percorre o objeto e imprime na tela as informações */
-            //foreach ($xml as $nome_da_tag){
-                //$a = "Id: " . $contato->idcontato . "<br>";
-                //$a .= "Nome: " . $contato->nome . "<br>";
-                //$a .= "Email: " . $contato->email. "<br><br>";
-                //echo $a;
-            //}
+            
+            $userCPF = 2491785080; //precisa passar como 'parametro' esse CPF
+            $lastUpload = "2016-06-06";
+            $timeLastUpload = strtotime($lastUpload);   // TimeStamp do ultimo envio. 
+            
+            /* Percorre o XML e coloca no banco as informações */
+            //Primeiro para as receitas
+            $idReceita = 1;
+            foreach ($xml  as $mes){
+                foreach ($mes->financas->receita as $receita){
+                    $data = $receita->data;
+                    $timeData = strtotime($data);
+                    
+                    // Só adiciona no DB se for mais novo que o ultimo envio
+                    if($timeData > $timeLastUpload)
+                    {
+                        $value =$receita->value;
+                        $idCat = $receita->receita->categoriaReceita;
+
+                        // Utilizamos a variável $sql como sendo a instrução SQL de inserção
+                        $sql = "INSERT  INTO Receita (`valor`, `data`, `idReceita`,"
+                                . " `idCategoriaReceita`, `usuario_cpf`) VALUES ($value, '$data', $idReceita, "
+                                . " $idCat, $userCPF)";
+
+                        echo $sql.'<p>';
+
+                        mysqli_query ($link, $sql);
+                        $idReceita = $idReceita +1;
+                        echo 'Inserção de registro realizada com sucesso!!!';
+                    }
+                }
+            }
+            
+            $idDespesa = 1;             // TEM QUE MUDAR ISSO
+            //Agora para as despesas
+            foreach ($xml  as $mes){
+                foreach ($mes->financas->despesa as $despesa){
+                    $data = $despesa->data;
+                    
+                    $timeData = strtotime($data);   // Calcula timestamp da data
+                    
+                    // Só adiciona se a data for mais nova que a do ultimo envio
+                    if($timeData > $timeLastUpload)
+                    {
+                        //Pega valores do XML
+                        $value =$despesa->value;
+                        $idCat = $despesa->despesa->categoriaDespesa;
+
+                        // Utilizamos a variável $sql como sendo a instrução SQL de inserção
+                        $sql = "INSERT INTO Despesa (`valor`, `data`, `idDespesa`,"
+                                . " `idCategoriaDespesa`, `usuario_cpf`) VALUES ($value, '$data', $idDespesa, "
+                                . " $idCat, $userCPF)";
+
+                        echo $sql.'<p>';
+
+                        mysqli_query ($link, $sql);
+                        $idDespesa= $idDespesa +1;
+                        echo 'Inserção de registro realizada com sucesso!!!';
+                    }
+                        
+                }
+            }
         }
         else{
             echo '<b><center><font color=\'#FF0000\'> Você não selecionou um arquivo XML. '

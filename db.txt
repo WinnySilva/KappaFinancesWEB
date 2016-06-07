@@ -65,7 +65,7 @@ ENGINE = InnoDB;
 -- Table `KappaDB`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `KappaDB`.`Usuario` (
-  `cpf` INT NOT NULL,
+  `cpf` BIGINT NOT NULL,
   `nome` VARCHAR(255) NULL,
   `data_nasc` DATE NULL,
   `senha` VARCHAR(255) NULL,
@@ -86,7 +86,7 @@ ENGINE = InnoDB;
 -- Table `KappaDB`.`Admin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `KappaDB`.`Admin` (
-  `usuario_cpf` INT NOT NULL,
+  `usuario_cpf` BIGINT NOT NULL,
   PRIMARY KEY (`usuario_cpf`),
   CONSTRAINT `fk_Admin_Usuario1`
     FOREIGN KEY (`usuario_cpf`)
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `KappaDB`.`Receita` (
   `data` DATE NULL,
   `idReceita` INT NOT NULL,
   `idCategoriaReceita` INT NOT NULL,
-  `usuario_cpf` INT NOT NULL,
+  `usuario_cpf` BIGINT NOT NULL,
   PRIMARY KEY (`idReceita`, `usuario_cpf`),
   INDEX `fk_Receita_CategoriaReceita1_idx` (`idCategoriaReceita` ASC),
   INDEX `fk_Receita_Usuario1_idx` (`usuario_cpf` ASC),
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `KappaDB`.`Despesa` (
   `data` DATE NULL,
   `idDespesa` INT NOT NULL,
   `idCategoriaDespesa` INT NOT NULL,
-  `usuario_cpf` INT NOT NULL,
+  `usuario_cpf` BIGINT NOT NULL,
   PRIMARY KEY (`idDespesa`, `usuario_cpf`),
   INDEX `fk_Despesa_CategoriaDespesa1_idx` (`idCategoriaDespesa` ASC),
   INDEX `fk_Despesa_Usuario1_idx` (`usuario_cpf` ASC),
