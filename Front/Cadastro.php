@@ -127,10 +127,6 @@ and open the template in the editor.
 
 <?php
 include '../Back/usuario.php';
-//include '../Back/AdmDB.php';
-//include 'AdmDB.php';
-//$con = @mysql_connect("localhost", "root", "") or die("não foi possivel conecatar");
-//@mysql_select_db("kappadb", $con) or die("banco de dados nao localizado!");
 
 if (@$_GET['go'] == 'cadastrar'){
     $nome = $_POST['tnome'];
@@ -160,19 +156,13 @@ if (@$_GET['go'] == 'cadastrar'){
     }elseif(empty($sexo)){
         echo "<script>alert('Preencha todos os campos para se cadastrar.8'); history.back();</script>";
     }else{
-        $query1 = @mysql_num_rows(@mysql_query("SELECT * FROM USUARIO WHERE cpf = $cpf"));
-        if ($query1 == 1){
-            echo "<script>alert('CPF já em uso.'); history.back();</script>";
-        }else{
-			$teste=new Usuario("123121","joaozinho2" ,"pelotas" ,"rs" ,"brasilsilsil" ,2 ,"2016-06-09" ,"wululu" ,"2015-04-23" );
-			$teste->salvarDB();
-			//$tico = new Usuario($cpf, $nome, $cidade, $estado, $pais, $sexo, $data_nasc, $senha, "05-06-2016");
-			//$tico->salvarDB();
-			//@mysql_query("INSERT INTO usuario (cpf, nome, data_nasc, senha, data_envio, idcidade, sexo) VALUES (12323465422, 'fabio','2016-06-09' , 3003, '2016-06-09', 'pelotas', 'M')");
-			//@mysql_query("INSERT INTO usuario (cpf, nome, data_nasc, senha, data_envio, idcidade, sexo) VALUES ($cpf, $nome, $data, $pass, '2016-06-09', $cidade, $sexo)");
+        //$query1 = @mysql_query("SELECT * FROM usuario WHERE cpf = $cpf");
+        //if (@mysql_num_rows($query1)> 0){
+            //echo "<script>alert('CPF já em uso.'); history.back();</script>";
+			$usuario=new Usuario($cpf,$nome,$cidade ,$estado ,$pais , $sexo ,$data_nasc , $senha ,"2015-04-23" );
+			$usuario->salvarDB();
 			echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
 			@header("Location: Inicial.php");
-        }
     }
 }
 ?>
