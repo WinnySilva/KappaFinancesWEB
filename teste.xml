@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<list>
+<JUN2016>
+<financas>
+  <despesa>
+    <data>2016-06-07</data>
+    <value>-900.0</value>
+    <despesa>
+      <categoriaDespesa>3</categoriaDespesa>
+    </despesa>
+  </despesa>
+  <despesa>
+    <data>2016-06-07</data>
+    <value>-900.0</value>
+    <despesa>
+      <categoriaDespesa>6</categoriaDespesa>
+    </despesa>
+  </despesa>
+  <despesa>
+    <data>2016-06-07</data>
+    <value>-120.0</value>
+    <despesa>
+      <categoriaDespesa>2</categoriaDespesa>
+    </despesa>
+  </despesa>
+  <despesa>
+    <data>2016-06-07</data>
+    <value>-123.8</value>
+    <despesa>
+      <categoriaDespesa>6</categoriaDespesa>
+    </despesa>
+  </despesa>
+  <receita>
+    <data>2016-06-07</data>
+    <value>1230.8</value>
+    <receita>
+      <categoriaReceita>1</categoriaReceita>
+    </receita>
+  </receita>
+  <receita>
+    <data>2016-06-07</data>
+    <value>2230.8</value>
+    <receita>
+      <categoriaReceita>2</categoriaReceita>
+    </receita>
+  </receita>
+</financas>
+</JUN2016>
+<MAY2016>
+<financas>
+  <despesa>
+    <data>2016-05-24</data>
+    <value>-67676.0</value>
+    <despesa>
+      <categoriaDespesa>5</categoriaDespesa>
+    </despesa>
+  </despesa>
+</financas>
+</MAY2016>
+</list>
+
+
+
+
+
