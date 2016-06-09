@@ -1,15 +1,39 @@
 <html>
 <head>
      <link rel="stylesheet" href="style.css">
-    <label><center>Faça o Upload de seu arquivo XML<p> </center></label>
+        <style>
+        form{
+            margin-top: 30px;
+        }
+        fieldset#inicio{
+            width:400px;
+            margin-top:20px;
+        }
+        input#botaoenviar{
+            margin-left:240px;
+            margin-top:20px;
+            width: 250px;
+        }
+        label#titulo{
+            font-size: 20pt;
+            font-weight: bold;
+                    }
+        label#arquivo{
+            font-size:14pt;
+            font-weight: normal;
+        }
+    </style>
 </head>
 <body>
 <form method="post" action= "?go=enviar" enctype="multipart/form-data">
-	<center>    
-	<label>Arquivo:</label>
-    	<input type="file" name="arquivo" /> 
-    	<input type="submit" value="Enviar" />    
+	<center>
+        <label id="titulo">Faça o Upload de seu arquivo XML<p></label>
+	<fieldset id="inicio">
+    <label id="arquivo">Arquivo:</label>
+        <input type="file" name="arquivo" /> <br/>
 	</center>
+    </fieldset>
+    <input type="submit" value="Enviar" id="botaoenviar"/>
 </form>
 </body>
 </html>
