@@ -13,7 +13,7 @@ include 'AdmDB.php';
  * @author Winny S
  */
 class Usuario {
-    //put your code here
+    
     private $cpf,$nome,$cidade,$estado,
             $pais,$sexo,$data_nasc,
             $senha,$ultimo_envio;
@@ -55,13 +55,14 @@ class Usuario {
         $query =  "SELECT CPF FROM USUARIO"
                 . " WHERE CPF = ".$this->cpf;       
         $conn = new AdmDB;
-       /* if ($conn->testSelection($query)){
+        /*if ($conn->testSelection($query)){
             echo "JAH EXISTE<p>UPDATE<p>";
             $this->atualizarUsuariodb();
             return;
         }       
         echo "inserindo";
-       */ $this->inserirUsuariodb();      
+       */
+        $this->inserirUsuariodb();      
     }
     
     public function deletarUsuariodb(){
@@ -107,10 +108,10 @@ class Usuario {
     private function inserirCidadedb(){
         $conn = new AdmDB;       
         //-------------------------      
-        $query =  "SELECT NOME FROM PAIS WHERE"
+        $query =  "SELECT NOME,idPais FROM PAIS WHERE"
                 ." NOME = '".$this->pais."'";
-        $result1= $conn->executeQuery($query);
-        $row1 = mysql_fetch_array($result1);
+       
+        $row1 =  $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         if($row1){
             $idPais = $row1{"idPais"};
         }else{
@@ -119,16 +120,15 @@ class Usuario {
             $conn->executeQuery($query);
             $query =  "SELECT NOME FROM PAIS WHERE"
                 ." NOME = '".$this->pais."'";
-            $result1= $conn->executeQuery($query);
-            $row1 = mysql_fetch_array($result5);
+            $row1 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
              $idPais = $row1{"idPais"};
             
         }       
        //---------------------------------
         $query =  "SELECT idestado FROM estado WHERE"
             ." NOME = '".$this->estado."'";
-        $result2= $conn->executeQuery($query);
-        $row2 = mysql_fetch_array($result2);
+        
+        $row2 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         if($row2){
             $idEstado = $row2{"idestado"};
         }else{
@@ -136,15 +136,14 @@ class Usuario {
         $query = "INSERT INTO `estado`(`idestado`, `nome`, `idPais`)"
                 . " VALUES (0,'".$this->estado."',".$idPais.")" ;
         $conn->executeQuery($query);
-        $result2= $conn->executeQuery($query);
-        $row2 = mysql_fetch_array($result2);
+        $row2 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         $idEstado = $row1{"idestado"};
         }
 //--------------------------------------------------------------                       
         $query =  "SELECT * FROM cidade WHERE"
             ." NOME = '".$this->cidade."'";
-        $result3= $conn->executeQuery($query);
-        $row3 = mysql_fetch_array($result3);
+        
+        $row3 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         //testa se existe a cidade
         if($row3){
             $idCidade = $row3{"id_cidade"};
@@ -158,8 +157,8 @@ class Usuario {
 //------------------------------------        
         $query =  "SELECT id_cidade FROM cidade WHERE"
             ." NOME = '".$this->cidade."'";
-        $result5= $conn->executeQuery($query);
-        $row5 = mysql_fetch_array($result5);   
+        
+        $row5 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         return $row5{"id_cidade"};
         
     }

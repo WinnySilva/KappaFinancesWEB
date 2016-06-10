@@ -32,23 +32,37 @@
     include '../Back/usuario.php';
     session_start();
     if(@$_GET['go']=="login"){
-    $cpf = $_POST["login"];
-    $senha =  $_POST["password"];    
-    $query = "SELECT cpf,senha FROM usuario WHERE CPF = ".$cpf;    
-    $conn = new AdmDB;
-    $result = $conn->executeQuery($query);
-    $row = mysql_fetch_array($result);
-    $senha2= $row{"senha"};
-    if($senha2==$senha){
-        echo "MATcH";
-        $_SESSION["CPF"] = $cpf;
-        echo $_SESSION["CPF"];
-        header('Location: envio.php');
+        $cpf = $_POST["login"];
+        $senha =  $_POST["password"];    
+        $query = "SELECT cpf,senha,ultimo_envio FROM usuario WHERE CPF = ".$cpf;    
+        $conn = new AdmDB;
+        $result = $conn->executeQuery($query);
+     //   $senha2 = null;
         
-    }
-    else{
-         header('Location: Inicial.php');
-    }
+        if(($senha == null)||($cpf == null) || ($result == null) ){
+             echo "<red>O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA;";
+            return;
+        }
+        $line = $result->fetch(PDO::FETCH_ASSOC);
+        //foreach($result as $line){
+            $senha2 = $line["senha"]; 
+            $ultimo_envio = $line["ultimo_envio"];
+        //}
+        /*
+        echo "<p>".$ultimo_envio."<p>";
+        $diff1Day = new DateInterval('P30D');
+        $ultimo_envio->add($diff1Day);
+        
+        
+        echo "<p>".$ultimo_envio."<p>";
+        */
+        if(($senha2==$senha)){
+            $_SESSION["CPF"] = $cpf;
+            header('Location: envio.php');
+        }
+        else{
+            echo "<red>O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA;";
+        }
     
     }
-?>
+        

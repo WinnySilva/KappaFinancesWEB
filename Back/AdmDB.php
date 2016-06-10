@@ -14,8 +14,8 @@ if(!$minhaConexao->executeQuery("SELECT * FROM usuario")){
         private $servername= "localhost" ;
         private $dbname = "kappadb";
         private $username = "root";
-        private $password ;
-        private $conn = "";
+        private $password = "";
+        private $conn = null;
 
         /**
          * retorna uma tabela para ser exibida ou n
@@ -24,36 +24,18 @@ if(!$minhaConexao->executeQuery("SELECT * FROM usuario")){
          * @param type $string o query a ser executado
          */
         public function executeQuery($stringQuery ){
-            $this->conn = mysql_connect($this->servername , $this->username, $this->password);
-            if (!$this->conn) {
-                die("FALHOU\n");
-            }
-             echo "<p>".$stringQuery."<p>";
-            echo "Conectado<p>";
-            mysql_select_db($this->dbname,$this->conn) 
-            or die("Could not select examples");
-            
-            $result = mysql_query($stringQuery);
-            
-            //fetch tha data from the database 
-            /*
-            while ($row = mysql_fetch_array($result)) {
-               echo "<p>".$row{"cpf"}." ".$row{"nome"}; //display the results               
-            }
-            */
-            mysql_close($this->conn);
+            $this->conn = new PDO(
+                    'mysql:host='. $this->servername
+                    . ';dbname='. $this->dbname
+                    . ';charset=utf8', 
+                    $this->username, $this->password);
+
+           
+            echo "<p>".$stringQuery."<p>";
+            $result = $this->conn->query($stringQuery);
             return $result;
             
         }
-        //retorna true se a query retorna elementos da tabela;
-        public function testSelection($query){      
         
-        $result = $this->executeQuery($query);
-        $row = mysql_fetch_array($result);
-        if ($row){
-            return true;
-        }
-         return false;   
-        }
         
     }

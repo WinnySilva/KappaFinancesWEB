@@ -51,15 +51,15 @@ if(@$_GET['go']=='enviar'){
     {
         // Pega extensão do arquivo e verifica se é mesmo .xml
         $file_extension = substr($_FILES['arquivo']['name'], -3);
-        
+        session_start();
         if($file_extension == 'xml'){
             
             
             // Abre arquivo como um XML
             $xml = simplexml_load_file($filepath); /* Lê o arquivo XML e recebe um objeto com as informações */
             
-            
-            $userCPF = 2491785080; //precisa passar como 'parametro' esse CPF
+            $userCPF = $_SESSION["CPF"];
+          //  $userCPF = 2491785080; //precisa passar como 'parametro' esse CPF
             $lastUpload = "2016-06-06";
             $timeLastUpload = strtotime($lastUpload);   // TimeStamp do ultimo envio. 
             
