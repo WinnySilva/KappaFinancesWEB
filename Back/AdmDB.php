@@ -12,7 +12,7 @@ if(!$minhaConexao->executeQuery("SELECT * FROM usuario")){
  */
     class AdmDB{
         private $servername= "localhost" ;
-        private $dbname = "kappadb";
+        private $dbname = "KappaDB";
         private $username = "root";
         private $password = "";
         private $conn = null;
@@ -21,7 +21,7 @@ if(!$minhaConexao->executeQuery("SELECT * FROM usuario")){
          * retorna uma tabela para ser exibida ou n
          * OBS: O objeto retornado eh um iterador, logo,cada elemento eh lido
          * uma vez.
-         * @param type $string o query a ser executado
+         * @param type $string o query a ser executador
          */
         public function executeQuery($stringQuery ){
             $this->conn = new PDO(

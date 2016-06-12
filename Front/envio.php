@@ -34,6 +34,9 @@
 	</center>
     </fieldset>
     <input type="submit" value="Enviar" id="botaoenviar"/>
+    <center>
+		<a href= "Inicial.php" <p></p><img src="Imagens/voltar.gif"	height="50px" width="100px"	/></a>
+	</center>
 </form>
 </body>
 </html>
@@ -59,8 +62,9 @@ if(@$_GET['go']=='enviar'){
             $xml = simplexml_load_file($filepath); /* Lê o arquivo XML e recebe um objeto com as informações */
             
             $userCPF = $_SESSION["CPF"];
+            echo $userCPF."<p>";
           //  $userCPF = 2491785080; //precisa passar como 'parametro' esse CPF
-            $lastUpload = "2016-06-06";
+            $lastUpload = "2016-06-06";	// parametro também
             $timeLastUpload = strtotime($lastUpload);   // TimeStamp do ultimo envio. 
             
             /* Percorre o XML e coloca no banco as informações */

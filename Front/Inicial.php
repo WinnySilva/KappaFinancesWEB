@@ -34,11 +34,11 @@
     if(@$_GET['go']=="login"){
         $cpf = $_POST["login"];
         $senha =  $_POST["password"];    
-        $query = "SELECT cpf,senha,ultimo_envio FROM usuario WHERE CPF = ".$cpf;    
+        $query = "SELECT cpf,senha,ultimo_envio FROM Usuario WHERE CPF = ".$cpf;    
         $conn = new AdmDB;
         $result = $conn->executeQuery($query);
      //   $senha2 = null;
-        
+        echo $senha."<p>";
         if(($senha == null)||($cpf == null) || ($result == null) ){
              echo "<red>O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA;";
             return;
@@ -53,9 +53,13 @@
         $diff1Day = new DateInterval('P30D');
         $ultimo_envio->add($diff1Day);
         
-        
+       
         echo "<p>".$ultimo_envio."<p>";
         */
+        
+        echo $senha."<p>";
+        echo $senha2."<p>";
+        
         if(($senha2==$senha)){
             $_SESSION["CPF"] = $cpf;
             header('Location: envio.php');
