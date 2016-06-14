@@ -62,9 +62,14 @@ if(@$_GET['go']=='enviar'){
             $xml = simplexml_load_file($filepath); /* Lê o arquivo XML e recebe um objeto com as informações */
             
             $userCPF = $_SESSION["CPF"];
-            echo $userCPF."<p>";
-          //  $userCPF = 2491785080; //precisa passar como 'parametro' esse CPF
-            $lastUpload = "2016-06-06";	// parametro também
+            
+            $query = sprintf("SELECT nome, data_nasc, ultimo_envio, sexo FROM Usuario WHERE cpf=".$userCPF); 
+			$dados = mysqli_query($link, $query) or die(mysqli_error($link));
+			// transforma os dados em um array
+			$linha = mysqli_fetch_assoc($dados);
+		
+			$lastUpload = $linha['ultimo_envio'];
+			//$lastUpload = "2016-06-06";
             $timeLastUpload = strtotime($lastUpload);   // TimeStamp do ultimo envio. 
             
             /* Percorre o XML e coloca no banco as informações */
@@ -86,11 +91,8 @@ if(@$_GET['go']=='enviar'){
                                 . " `idCategoriaReceita`, `usuario_cpf`) VALUES ($value, '$data', $idReceita, "
                                 . " $idCat, $userCPF)";
 
-                        echo $sql.'<p>';
-
                         mysqli_query ($link, $sql);
                         $idReceita = $idReceita +1;
-                        echo 'Inserção de registro realizada com sucesso!!!';
                     }
                 }
             }
@@ -100,7 +102,6 @@ if(@$_GET['go']=='enviar'){
             foreach ($xml  as $mes){
                 foreach ($mes->financas->despesa as $despesa){
                     $data = $despesa->data;
-                    
                     $timeData = strtotime($data);   // Calcula timestamp da data
                     
                     // Só adiciona se a data for mais nova que a do ultimo envio
@@ -115,15 +116,23 @@ if(@$_GET['go']=='enviar'){
                                 . " `idCategoriaDespesa`, `usuario_cpf`) VALUES ($value, '$data', $idDespesa, "
                                 . " $idCat, $userCPF)";
 
-                        echo $sql.'<p>';
-
                         mysqli_query ($link, $sql);
                         $idDespesa= $idDespesa +1;
-                        echo 'Inserção de registro realizada com sucesso!!!';
                     }
                         
                 }
             }
+            
+            echo '<b><center><font color=\'#006400\'> Registros inseridos
+            com sucesso! :).</font></center><b>';
+            ?>
+            <html>
+				<center>
+					<a href="Relatorios.php"> <input type="button" value="Continuar"/></a>
+				</center>
+            </html>
+            
+            <?php
         }
         else{
             echo '<b><center><font color=\'#FF0000\'> Você não selecionou um arquivo XML. '

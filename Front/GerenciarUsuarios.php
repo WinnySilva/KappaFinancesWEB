@@ -44,56 +44,121 @@
 #retorno {
 	border: 2px solid #FFF000;
 	padding-left:5px; 
-	width:280px;
+	width:290px;
 }
 
 </style>
 
 </html>
 <?php
-
+	
 if(@$_GET['go']=="cpf"){
     $cpf = $_POST["cpf"];
     
-    //echo $cpf."<p>"; 
-     
-    /* Conectar com o banco de dados da aplicação */
-    $link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
-    mysqli_select_db($link, 'KappaDB') or die('Erro ao conectar com o banco de dados');
-    
-    $query = sprintf("SELECT nome, data_nasc, ultimo_envio, sexo FROM Usuario WHERE cpf=".$cpf);
-    //echo $query."<p>"; 
-    $dados = mysqli_query($link, $query) or die(mysqli_error($link));
-    // transforma os dados em um array
-	$linha = mysqli_fetch_assoc($dados);
-    // calcula quantos dados retornaram
-	$total = mysqli_num_rows($dados);
-	
-	if ($total >0)
-	{
+    if ($cpf=="")
+    {
+		echo '<p></p><b><center><font color=\'#FF0000\'> Insira algum CPF. :)</font></center><b>';
+	}
+    else
+    {
+		// Inicia uma sessão e pega o CPF advindo da sessão anterior
+		session_start();
+		$_SESSION["CPF"] = $cpf;
+		
+		/* Conectar com o banco de dados da aplicação */
+		$link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
+		mysqli_select_db($link, 'KappaDB') or die('Erro ao conectar com o banco de dados');
+		
+		// Retorna usuário com o CPF informado.
+		$query = sprintf("SELECT nome, data_nasc, ultimo_envio, sexo FROM Usuario WHERE cpf=".$cpf); 
+		$dados = mysqli_query($link, $query) or die(mysqli_error($link));
+		// transforma os dados em um array
+		$linha = mysqli_fetch_assoc($dados);
+		// calcula quantos dados retornaram
+		$total = mysqli_num_rows($dados);
+		
+		if ($total >0)
+		{
+			?>
+			<html>
+				<center>
+					<p><p>Usuário encontrado!<p>
+						(Se não for esse usuário, você pode pesquisar novamente)
+						<div id="retorno">
+					<p> Nome: <?=$linha['nome']?> <p>Data de Nascimento: <?=$linha['data_nasc']?>
+					<p>Último Envio do XML: <?=$linha['ultimo_envio']?><p>Sexo: <?=$linha['sexo']?></p>
+					<form method="post" action="?go=excluir">
+						<input type="image" src="Imagens/excluir.png" width="80" height="110" >
+							
+					</form>
+					<form method="post" action="?go=editar">
+						<input type="image" src="Imagens/editar.png" width="80" height="110" 	>
+						
+					</form>
+					</div>
+				</center>
+				
+			</html>
+			<?php
+		}
+		else
+		{
+			 echo '<p></p><b><center><font color=\'#FF0000\'> Não existe nenhum usuário
+			  com este CPF, favor pesquisar novamente. :)</font></center><b>';
+		}
+	}
+}
+	if(@$_GET['go']=="excluir"){
+		session_start();
+		$cpf = $_SESSION["CPF"];
+		echo '<p></p><b><center><font size="140" color=\'#FF0000\'> O usuário de CPF ' .$cpf.' será excluído.</font></center><b>';
 		?>
 		<html>
-			<center>
-			<p><p>Usuário encontrado!<p>
-				(Se não for esse usuário, você pode pesquisar novamente)
-				<div id="retorno">
-			<p> Nome: <?=$linha['nome']?> <p>Data de Nascimento: <?=$linha['data_nasc']?>
-			<p>Último Envio do XML: <?=$linha['ultimo_envio']?><p>Sexo: <?=$linha['sexo']?></p>
-			<input type="image" src="Imagens/excluir.png" width="80" height="110" >
-			            &nbsp &nbsp &nbsp
-			<input type="image" src="Imagens/editar.png" width="80" height="110" 	>
-				</div>
-			</center>
+		<center>
+			<form method="post" action="?go=delete">
+					<input type="image" src="Imagens/delete.png" width="230" height="80" >
+			</form>
+			<form method="post" action="?go=cancel">
+					<input type="image" src="Imagens/cancel.png" width="230" height="80" >
+			</form>
+		</center>
 		</html>
 		<?php
+		
+		
 	}
-	else
-	{
-		 echo '<p></p><b><center><font color=\'#FF0000\'> Não existe nenhum usuário
-		  com este CPF, favor pesquisar novamente. :)</font></center><b>';
+	else if (@$_GET['go']=="editar"){
+		echo "AQUI VAI IR PRA PÀGINA DE EDITAR BONECO (não é minha parte)";
+	}
+	if (@$_GET['go']=="delete"){
+		// Aqui excuímos o usuário
+		
+		session_start();
+		$cpf = $_SESSION["CPF"];
+		
+		/* Conectar com o banco de dados da aplicação */
+		$link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
+		mysqli_select_db($link, 'KappaDB') or die('Erro ao conectar com o banco de dados');
+		
+		// Exclui Despesas do usuário
+		$query = sprintf("DELETE FROM Despesa WHERE usuario_cpf=".$cpf);
+		mysqli_query($link, $query) or die(mysqli_error($link));
+		
+		// Exclui Receitas do usuário
+		$query = sprintf("DELETE FROM Receita WHERE usuario_cpf=".$cpf);
+		mysqli_query($link, $query) or die(mysqli_error($link));
+		
+		// Exclui Usuário
+		$query = sprintf("DELETE FROM Usuario WHERE cpf=".$cpf);
+		mysqli_query($link, $query) or die(mysqli_error($link));
+		
+		echo '<p></p><b><center><font color=\'#006400\'> Usuário deletado com sucesso.</font></center><b>';
+	}
+	if (@$_GET['go']=="cancel"){
+		// Usuário clica em voltar
+		header('Location: GerenciarUsuarios.php');
 	}
 	
-}
 	?>
 	<html>
 	<center>
