@@ -6,13 +6,30 @@
     */
 body {
     text-align: left;
-    padding: 0;
-    width: 750px;
     margin:auto;
     color: black;
     font-size: 14pt;
     font-family:sans-serif;
     background-color: #dfdfdf;
+}
+div#interface{
+    position:relative;
+    width:750px;
+    background-color: #ffffff;
+    margin: -20px 10px 10px 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+    padding: 10px 10px 10px 10px;
+    margin: auto
+}
+footer#rodape{
+    margin:auto;
+    position:absolute;
+}
+footer#rodape p{
+    text-align: center;
+    font-size:10pt;
+    margin-left: 240px;
+    
 }
 
 .botao{

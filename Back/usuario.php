@@ -52,17 +52,28 @@ class Usuario {
      * OU INSERE NOVO SE NAO EXISTE
      */
     public function salvarDB(){
-        $query =  "SELECT CPF FROM USUARIO"
-                . " WHERE CPF = ".$this->cpf;       
+        $query = "SELECT cpf FROM usuario WHERE CPF = ".$this->cpf;
         $conn = new AdmDB;
-        /*if ($conn->testSelection($query)){
-            echo "JAH EXISTE<p>UPDATE<p>";
+        $stmt = $conn->executeQuery($query);
+        if($stmt->rowCount() > 0)
+        {
             $this->atualizarUsuariodb();
-            return;
-        }       
-        echo "inserindo";
-       */
-        $this->inserirUsuariodb();      
+        }else{
+            echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
+            $this->inserirUsuariodb();
+            }
+    }
+    public function cadastroUsuarioDB(){
+        $query = "SELECT cpf FROM usuario WHERE CPF = ".$this->cpf;
+        $conn = new AdmDB;
+        $stmt = $conn->executeQuery($query);
+        if($stmt->rowCount() > 0)
+        {
+            echo "<script>alert('CPF já em uso.'); history.back();</script>";
+        }else{
+            echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
+            $this->inserirUsuariodb();
+        }
     }
     
     public function deletarUsuariodb(){
@@ -75,7 +86,7 @@ class Usuario {
         $idcidade = $this->inserirCidadedb();
         
         $query = "UPDATE `usuario` SET "
-              //  . "cpf=".$this->cpf.","
+                . "cpf=".$this->cpf.","
                 . "nome ='".$this->nome."',"
                 . "data_nasc ='".$this->data_nasc."',"
                 . "senha ='".$this->senha."',"
