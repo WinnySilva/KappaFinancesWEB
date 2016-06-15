@@ -59,8 +59,8 @@ class Usuario {
         {
             $this->atualizarUsuariodb();
         }else{
-            echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
             $this->inserirUsuariodb();
+            echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
             }
     }
     public function cadastroUsuarioDB(){
@@ -71,8 +71,8 @@ class Usuario {
         {
             echo "<script>alert('CPF já em uso.'); history.back();</script>";
         }else{
-            echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
             $this->inserirUsuariodb();
+            echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
         }
     }
     

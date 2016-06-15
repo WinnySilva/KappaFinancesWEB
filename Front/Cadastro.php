@@ -49,9 +49,6 @@ and open the template in the editor.
 				margin-left: 20px;
 				margin-top: 5px;
 			}
-            div#interface{
-
-            }
 		</style>
     </head>
     <body>
@@ -139,21 +136,21 @@ if (@$_GET['go'] == 'cadastrar'){
 	$pais = "Brasil";
 
 	if(empty($nome)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.1'); history.back();</script>";
+        echo "<script>alert('Preencha o nome para se cadastrar.'); history.back();</script>";
     }elseif(empty($senha)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.2'); history.back();</script>";
+        echo "<script>alert('Preencha a senha para se cadastrar.'); history.back();</script>";
     }elseif(empty($email)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.3'); history.back();</script>";
+        echo "<script>alert('Preencha o e-mail para se cadastrar.'); history.back();</script>";
     }elseif(empty($cpf)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.4'); history.back();</script>";
+        echo "<script>alert('Preencha o CPF de nascimento para se cadastrar.'); history.back();</script>";
     }elseif(empty($data_nasc)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.5'); history.back();</script>";
+        echo "<script>alert('Preencha a data para se cadastrar.'); history.back();</script>";
     }elseif(empty($estado)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.6'); history.back();</script>";
+        echo "<script>alert('Preencha o estado para se cadastrar.'); history.back();</script>";
     }elseif(empty($cidade)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.7'); history.back();</script>";
+        echo "<script>alert('Preencha a cidade para se cadastrar.'); history.back();</script>";
     }elseif(empty($sexo)){
-        echo "<script>alert('Preencha todos os campos para se cadastrar.8'); history.back();</script>";
+        echo "<script>alert('Preencha sexo para se cadastrar.'); history.back();</script>";
     }else{
         //$query1 = @mysql_query("SELECT * FROM usuario WHERE cpf = $cpf");
         //if (@mysql_num_rows($query1)> 0){
@@ -161,7 +158,6 @@ if (@$_GET['go'] == 'cadastrar'){
 			$usuario=new Usuario($cpf,$nome,$cidade ,$estado ,$pais , $sexo ,$data_nasc , $senha ,"2015-04-23" );
 			$usuario->cadastroUsuarioDB();
 			//echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
-			@header("Location: Inicial.php");
     }
 }
 ?>
