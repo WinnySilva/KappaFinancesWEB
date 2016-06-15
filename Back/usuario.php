@@ -52,7 +52,7 @@ class Usuario {
      * OU INSERE NOVO SE NAO EXISTE
      */
     public function salvarDB(){
-        $query = "SELECT cpf FROM usuario WHERE CPF = ".$this->cpf;
+        $query = "SELECT cpf FROM Usuario WHERE cpf = ".$this->cpf;
         $conn = new AdmDB;
         $stmt = $conn->executeQuery($query);
         if($stmt->rowCount() > 0)
@@ -64,7 +64,7 @@ class Usuario {
             }
     }
     public function cadastroUsuarioDB(){
-        $query = "SELECT cpf FROM usuario WHERE CPF = ".$this->cpf;
+        $query = "SELECT cpf FROM Usuario WHERE cpf = ".$this->cpf;
         $conn = new AdmDB;
         $stmt = $conn->executeQuery($query);
         if($stmt->rowCount() > 0)
@@ -72,12 +72,12 @@ class Usuario {
             echo "<script>alert('CPF já em uso.'); history.back();</script>";
         }else{
             $this->inserirUsuariodb();
-            echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
+           // echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
         }
     }
     
     public function deletarUsuariodb(){
-        $query = "DELETE FROM `usuario` "
+        $query = "DELETE FROM `Usuario` "
                 . "WHERE cpf = ".$this->cpf;
         $conn = new AdmDB;
         $conn->executeQuery($query);
@@ -85,7 +85,7 @@ class Usuario {
     public function atualizarUsuariodb(){
         $idcidade = $this->inserirCidadedb();
         
-        $query = "UPDATE `usuario` SET "
+        $query = "UPDATE `Usuario` SET "
                 . "cpf=".$this->cpf.","
                 . "nome ='".$this->nome."',"
                 . "data_nasc ='".$this->data_nasc."',"
@@ -101,7 +101,7 @@ class Usuario {
     public function inserirUsuariodb(){
         $conn = new AdmDB;
         $idcidade = $this->inserirCidadedb();
-        $query = "INSERT INTO `usuario`(`cpf`, `nome`, `data_nasc`, `senha`,"
+        $query = "INSERT INTO `Usuario`(`cpf`, `nome`, `data_nasc`, `senha`,"
                 . " `ultimo_envio`, `idcidade`, `sexo`) "
                 . "VALUES ("
                 . $this->cpf.","
@@ -119,40 +119,40 @@ class Usuario {
     private function inserirCidadedb(){
         $conn = new AdmDB;       
         //-------------------------      
-        $query =  "SELECT NOME,idPais FROM PAIS WHERE"
-                ." NOME = '".$this->pais."'";
+        $query =  "SELECT nome,idPais FROM Pais WHERE"
+                ." nome = '".$this->pais."'";
        
         $row1 =  $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         if($row1){
             $idPais = $row1{"idPais"};
         }else{
-            $query = "INSERT INTO `pais`(`idPais`, `nome`)"
+            $query = "INSERT INTO `Pais`(`idPais`, `nome`)"
                     . " VALUES (0,'".$this->pais."')";
             $conn->executeQuery($query);
-            $query =  "SELECT NOME FROM PAIS WHERE"
-                ." NOME = '".$this->pais."'";
+            $query =  "SELECT nome FROM Pais WHERE"
+                ." nome = '".$this->pais."'";
             $row1 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
              $idPais = $row1{"idPais"};
             
         }       
        //---------------------------------
-        $query =  "SELECT idestado FROM estado WHERE"
-            ." NOME = '".$this->estado."'";
+        $query =  "SELECT idestado FROM Estado WHERE"
+            ." nome = '".$this->estado."'";
         
         $row2 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         if($row2){
             $idEstado = $row2{"idestado"};
         }else{
         //insere o estado
-        $query = "INSERT INTO `estado`(`idestado`, `nome`, `idPais`)"
+        $query = "INSERT INTO `Estado`(`idestado`, `nome`, `idPais`)"
                 . " VALUES (0,'".$this->estado."',".$idPais.")" ;
         $conn->executeQuery($query);
-        $row2 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
+        $row1 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         $idEstado = $row1{"idestado"};
         }
 //--------------------------------------------------------------                       
-        $query =  "SELECT * FROM cidade WHERE"
-            ." NOME = '".$this->cidade."'";
+        $query =  "SELECT * FROM Cidade WHERE"
+            ." nome = '".$this->cidade."'";
         
         $row3 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         //testa se existe a cidade
@@ -161,13 +161,13 @@ class Usuario {
             return $idCidade;
         }else{      
         //insere cidade
-        $query = "INSERT INTO `cidade`(`id_cidade`, `nome`, `idEstado`)"
+        $query = "INSERT INTO `Cidade`(`id_cidade`, `nome`, `idEstado`)"
                 . " VALUES (0,'".$this->cidade."',".$idEstado.")" ;
         $conn->executeQuery($query);
         }
 //------------------------------------        
-        $query =  "SELECT id_cidade FROM cidade WHERE"
-            ." NOME = '".$this->cidade."'";
+        $query =  "SELECT id_cidade FROM Cidade WHERE"
+            ." nome = '".$this->cidade."'";
         
         $row5 = $conn->executeQuery($query)->fetch(PDO::FETCH_ASSOC);
         return $row5{"id_cidade"};
