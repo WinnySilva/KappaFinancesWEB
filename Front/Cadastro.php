@@ -165,7 +165,7 @@ if (@$_GET['go'] == 'cadastrar'){
         //$query1 = @mysql_query("SELECT * FROM usuario WHERE cpf = $cpf");
         //if (@mysql_num_rows($query1)> 0){
             //echo "<script>alert('CPF já em uso.'); history.back();</script>";
-			$usuario=new Usuario($cpf,$nome,$cidade ,$estado ,$pais , $sexo ,$data_nasc , $senha ,"2015-04-23" );
+			$usuario=new Usuario($cpf,$nome,$cidade ,$estado ,$pais , $sexo ,$data_nasc , $senha ,"2015-04-23", $email);
 			$usuario->cadastroUsuarioDB();
 			//echo "<script>alert('Usuário cadastrado com sucesso.');</script>";
     }

@@ -4,6 +4,7 @@
 	Digite aqui o CPF do usuário que desejar administrar (somente números):
 	<form method="post" action="?go=cpf ">
 	<div id="divBusca">
+	<!--<link rel="stylesheet" href="style.css">-->
     <img src="Imagens/search3.png" alt=""/>
     <input type="text" id="txtBusca" name="cpf" placeholder="Buscar Usuário..."/>
     <input type="image" src="Imagens/search4.png" type="submit" alt="Buscar Usuário..." id="btnBusca" value="Submeter"/>
@@ -63,7 +64,7 @@ if(@$_GET['go']=="cpf"){
     {
 		// Inicia uma sessão e pega o CPF advindo da sessão anterior
 		session_start();
-		$_SESSION["CPF"] = $cpf;
+		$_SESSION["CPFADMIN"] = $cpf;
 		
 		/* Conectar com o banco de dados da aplicação */
 		$link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
@@ -110,7 +111,7 @@ if(@$_GET['go']=="cpf"){
 }
 	if(@$_GET['go']=="excluir"){
 		session_start();
-		$cpf = $_SESSION["CPF"];
+		$cpf = $_SESSION["CPFADMIN"];
 		echo '<p></p><b><center><font size="140" color=\'#FF0000\'> O usuário de CPF ' .$cpf.' será excluído.</font></center><b>';
 		?>
 		<html>
@@ -128,7 +129,7 @@ if(@$_GET['go']=="cpf"){
 		
 	}
 	else if (@$_GET['go']=="editar"){
-		echo "AQUI VAI IR PRA PÀGINA DE EDITAR BONECO (não é minha parte)";
+		header('Location: EditarUsuario.php');
 	}
 	if (@$_GET['go']=="delete"){
 		// Aqui excuímos o usuário

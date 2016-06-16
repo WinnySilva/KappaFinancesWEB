@@ -154,33 +154,33 @@ CREATE TABLE `Estado` (
 --
 
 INSERT INTO `Estado` (`idestado`, `nome`, `idPais`) VALUES
-(1, 'AC', 1),
-(2, 'AL', 1),
-(3, 'AP', 1),
-(4, 'AM', 1),
-(5, 'BA', 1),
-(6, 'CE', 1),
-(7, 'DF', 1),
-(8, 'ES', 1),
-(9, 'GO', 1),
-(10, 'MA', 1),
-(11, 'MT', 1),
-(12, 'MS', 1),
-(13, 'MG', 1),
-(14, 'PA', 1),
-(15, 'PB', 1),
-(16, 'PR', 1),
-(17, 'PE', 1),
-(18, 'PI', 1),
-(19, 'RJ', 1),			
-(20, 'RN', 1),
-(21, 'RS', 1),
-(22, 'RO', 1),
-(23, 'RR', 1),
-(24, 'SC', 1),
-(25, 'SP', 1),
-(26, 'SE', 1),
-(27, 'TO', 1);
+(1, 'Acre', 1),
+(2, 'Alagoas', 1),
+(3, 'Amapá', 1),
+(4, 'Amazonas', 1),
+(5, 'Bahia', 1),
+(6, 'Ceará', 1),
+(7, 'Distrito Federal', 1),
+(8, 'Espírito Santo', 1),
+(9, 'Góias', 1),
+(10, 'Maranhã', 1),
+(11, 'Mato Grosso', 1),
+(12, 'Mato Grosso do Sul', 1),
+(13, 'Minas Gerais', 1),
+(14, 'Pará', 1),
+(15, 'Paraíba', 1),
+(16, 'Paraná', 1),
+(17, 'Pernambuco', 1),
+(18, 'Piauí', 1),
+(19, 'Rio de Janeiro', 1),
+(20, 'Rio Grande do Norte', 1),
+(21, 'Rio Grande do Sul', 1),
+(22, 'Rôndonia', 1),
+(23, 'Roraima', 1),
+(24, 'Santa Catarina', 1),
+(25, 'São Paulo', 1),
+(26, 'Sergipe', 1),
+(27, 'Tocantins', 1);
 
 -- --------------------------------------------------------
 
@@ -249,7 +249,8 @@ CREATE TABLE `Usuario` (
   `senha` varchar(255) DEFAULT NULL,
   `ultimo_envio` datetime DEFAULT NULL,
   `idcidade` int(11) NOT NULL,
-  `sexo` enum('F','M') DEFAULT NULL
+  `sexo` enum('F','M') DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

@@ -128,7 +128,7 @@ if(@$_GET['go']=='enviar'){
             ?>
             <html>
 				<center>
-					<a href="Relatorios.php"> <input type="button" value="Continuar"/></a>
+					<a href="GerenciarUsuarios.php"> <input type="button" value="Continuar"/></a>
 				</center>
             </html>
             

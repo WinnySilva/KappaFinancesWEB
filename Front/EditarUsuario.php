@@ -1,3 +1,26 @@
+<?php
+    try {
+        $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
+        $conexao->exec("SET CHARACTER SET utf8");
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    //session_start();
+    //$CPFlogado = $_SESSION["CPF"];
+    $cpflogado = "12";
+    $resultado=$conexao->prepare("SELECT * FROM Usuario WHERE cpf =?");
+    $resultado->execute(array($cpflogado));
+    $linha=$resultado->fetch(PDO::FETCH_ASSOC);
+
+    $nomeinput = $linha['nome'];
+    $senhainput = $linha['senha'];
+    $emailinput = $linha['email'];
+    $cpfinput = $linha['cpf'];
+    $nascinput = $linha['data_nasc']
+
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,8 +56,12 @@
                 margin-bottom: 15px;
                 margin-top: 20px;
             }
-            select{
+            select#idestado{
                 width: 267px;
+            }
+            select#idpais{
+                width: 267px;
+                margin-left: 20px;
             }
             #ideditar {
                 font-size:18px;
@@ -55,40 +82,47 @@
     <div id="interface">
         <form method="post" id="ideditar" action="?go=editar">
             <fieldset id="editar"><legend>Editar Usuário</legend>
-                <p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo"/>
-                <p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos"/>
-                <p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="20"/>
-                <p>CPF:&#160;&#160;&#160;&#160; <input type="text" name="tcpf" id="idcpf" size="25" maxlength="11" placeholder="Somente Numeros"/>
-                <p>Data Nascimento: <input type="date" name="tdata" id="iddata"</p>
+                <p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo" value="<?php print $nomeinput;?>"/>
+                <p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos" value="<?php print $senhainput;?>"/>
+                <p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="20"value="<?php print $emailinput;?>"/>
+                <p>CPF:&#160;&#160;&#160;&#160; <input type="text" name="tcpf" id="idcpf" size="25" maxlength="11" placeholder="Somente Numeros" value="<?php print $cpfinput;?>"/>
+                <p>Data Nascimento: <input type="date" name="tdata" id="iddata" value="<?php print $nascinput; ?>"</p>
+                <p><label for="idpais">País:</label>
+                    <select name="npais" id="idpais">
+                        <?php
+                        try {
+                            $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
+                            $conexao->exec("SET CHARACTER SET utf8");
+                        }catch(PDOException $e){
+                            echo $e->getMessage();
+                        }
+                        $resultado=$conexao->prepare("SELECT idPais, nome FROM Pais");
+                        $resultado->execute();
+                        while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+                            $paistabela = $linha['nome'];
+                            $idpaistabela = $linha['idPais'];
+                            echo "<option>$paistabela</option>";
+                        }
+                        ?>
+                    </select>
                 <p><label for="idestado">Estado:</label>
                     <select name="nestado" id="idestado">
-                        <option value="AC">Acre</option>
-                        <option value="AL">Alagoas</option>
-                        <option value="AM">Amazonas</option>
-                        <option value="AP">Amapá</option>
-                        <option value="BH">Bahia</option>
-                        <option value="CE">Ceará</option>
-                        <option value="DF">Distrito Federal</option>
-                        <option value="ES">Espírito Santo</option>
-                        <option value="GO">Goiás</option>
-                        <option value="MA">Maranhão</option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="MS">Mato Grosso do Sul</option>
-                        <option value="MT">Mato Grosso</option>
-                        <option value="PA">Pará</option>
-                        <option value="PB">Paraíba</option>
-                        <option value="PE">Pernambuco</option>
-                        <option value="PI">Piauí</option>
-                        <option value="PR">Paraná</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                        <option value="RN">Rio Grande do Norte</option>
-                        <option selected value="RS">Rio Grande do Sul</option>
-                        <option value="RO">Rondônia</option>
-                        <option value="RR">Roraima</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="SE">Sergipe</option>
-                        <option value="SP">São Paulo</option>
-                        <option value="TO">Tocantins</option>
+                        <option>Selecione o Estado</option>
+                        <?php
+                        try {
+                            $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
+                            $conexao->exec("SET CHARACTER SET utf8");
+                        }catch(PDOException $e){
+                            echo $e->getMessage();
+                        }
+                        $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado");
+                        $resultado->execute();
+                        while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+                            $estadotabela = $linha['nome'];
+                            $idestadotabela = $linha['idestado'];
+                            echo "<option value='$estadotabela'>$estadotabela</option>";
+                        }
+                        ?>
                     </select>
                 <p><label for="idcidade">Cidade:</label>
                     <input type="text" name="ncidade" id="idcidade" maxlength="20" size="25" placeholder="Digite sua Cidade" list="cidades">

@@ -34,7 +34,7 @@ class Usuario {
     public function Usuario(
             $cpf,$nome,$cidade,$estado,
             $pais,$sexo,$data_nasc,
-            $senha,$ultimo_envio){
+            $senha,$ultimo_envio, $email){
         
         $this->cpf= $cpf;
         $this->nome= strtoupper($nome);
@@ -45,7 +45,7 @@ class Usuario {
         $this->data_nasc=$data_nasc;
         $this->senha=$senha;
         $this->ultimo_envio=$ultimo_envio;
-        
+        $this->email=$email;
     }
     /**
      * ATUALIZA O REGISTRO PELO CPF
@@ -72,7 +72,7 @@ class Usuario {
             echo "<script>alert('CPF já em uso.'); history.back();</script>";
         }else{
             $this->inserirUsuariodb();
-           // echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
+            echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
         }
     }
     
@@ -102,15 +102,13 @@ class Usuario {
         $conn = new AdmDB;
         $idcidade = $this->inserirCidadedb();
         $query = "INSERT INTO `Usuario`(`cpf`, `nome`, `data_nasc`, `senha`,"
-                . " `ultimo_envio`, `idcidade`, `sexo`) "
+                . " `ultimo_envio`, `idcidade`, `sexo`, `email`) "
                 . "VALUES ("
                 . $this->cpf.","
                 . "'".$this->nome."',"
                 . "'".$this->data_nasc."',"
                 . "'".$this->senha."',"
-                . "'".$this->ultimo_envio."',"
-                . $idcidade.","
-                . $this->sexo
+                . "'".$this->ultimo_envio. "',". "'". $idcidade."',". "'". $this->sexo."',". "'". $this->email ."'"
                 . ")";
         
         $conn->executeQuery($query);
