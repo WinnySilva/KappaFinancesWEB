@@ -60,7 +60,7 @@ and open the template in the editor.
                     <p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos"/>
                     <p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="20"/>
                     <p>CPF:&#160;&#160;&#160;&#160; <input type="text" name="tcpf" id="idcpf" size="25" maxlength="11" placeholder="Somente Numeros"/>
-                    <p>Data Nascimento: <input type="date" name="tdata" id="iddata"</p>
+                    <p>Data Nascimento: <input type="date" name="tdata" id="iddata" placeholder="DD/MM/AAAA" </p>
                     <p><label for="idpais">País:</label>
                         <select name="npais" id="idpais">
                             <?php

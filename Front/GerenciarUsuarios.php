@@ -130,7 +130,9 @@ if(@$_GET['go']=="cpf"){
 		
 	}
 	else if (@$_GET['go']=="editar"){
-		header('Location: EditarUsuario.php');
+		session_start();
+		$cpf = $_SESSION["CPFADMIN"];
+		header('Location: EditarUsuarioADM.php');
 	}
 	if (@$_GET['go']=="delete"){
 		// Aqui excuímos o usuário

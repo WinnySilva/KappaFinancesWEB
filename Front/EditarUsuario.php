@@ -5,9 +5,9 @@
     }catch(PDOException $e){
         echo $e->getMessage();
     }
-    //session_start();
-    //$CPFlogado = $_SESSION["CPF"];
-    $cpflogado = "12";
+    session_start();
+    $cpflogado = $_SESSION["CPF"];
+    //$cpflogado = "12";
     $resultado=$conexao->prepare("SELECT * FROM Usuario WHERE cpf =?");
     $resultado->execute(array($cpflogado));
     $linha=$resultado->fetch(PDO::FETCH_ASSOC);
@@ -16,7 +16,7 @@
     $senhainput = $linha['senha'];
     $emailinput = $linha['email'];
     $cpfinput = $linha['cpf'];
-    $nascinput = $linha['data_nasc']
+    $nascinput = $linha['data_nasc'];
 
 
 ?>
