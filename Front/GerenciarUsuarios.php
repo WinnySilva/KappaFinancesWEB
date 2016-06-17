@@ -2,9 +2,9 @@
 <head>
 	<center>
 	Digite aqui o CPF do usuário que desejar administrar (somente números):
+	<link rel="stylesheet" href="style.css">
 	<form method="post" action="?go=cpf ">
 	<div id="divBusca">
-	<!--<link rel="stylesheet" href="style.css">-->
     <img src="Imagens/search3.png" alt=""/>
     <input type="text" id="txtBusca" name="cpf" placeholder="Buscar Usuário..."/>
     <input type="image" src="Imagens/search4.png" type="submit" alt="Buscar Usuário..." id="btnBusca" value="Submeter"/>
@@ -18,11 +18,11 @@
 <style>
 #txtBusca{
     float:left;
-    background-color:transparent;
+    background-color:white;
     padding-left:5px;   
     font-size:18px;
     border:none;
-    height:32px;
+    height:35px;
     width:226px;
 }
  
@@ -56,9 +56,10 @@
 if(@$_GET['go']=="cpf"){
     $cpf = $_POST["cpf"];
     
-    if ($cpf=="")
+    // Testa se o campo é vazio, se possui só letras ou tem valor negativo
+    if ($cpf==""||!($cpf>0))
     {
-		echo '<p></p><b><center><font color=\'#FF0000\'> Insira algum CPF. :)</font></center><b>';
+		echo '<p></p><b><center><font color=\'#FF0000\'> Insira algum CPF (somente números). :)</font></center><b>';
 	}
     else
     {
@@ -111,7 +112,7 @@ if(@$_GET['go']=="cpf"){
 }
 	if(@$_GET['go']=="excluir"){
 		session_start();
-		$cpf = $_SESSION["CPFADMIN"];
+		$cpf = $_SESSION["CPF"];
 		echo '<p></p><b><center><font size="140" color=\'#FF0000\'> O usuário de CPF ' .$cpf.' será excluído.</font></center><b>';
 		?>
 		<html>
@@ -135,7 +136,7 @@ if(@$_GET['go']=="cpf"){
 		// Aqui excuímos o usuário
 		
 		session_start();
-		$cpf = $_SESSION["CPF"];
+		$cpf = $_SESSION["CPFADMIN"];
 		
 		/* Conectar com o banco de dados da aplicação */
 		$link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');

@@ -6,11 +6,11 @@
             margin-top: 30px;
         }
         fieldset#inicio{
-            width:400px;
+            width:40px;
             margin-top:20px;
         }
         input#botaoenviar{
-            margin-left:240px;
+            margin-left:480px;
             margin-top:20px;
             width: 250px;
         }
@@ -32,10 +32,11 @@
     <label id="arquivo">Arquivo:</label>
         <input type="file" name="arquivo" /> <br/>
 	</center>
+    
     </fieldset>
     <input type="submit" value="Enviar" id="botaoenviar"/>
     <center>
-		<a href= "Inicial.php" <p></p><img src="Imagens/voltar.gif"	height="50px" width="100px"	/></a>
+    	<a href= "Inicial.php" <p></p><img src="Imagens/voltar.gif"	height="50px" width="100px"	/></a>
 	</center>
 </form>
 </body>
