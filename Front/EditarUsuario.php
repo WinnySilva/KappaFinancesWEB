@@ -181,3 +181,46 @@
     </div>
     </body>
 </html>
+<?php
+include '../Back/usuario.php';
+
+if (@$_GET['go'] == 'editar'){
+    $nome = $_POST['tnome'];
+    $senha = $_POST['tsenha'];
+    $email = $_POST['temail'];
+    $cpf = $_POST['tcpf'];
+    $data_nasc = $_POST['tdata'];
+    $estado = $_POST['nestado'];
+    $cidade = $_POST['ncidade'];
+    $sexo = $_POST['tsexo'];
+    $pais = $_POST['nomepais'];
+
+    if ($pais !== "Brasil"){
+        $estado ="Sem Estado";
+        $cidade = "Sem Cidade";
+    }
+
+    if(empty($nome)){
+        echo "<script>alert('Preencha o nome para poder editar.'); history.back();</script>";
+    }elseif(empty($senha)){
+        echo "<script>alert('Preencha a senha para poder editar.'); history.back();</script>";
+    }elseif(empty($email)){
+        echo "<script>alert('Preencha o e-mail para poder editar.'); history.back();</script>";
+    }elseif(empty($cpf)){
+        echo "<script>alert('Preencha o CPF de nascimento para poder editar.'); history.back();</script>";
+    }elseif(empty($data_nasc)){
+        echo "<script>alert('Preencha a data para poder editar.'); history.back();</script>";
+    }elseif(empty($pais)){
+        echo "<script>alert('Preencha o Pais para poder editar.'); history.back();</script>";
+    }elseif(empty($estado)){
+        echo "<script>alert('Preencha o estado para poder editar.'); history.back();</script>";
+    }elseif(empty($cidade)){
+        echo "<script>alert('Preencha a cidade para poder editar.'); history.back();</script>";
+    }elseif(empty($sexo)){
+        echo "<script>alert('Preencha sexo para se poder editar.'); history.back();</script>";
+    }else{
+        $usuario = new Usuario($cpf, $nome, $cidade, $estado, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
+        $usuario->atualizarUsuariodb();
+    }
+}
+?>
