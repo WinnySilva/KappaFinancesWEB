@@ -31,7 +31,9 @@ footer#rodape p{
     margin-left: 240px;
     
 }
-
+.escondido{
+    display: none;
+}
 .botao{
     font-family: sans-serif;
     font-size: 12px;

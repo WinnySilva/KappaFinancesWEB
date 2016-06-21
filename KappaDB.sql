@@ -198,8 +198,8 @@ CREATE TABLE `Pais` (
 --
 
 INSERT INTO `Pais` (`idPais`, `nome`) VALUES
-(1, 'Brasil'),
-(2, 'Argentina'),
+(1, 'Argentina'),
+(2, 'Brasil'),
 (3, 'Uruguai'),
 (4, 'Belize'),
 (5, 'Uganda'),
