@@ -80,6 +80,7 @@ and open the template in the editor.
                     <p>Data Nascimento: <input type="date" name="tdata" id="iddata" placeholder="DD/MM/AAAA" </p>
                     <p><label for="idpais">País:</label>
                         <select name="nomepais" id="idpais">
+                            <option>Selecione o País</option>
                             <?php
                             try {
                                 $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
@@ -155,19 +156,19 @@ if (@$_GET['go'] == 'cadastrar'){
     $nome = $_POST['tnome'];
     $senha = $_POST['tsenha'];
     $email = $_POST['temail'];
-    $cpf = $_POST['tcpf']; 
-	$data_nasc = $_POST['tdata'];
+    $cpf = $_POST['tcpf'];
+    $data_nasc = $_POST['tdata'];
     $estado = $_POST['nestado'];
     $cidade = $_POST['ncidade'];
     $sexo = $_POST['tsexo'];
-	$pais = $_POST['nomepais'];
+    $pais = $_POST['nomepais'];
 
     if ($pais !== "Brasil"){
         $estado ="Sem Estado";
         $cidade = "Sem Cidade";
     }
 
-	if(empty($nome)){
+    if(empty($nome)){
         echo "<script>alert('Preencha o nome para se cadastrar.'); history.back();</script>";
     }elseif(empty($senha)){
         echo "<script>alert('Preencha a senha para se cadastrar.'); history.back();</script>";
@@ -177,17 +178,17 @@ if (@$_GET['go'] == 'cadastrar'){
         echo "<script>alert('Preencha o CPF de nascimento para se cadastrar.'); history.back();</script>";
     }elseif(empty($data_nasc)){
         echo "<script>alert('Preencha a data para se cadastrar.'); history.back();</script>";
-    }elseif(empty($pais)){
+    }elseif(empty($pais) && $estado == "Selecione o País"){
         echo "<script>alert('Preencha o Pais para se cadastrar.'); history.back();</script>";
-    }elseif(empty($estado)){
+    }elseif(empty($estado) && $estado == "Selecione o Estado"){
         echo "<script>alert('Preencha o estado para se cadastrar.'); history.back();</script>";
     }elseif(empty($cidade)){
         echo "<script>alert('Preencha a cidade para se cadastrar.'); history.back();</script>";
     }elseif(empty($sexo)){
         echo "<script>alert('Preencha sexo para se cadastrar.'); history.back();</script>";
     }else{
-                $usuario = new Usuario($cpf, $nome, $cidade, $estado, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
-                $usuario->cadastroUsuarioDB();
+        $usuario = new Usuario($cpf, $nome, $cidade, $estado, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
+        $usuario->cadastroUsuarioDB();
     }
 }
 ?>

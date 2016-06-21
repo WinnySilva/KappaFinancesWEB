@@ -119,7 +119,8 @@ INSERT INTO `Cidade` (`id_cidade`, `nome`, `idEstado`) VALUES
 (19, 'Brasilia', 7),
 (20, 'Santa Maria', 1),
 (21, 'Cangucu', 1),
-(22, 'Rio Branco', 1);
+(22, 'Rio Branco', 1),
+(23, 'Sem Cidade', 28);
 
 
 -- --------------------------------------------------------
@@ -180,7 +181,8 @@ INSERT INTO `Estado` (`idestado`, `nome`, `idPais`) VALUES
 (24, 'Santa Catarina', 1),
 (25, 'São Paulo', 1),
 (26, 'Sergipe', 1),
-(27, 'Tocantins', 1);
+(27, 'Tocantins', 1),
+(28, 'Sem Estado', 2);
 
 -- --------------------------------------------------------
 
@@ -198,8 +200,8 @@ CREATE TABLE `Pais` (
 --
 
 INSERT INTO `Pais` (`idPais`, `nome`) VALUES
-(1, 'Argentina'),
-(2, 'Brasil'),
+(1, 'Brasil'),
+(2, 'Argentina'),
 (3, 'Uruguai'),
 (4, 'Belize'),
 (5, 'Uganda'),

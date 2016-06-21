@@ -18,10 +18,34 @@
     $cpfinput = $linha['cpf'];
     $nascinput = $linha['data_nasc'];
     $sexoinput = $linha['sexo'];
-
-
-?>
-
+    $cidadeid = $linha['idcidade'];
+    
+    //Pegar nome da cidade
+    
+    $resultado2 = $conexao->prepare("SELECT * FROM Cidade WHERE id_cidade = ?");
+    $resultado2->execute(array($cidadeid));
+    $linha2 = $resultado2->fetch(PDO::FETCH_ASSOC);
+    
+    $cidadeinput = $linha2['nome'];
+    $estadoid = $linha2['idEstado'];
+    
+    //Pegar nome do Estado
+    
+    $resultado3 = $conexao->prepare("SELECT * FROM Estado WHERE idestado = ?");
+    $resultado3->execute(array($estadoid));
+    $linha3 = $resultado3->fetch(PDO::FETCH_ASSOC);
+    
+    $estadoinput = $linha3['nome'];
+    $paisid = $linha3['idPais'];
+    
+    //Pegar nome do Pais
+    
+    $resultado4 = $conexao->prepare("SELECT * FROM Pais WHERE idPais = ?");
+    $resultado4->execute(array($paisid));
+    $linha4 = $resultado4->fetch(PDO::FETCH_ASSOC);
+    
+    $paisinput = $linha4['nome'];
+    ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -107,6 +131,7 @@
                 <p>Data Nascimento: <input type="date" name="tdata" id="iddata" value="<?php print $nascinput; ?>"</p>
                 <p><label for="idpais">País:</label>
                 <select name="nomepais" id="idpais">
+                    <option>Selecione o País</option>
                     <?php
                         try {
                             $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
@@ -119,29 +144,33 @@
                         while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
                             $paistabela = $linha['nome'];
                             $idpaistabela = $linha['idPais'];
-                            echo "<option>$paistabela</option>";
+                            if ($paistabela == $paisinput){
+                                echo "<option value='$paistabela' selected>$paistabela</option>";
+                            }else echo "<option>$paistabela</option>";
                         }
                     ?>
                 </select>
-                <div id="divEC" class="escondido">
-                    <p><label for="idestado">Estado:</label>
-                        <select name="nestado" id="idestado">
-                            <option>Selecione o Estado</option>
-                            <?php
-                            try {
-                                $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
-                                $conexao->exec("SET CHARACTER SET utf8");
-                            }catch(PDOException $e){
-                                echo $e->getMessage();
-                            }
-                            $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado");
-                            $resultado->execute();
-                            while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
-                                $estadotabela = $linha['nome'];
-                                $idestadotabela = $linha['idestado'];
-                                echo "<option value='$estadotabela'>$estadotabela</option>";
-                            }
-                            ?>
+                    <div id="divEC" class="escondido">
+                <p><label for="idestado">Estado:</label>
+                    <select name="nestado" id="idestado">
+                        <option>Selecione o Estado</option>
+                        <?php
+                        try {
+                            $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
+                            $conexao->exec("SET CHARACTER SET utf8");
+                        }catch(PDOException $e){
+                            echo $e->getMessage();
+                        }
+                        $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado");
+                        $resultado->execute();
+                        while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+                            $estadotabela = $linha['nome'];
+                            $idestadotabela = $linha['idestado'];
+                            if ($estadotabela == $estadoinput){
+                                echo "<option value='$estadotabela' selected> $estadotabela</option>";
+                            }else echo "<option value='$estadotabela'>$estadotabela</option>";
+                        }
+                        ?>
                         </select>
                     <p><label for="idcidade">Cidade:</label>
                         <input type="text" name="ncidade" id="idcidade" maxlength="20" size="25" placeholder="Digite sua Cidade" list="cidades">
@@ -210,10 +239,10 @@ if (@$_GET['go'] == 'editar'){
         echo "<script>alert('Preencha o CPF de nascimento para poder editar.'); history.back();</script>";
     }elseif(empty($data_nasc)){
         echo "<script>alert('Preencha a data para poder editar.'); history.back();</script>";
-    }elseif(empty($pais)){
-        echo "<script>alert('Preencha o Pais para poder editar.'); history.back();</script>";
-    }elseif(empty($estado)){
-        echo "<script>alert('Preencha o estado para poder editar.'); history.back();</script>";
+    }elseif(empty($pais) && $estado == "Selecione o País"){
+        echo "<script>alert('Preencha o Pais para se cadastrar.'); history.back();</script>";
+    }elseif(empty($estado) && $estado == "Selecione o Estado"){
+        echo "<script>alert('Preencha o estado para se cadastrar.'); history.back();</script>";
     }elseif(empty($cidade)){
         echo "<script>alert('Preencha a cidade para poder editar.'); history.back();</script>";
     }elseif(empty($sexo)){
