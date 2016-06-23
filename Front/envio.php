@@ -4,13 +4,14 @@
         <style>
         form{
             margin-top: 30px;
+            text-align: center;
         }
-        fieldset#inicio{
-            width:40px;
-            margin-top:20px;
+        fieldset{
+            width: 380px;
+            margin: auto;
         }
         input#botaoenviar{
-            margin-left:480px;
+            margin-left:0px;
             margin-top:20px;
             width: 250px;
         }
@@ -22,23 +23,25 @@
             font-size:14pt;
             font-weight: normal;
         }
+
     </style>
 </head>
 <body>
-<form method="post" action= "?go=enviar" enctype="multipart/form-data">
-	<center>
-        <label id="titulo">Faça o Upload de seu arquivo XML<p></label>
-	<fieldset id="inicio">
-    <label id="arquivo">Arquivo:</label>
-        <input type="file" name="arquivo" /> <br/>
-	</center>
-    
-    </fieldset>
-    <input type="submit" value="Enviar" id="botaoenviar"/>
-    <center>
-    	<a href= "Inicial.php" <p></p><img src="Imagens/voltar.gif"	height="50px" width="100px"	/></a>
-	</center>
-</form>
+    <form method="post" action= "?go=enviar" enctype="multipart/form-data">
+
+            <label id="titulo">Faça o Upload de seu arquivo XML<p></label>
+        <fieldset id="inicio">
+        <label id="arquivo">Arquivo:</label>
+            <input type="file" name="arquivo" /> <br/>
+
+
+        </fieldset>
+
+            <input type="submit" value="Enviar" id="botaoenviar"/>
+
+            <a href= "Inicial.php" <p></p><img src="Imagens/voltar.gif"	height="50px" width="100px"	/></a>
+
+    </form>
 </body>
 </html>
 <?php

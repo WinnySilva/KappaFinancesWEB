@@ -36,16 +36,9 @@ footer#rodape p{
 }
 .botao{
     font-family: sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
+    font-size: 24px;
     font-weight: 600;
-    padding:5px;
-    background-color: #b9b9b9;
-    border-color: #007c00;
-    border: medium;
-    color: #000400;
-    text-decoration: none;
-    margin-left:25px;
-    width: 50px;
-    border: double;
+    padding:10px;
+    width: 300px;
+    margin: 20px 20px 20px 20px;
 }

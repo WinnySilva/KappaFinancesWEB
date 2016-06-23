@@ -45,15 +45,6 @@
     $linha4 = $resultado4->fetch(PDO::FETCH_ASSOC);
 
     $paisinput = $linha4['nome'];
-
-    if ($paisinput == "Brasil"){
-        echo "<script>
-                    var div;
-                    div = document.getElementById(\"divEC\");
-                    div.classList.remove(\"escondido\");
-                }
-                  </script>";
-    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -128,6 +119,20 @@
             margin-top: 5px;
         }
     </style>
+    <?php
+    if ($paisinput == "Brasil"){
+    echo "<style>
+                div#divEC{
+                display: inline;
+                }
+          </style>";
+    }else {
+        echo "<style>
+                     div#divEC{
+                     display: none;
+            </style>";
+    }
+    ?>
 </head>
 <body>
 <div id="interface">

@@ -37,10 +37,10 @@ class Usuario {
             $senha,$ultimo_envio, $email){
         
         $this->cpf= $cpf;
-        $this->nome= strtoupper($nome);
-        $this->cidade=strtoupper($cidade);
-        $this->estado=strtoupper($estado);
-        $this->pais= strtoupper($pais);
+        $this->nome= ($nome);
+        $this->cidade= ($cidade);
+        $this->estado= ($estado);
+        $this->pais= ($pais);
         $this->sexo=$sexo;
         $this->data_nasc=$data_nasc;
         $this->senha=$senha;
