@@ -67,7 +67,7 @@
         };
     </script>
     <meta charset="UTF-8">
-    <title>Editar</title>
+    <title>Editar Administrador</title>
     <link rel="stylesheet" href="style.css">
     <style>
         input {
@@ -118,6 +118,13 @@
             margin-left: 20px;
             margin-top: 5px;
         }
+        #idbvoltar{
+            font-size:18px;
+            font-family:sans-serif;
+            margin-left:30px;
+            margin-bottom: 0px;
+            width: 100px;
+        }
     </style>
     <?php
     if ($paisinput == "Brasil"){
@@ -136,7 +143,7 @@
 </head>
 <body>
 <div id="interface">
-    <form method="post" id="ideditar" action="?go=editar">
+    <form method="post" id="ideditar" action="EditarUsuarioADM.php">
         <fieldset id="editar"><legend>Editar Usuário</legend>
             <p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo" value="<?php print $nomeinput;?>"/>
             <p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos" value="<?php print $senhainput;?>"/>
@@ -212,12 +219,10 @@
                 }
                 ?>
             </fieldset>
-            <div>
-                <input type="submit" value="Editar" id="idbeditar">
-            </div>
-        </fieldset>
-
+                    <input type="submit" value="Editar" id="idbeditar" name= "enviar">
+                    <input type="submit" value="Voltar" id="idbvoltar" name= "enviar">
     </form>
+        </fieldset>
     <footer id="rodape">
         <p>Copyright © 2016 - KappaFinance Developer</p>
     </footer>
@@ -227,7 +232,7 @@
 <?php
 include '../Back/usuario.php';
 
-if (@$_GET['go'] == 'editar'){
+if (@$_POST['enviar'] == 'Editar'){
     $nome = $_POST['tnome'];
     $senha = $_POST['tsenha'];
     $email = $_POST['temail'];
@@ -266,4 +271,7 @@ if (@$_GET['go'] == 'editar'){
         $usuario->atualizarUsuariodb();
     }
 }
+    if(@$_POST['enviar'] == "Voltar"){
+         echo "<script>window.location.href='GerenciarUsuarios.php';</script>";
+    }
 ?>

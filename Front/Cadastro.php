@@ -64,6 +64,13 @@ and open the template in the editor.
 				margin-left: 20px;
 				margin-top: 5px;
 			}
+            #idbvoltar{
+                font-size:18px;
+                font-family:sans-serif;
+                margin-left:30px;
+                margin-bottom: 0px;
+                width: 100px;
+            }
             select#idpais{
                 margin-left:20px;
             }
@@ -71,7 +78,7 @@ and open the template in the editor.
     </head>
     <body>
         <div id="interface">
-           <form method="post" id="idcadastro" action="?go=cadastrar">
+            <form method="post" id="idcadastro" action="Cadastro.php">
                 <fieldset id="cadastro"><legend>Identificação do Usuário</legend>
                     <p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo"/>
                     <p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos"/>
@@ -136,9 +143,8 @@ and open the template in the editor.
                         <input type="radio" name="tsexo" id="idmasc" checked value=2 /><label for="idmasc">Masculino</label><br/>
                         <input type="radio" name="tsexo" id="idfem" value=1 /><label for="idfem">Feminino</label>
                     </fieldset>
-                    <div>
-                        <input type="submit" value="Cadastrar" id="idcadastrar">
-                    </div>
+                        <input type="submit" value="Cadastrar" id="idcadastrar" name="enviar">
+                        <input type="submit" value="Voltar" id="idbvoltar" name= "enviar">
                 </fieldset>
 
            </form>
@@ -152,7 +158,7 @@ and open the template in the editor.
 <?php
 include '../Back/usuario.php';
 
-if (@$_GET['go'] == 'cadastrar'){
+if (@$_POST['enviar'] == 'Cadastrar'){
     $nome = $_POST['tnome'];
     $senha = $_POST['tsenha'];
     $email = $_POST['temail'];
@@ -191,4 +197,7 @@ if (@$_GET['go'] == 'cadastrar'){
         $usuario->cadastroUsuarioDB();
     }
 }
+    if(@$_POST['enviar'] == "Voltar"){
+        echo "<script>window.location.href='Inicial.php';</script>";
+    }
 ?>
