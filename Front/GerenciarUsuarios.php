@@ -90,11 +90,11 @@ if(@$_GET['go']=="cpf"){
 					<p> Nome: <?=$linha['nome']?> <p>Data de Nascimento: <?=$linha['data_nasc']?>
 					<p>Último Envio do XML: <?=$linha['ultimo_envio']?><p>Sexo: <?=$linha['sexo']?></p>
 					<form method="post" action="?go=excluir">
-						<input type="image" src="Imagens/excluir.png" width="80" height="110" >
+						<input type="image" src="Imagens/bottoes/excluir.png" width="160" height="50" >
 							
 					</form>
 					<form method="post" action="?go=editar">
-						<input type="image" src="Imagens/editar.png" width="80" height="110" 	>
+						<input type="image" src="Imagens/bottoes/editar.png" width="160" height="50" 	>
 						
 					</form>
 					</div>
@@ -118,10 +118,10 @@ if(@$_GET['go']=="cpf"){
 		<html>
 		<center>
 			<form method="post" action="?go=delete">
-					<input type="image" src="Imagens/delete.png" width="230" height="80" >
+					<input type="image" src="Imagens/bottoes/excluir.png" width="160" height="50" >
 			</form>
 			<form method="post" action="?go=cancel">
-					<input type="image" src="Imagens/cancel.png" width="230" height="80" >
+					<input type="image" src="Imagens/bottoes/cancelar.png" width="160" height="50" >
 			</form>
 		</center>
 		</html>
@@ -160,12 +160,12 @@ if(@$_GET['go']=="cpf"){
 	}
 	if (@$_GET['go']=="cancel"){
 		// Usuário clica em voltar
-		header('Location: GerenciarUsuarios.php');
+		header('Location: PaginaUsuario.php');
 	}
 	
 	?>
 	<html>
 	<center>
-		<a href= "Administracao.php" <p></p><img src="Imagens/voltar.gif"	height="50px" width="100px"	/></a>
+		<a href= "Administracao.php" <p></p><img src="Imagens/bottoes/voltar.png"	height="50px" width="160px"	/></a>
 	</center>	
 	</html>

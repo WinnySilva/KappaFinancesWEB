@@ -38,8 +38,8 @@
         </fieldset>
 
             <input type="submit" value="Enviar" id="botaoenviar"/>
-
-            <a href= "Inicial.php" <p></p><img src="Imagens/voltar.gif"	height="50px" width="100px"	/></a>
+			
+            <a href= "Inicial.php" <p></p><img src="Imagens/bottoes/voltar.png"	height="50px" width="180px"	/></a>
 
     </form>
 </body>
@@ -132,7 +132,7 @@ if(@$_GET['go']=='enviar'){
             ?>
             <html>
 				<center>
-					<a href="GerenciarUsuarios.php"> <input type="button" value="Continuar"/></a>
+					<a href= "PaginaUsuario.php" <p></p><img src="Imagens/bottoes/continuar.png"	height="50px" width="180px"	/></a>
 				</center>
             </html>
             

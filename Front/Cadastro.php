@@ -90,7 +90,7 @@ and open the template in the editor.
                             <option>Selecione o País</option>
                             <?php
                             try {
-                                $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
+                                $conexao=new PDO("mysql:host=localhost;dbname=KappaDB","root", "");
                                 $conexao->exec("SET CHARACTER SET utf8");
                             }catch(PDOException $e){
                                 echo $e->getMessage();
