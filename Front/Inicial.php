@@ -12,9 +12,17 @@
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
+    <header>
+        <br>
+        <br>
+        <h1>Kappa Finances</h1>
+        
+        <br>
+    </header>
+    
   <section class="container">
     <div class="login">
-      <h1>Kappa Finances</h1>
+      
       <form method="post" action="?go=login ">
         
         <p><input type="text" name="login" value="" placeholder="CPF"></p>

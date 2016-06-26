@@ -84,7 +84,7 @@ body {
 	//overflow: hidden;
 }
 .content {
-        padding: 0 450px 0 0;
+        padding: 0 500px 0 0;
        //width: 50%;
 }
 
@@ -117,4 +117,7 @@ body {
         margin: 0 auto;
         padding: 10px;
         text-align: right;
+    }
+    .hide{
+        display: none;
     }

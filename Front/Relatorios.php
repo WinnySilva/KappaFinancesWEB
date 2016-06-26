@@ -103,7 +103,6 @@ function graphBar(canvas){
         </header><!-- .header-->
 
 	<div class="middle">
-
 		<div class="container">
 			<main class="content">
                             <div class="box-chart">
@@ -122,29 +121,45 @@ function graphBar(canvas){
 
 		<aside class="right-sidebar">
                     <strong>Lado</strong> 
-                    <form method="post">
-
-                                               
-                        <fieldset id="financatipo" method="post"><legend>Tipo de Finança</legend>
-                            <input type="radio" name="finan" id="idall" checked value=1 /><label for="idall">Todas</label>
-                            <input type="radio" name="finan" id="idrec"  value=2 /><label for="idrec">Receita</label><br/>
-                            <input type="radio" name="finan" id="iddesp" value=3 /><label for="iddesp">Despesa</label>
-                        </fieldset>
+                    <form id="financatipo" name ="fin" method="POST"><legend>Tipo de Finança</legend>
                        
+                            <input  type="radio" name="finan"    value=1  id ="idall" onclick="submit();"/><label for="idall">Todas</label>
+                            <input type="radio"  name="finan"  value=2 id ="idrec" onclick="submit();"/><label for="idrec">Receita</label><br/>
+                            <input type="radio"  name="finan"  value=3  id ="iddesp"onclick="submit();" /><label for="iddesp">Despesa</label>                          
+                    </form>
+                    <script>
+                       // document.getElementById("financatipo").submit;
+                        </script>
+                        
+                                  
+                    <form method="post" >                       
                         <?php
+                        //$value = 
+                        $tr = true;
+                       if($tr){
+                        echo "<script> "
+                      
+                       //         . "document.fin.submit();"
+                               . "</script>";      
+                         $tr = false;
+                       }
+                       echo $_POST['finan']."SSS";
                         include '../Back/AdmDB.php';
                         $conn = new AdmDB();
-                        $query = (1=== 2)? "SELECT * FROM categoriadespesa": "SELECT * FROM categoriareceita";
+                      // echo "document.getElementById(\"GraficoBarra\")";
+                        $query = (2=== 2)? "SELECT * FROM CategoriaDespesa": "SELECT * FROM CategoriaReceita";
                         $result = $conn->executeQuery($query);
-                        //$lines = $result->fetch(PDO::FETCH_ASSOC);
-
+                        $i=0;
+                        echo " <fieldset id=\"categorias\" ><legend>Categorias de Finança</legend>";
                         while ($line=$result->fetch(PDO::FETCH_ASSOC)){
-
-                            echo "<input type=\"checkbox\" name=\"vehicle\" value=\"Car\" > "
+                            echo "<input type=\"checkbox\" name=\"categoria\" value="
+                           
+                            . " > "
                             . $line["nome"]
                                     . "<br>";
-
+                            $i++;
                         }
+                        echo "</fieldset>";
 
                         ?>
                         <select name="nestado" id="idestado">

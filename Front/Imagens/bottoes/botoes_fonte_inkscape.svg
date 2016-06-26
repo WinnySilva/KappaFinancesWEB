@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="528.18898"
+     inkscape:cx="-526.09673"
      inkscape:cy="254.12765"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -345,5 +345,60 @@
        inkscape:export-filename=".\g4142.png"
        inkscape:export-xdpi="636"
        inkscape:export-ydpi="636" />
+    <g
+       transform="translate(-677.14286,285.71429)"
+       inkscape:export-ydpi="636"
+       inkscape:export-xdpi="636"
+       inkscape:export-filename=".\editar.png"
+       id="g4179">
+      <path
+         style="fill:#008000;fill-opacity:1;fill-rule:nonzero;stroke:#008000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         d="m 67.71507,975.45557 417.19299,0 c 0,0 67.6632,4.42556 68.6903,77.78183 1.0272,73.3562 -68.6903,80.8121 -68.6903,80.8121 l -417.19299,0 c 0,0 -51.678754,-12.5539 -53.538094,-74.7512 -1.85934,-62.19733 53.538094,-83.84273 53.538094,-83.84273 z"
+         id="path4181"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cczcczc"
+         inkscape:export-filename=".\excluir.png"
+         inkscape:export-xdpi="636"
+         inkscape:export-ydpi="636" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4183"
+         y="1088.1758"
+         x="108.31646"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:89.77144623px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#008000;stroke-width:1.28244925px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"
+         inkscape:export-filename=".\excluir.png"
+         inkscape:export-xdpi="636"
+         inkscape:export-ydpi="636"><tspan
+           style="stroke-width:1.28244925px"
+           y="1088.1758"
+           x="108.31646"
+           id="tspan4185"
+           sodipodi:role="line">Excluir</tspan></text>
+    </g>
+    <g
+       id="g4195"
+       inkscape:export-filename=".\continuar.png"
+       inkscape:export-xdpi="636"
+       inkscape:export-ydpi="636">
+      <path
+         sodipodi:nodetypes="cczcczc"
+         inkscape:connector-curvature="0"
+         id="path4186"
+         d="m -986.57063,485.45557 417.193,0 c 0,0 67.6632,4.42556 68.6903,77.78176 1.0272,73.35621 -68.6903,80.81217 -68.6903,80.81217 l -417.193,0 c 0,0 -51.67877,-12.55392 -53.53807,-74.75125 -1.8594,-62.19733 53.53807,-83.84268 53.53807,-83.84268 z"
+         style="fill:#008000;fill-opacity:1;fill-rule:nonzero;stroke:#008000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:89.77144623px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#008000;stroke-width:1.28244925px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="-1019.3688"
+         y="598.08807"
+         id="text4188"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4190"
+           x="-1019.3688"
+           y="598.08807"
+           style="stroke-width:1.28244925px">Continuar</tspan></text>
+    </g>
   </g>
 </svg>
