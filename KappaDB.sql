@@ -120,7 +120,21 @@ INSERT INTO `Cidade` (`id_cidade`, `nome`, `idEstado`) VALUES
 (20, 'Santa Maria', 1),
 (21, 'Cangucu', 1),
 (22, 'Rio Branco', 1),
-(23, 'Sem Cidade', 28);
+(24, 'Brasil', 28),
+(25, 'Argentina', 29),
+(26, 'Uruguai', 30),
+(27, 'Belize', 31),
+(28, 'Uganda', 32),
+(29, 'EUA', 33),
+(30, 'Congo', 34),
+(31, 'Espanha', 35),
+(32, 'Chile', 36),
+(33, 'Bolivia', 37),
+(34, 'Chipre', 38),
+(35, 'Canada', 39),
+(36, 'Paraguai', 40),
+(37, 'Venezuela', 41),
+(38, 'Japao', 42);
 
 
 -- --------------------------------------------------------
@@ -182,7 +196,21 @@ INSERT INTO `Estado` (`idestado`, `nome`, `idPais`) VALUES
 (25, 'São Paulo', 1),
 (26, 'Sergipe', 1),
 (27, 'Tocantins', 1),
-(28, 'Sem Estado', 2);
+(28, 'Brasil', 1),
+(29, 'Argentina', 2),
+(30, 'Uruguai', 3),
+(31, 'Belize', 4),
+(32, 'Uganda', 5),
+(33, 'EUA', 6),
+(34, 'Congo', 7),
+(35, 'Espanha', 8),
+(36, 'Chile', 9),
+(37, 'Bolivia', 10),
+(38, 'Chipre', 11),
+(39, 'Canada', 12),
+(40, 'Paraguai', 13),
+(41, 'Venezuela', 14),
+(42, 'Japao', 15);
 
 -- --------------------------------------------------------
 

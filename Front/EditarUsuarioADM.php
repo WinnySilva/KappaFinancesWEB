@@ -7,8 +7,7 @@
     }
     session_start();
     $cpflogado = $_SESSION["CPFADMIN"];
-    //$cpflogado = "12";
-    $resultado = $conexao->prepare("SELECT * FROM Usuario WHERE cpf = ?");
+    $resultado = $conexao->prepare("SELECT * FROM Usuario WHERE cpf =?");
     $resultado->execute(array($cpflogado));
     $linha = $resultado->fetch(PDO::FETCH_ASSOC);
 
@@ -133,12 +132,23 @@
                 display: inline;
                 }
           </style>";
-    }else {
-        echo "<style>
-                     div#divEC{
-                     display: none;
-            </style>";
-    }
+          echo  "<script type='text/javascript'>
+        function Show( pais ) {
+            var label = pais.options[pais.selectedIndex].text;
+            //alert( label );
+            var div;
+            div = document.getElementById('divEC'');
+            div.classList.add('escondido');
+            if (label == 'Brasil'') {
+                div.classList.remove('escondido'');
+            }
+        window.onload = function(){
+            document.getElementById( 'idpais' ).onchange = function(){
+                Show( this );
+            }
+        };
+    </script>";
+    };
     ?>
 </head>
 <body>

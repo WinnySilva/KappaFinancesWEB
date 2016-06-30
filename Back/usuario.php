@@ -72,7 +72,7 @@ class Usuario {
             echo "<script>alert('CPF já em uso.'); history.back();</script>";
         }else{
             $this->inserirUsuariodb();
-            echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
+            //echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
         }
     }
     

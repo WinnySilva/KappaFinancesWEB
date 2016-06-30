@@ -115,8 +115,8 @@ and open the template in the editor.
                                     }catch(PDOException $e){
                                         echo $e->getMessage();
                                     }
-                                    $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado");
-                                    $resultado->execute();
+                                    $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado WHERE idPais=?");
+                                    $resultado->execute(array());
                                     while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
                                         $estadotabela = $linha['nome'];
                                         $idestadotabela = $linha['idestado'];
@@ -170,8 +170,8 @@ if (@$_POST['enviar'] == 'Cadastrar'){
     $pais = $_POST['nomepais'];
 
     if ($pais !== "Brasil"){
-        $estado ="Sem Estado";
-        $cidade = "Sem Cidade";
+        $estado = $pais;
+        $cidade = $pais;
     }
 
     if(empty($nome)){
