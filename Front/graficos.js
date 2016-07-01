@@ -1,4 +1,4 @@
-Qt.include("Chart.min.js");
+"Chart.min.js";
 var randomnb = function(){ 
                 return Math.round(Math.random()*300);
             };
@@ -6,7 +6,6 @@ function graphPie(canvas){
     var options = {
         responsive:true
     };
-
     var data = [
         {
             value: randomnb(),
