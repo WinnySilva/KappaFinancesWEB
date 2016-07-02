@@ -8,93 +8,13 @@
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <script src="Chart.min.js"></script>
+        <script src="graficos.js"></script>
         <meta content="width=device-width, initial-scale=1" name="viewport">
-
         <link href="style2.css" rel="stylesheet">
 
     </head>
 
     <body>
-
-
-        <script>
-            var randomnb = function () {
-                return Math.round(Math.random() * 300);
-            };
-            function graphPie(canvas) {
-                var options = {
-                    responsive: true
-                };
-
-                var data = [
-                    {
-                        value: randomnb(),
-                        color: "#F7464A",
-                        highlight: "#FF5A5E",
-                        label: "Vermelho"
-                    },
-                    {
-                        value: randomnb(),
-                        color: "#46BFBD",
-                        highlight: "#5AD3D1",
-                        label: "Verde"
-                    },
-                    {
-                        value: randomnb(),
-                        color: "#FDB45C",
-                        highlight: "#FFC870",
-                        label: "Amarelo"
-                    }
-                ];
-
-                window.onload = function () {
-
-                    var ctx = canvas.getContext("2d");
-                    var PizzaChart = new Chart(ctx).Pie(data, options);
-                };
-            }
-            ;
-
-            function graphBar(canvas) {
-                var options = {
-                    responsive: true
-                };
-
-                var data = {
-                    labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-                    datasets: [
-                        {
-                            label: "Dados primários",
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: [randomnb(), randomnb(), randomnb(), randomnb(), randomnb(), randomnb(), randomnb(), randomnb(), randomnb(), randomnb(), randomnb(), randomnb()]
-                        },
-                        {
-                            label: "Dados secundários",
-                            fillColor: "rgba(151,187,205,0.5)",
-                            strokeColor: "rgba(151,187,205,0.8)",
-                            highlightFill: "rgba(151,187,205,0.75)",
-                            highlightStroke: "rgba(151,187,205,1)",
-                            data: [28, 48, 40, 19, 86, 27, 90, randomnb(), randomnb(), randomnb(), randomnb(), randomnb()]
-                        }
-                    ]
-                };
-
-                window.onload = function () {
-
-                    var ctx = canvas.getContext("2d");
-                    var BarChart = new Chart(ctx).Bar(data, options);
-                };
-
-            }
-
-
-        </script>
-
-
-
 
         <div class="wrapper">
 
@@ -114,9 +34,7 @@
 
                     </main><!-- .content -->
                 </div><!-- .container-->
-                <?php
-                include '../Back/AdmDB.php';
-                ?>   
+
                 <script type="text/javascript">
                     var desp = ["Vestuario",
                         "Energia",
@@ -146,7 +64,6 @@
                                 + " > "
                                 + "Salario"
                                 + "<br>";
-
                         document.getElementById("categorias2").innerHTML +=
                                 "<input type=\"checkbox\" name=\"categoria[]\" value=" + i++
                                 + " > "
@@ -159,32 +76,25 @@
                         for (i = 0; i < desp.length; i++) {
                             document.getElementById("categorias2").innerHTML +=
                                     "<input type=\"checkbox\" name=\"categoria[]\" value="
-                                    + i
+                                    + (i + 1)
                                     + " > "
                                     + desp[i]
                                     + "<br>";
                         }
                         document.getElementById("categorias2").innerHTML += "<br><br><br><br>";
-
-
                     }
                     function recCat() {
                         document.getElementById("categorias2").innerHTML = "<legend><h1>Tipos de Finança</h1></legend>";
-
-                        document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=0"
-                                + " > "
-                                + "Salario"
-                                + "<br>";
-
                         document.getElementById("categorias2").innerHTML +=
                                 "<input type=\"checkbox\" name=\"categoria[]\" value=1"
                                 + " > "
+                                + "Salario"
+                                + "<br>";
+                        document.getElementById("categorias2").innerHTML +=
+                                "<input type=\"checkbox\" name=\"categoria[]\" value=2"
+                                + " > "
                                 + "Renda Alternativa"
                                 + "";
-
-
-
                     }
                 </script>
                 <aside class="right-sidebar" name = "lateral" id="lateral">
@@ -193,8 +103,8 @@
 
                         <strong><h6>CATEGORIAS</h6></strong> <!--
                         <input  type="radio"  name="finan" id ="idall" value =0 onclick="allcat()" /><label for="idall">Todas</label> -->
-                        <input type="radio"  name="finan"  id ="idrec" value =1 onclick="recCat()"/><label for="idrec">Receita</label><br>
-                        <input type="radio"  name="finan"   id ="iddesp" value =2 onclick="desCat()" /><label for="iddesp">Despesa</label>                          
+                        <input type="radio"  name="finan"  id ="idrec" value =0 onclick="recCat()"/><label for="idrec">Receita</label><br>
+                        <input type="radio"  name="finan"   id ="iddesp" value =1 onclick="desCat()" /><label for="iddesp">Despesa</label>                          
                         <br>
 
                         <fieldset id="categorias2" name ="categorias2" >
@@ -217,31 +127,36 @@
                                 <option>ANO</option>"
                             </select>
                         </fieldset>
-                        <fieldset id="_pais" name ="_pais" >
-                            <input type="checkbox" name="consPais" id="consPais">
-                            <select name="pais" id="ano">
-                                <option>PAÍS</option>"
-                            </select>
-                        </fieldset>
-                        <fieldset id="_estado" name ="_estado" >
-                            <input type="checkbox" name="consEstado" id="consEstado">
-                            <select name="estado" id="ano">
+                        <script>
+                            function paisChange(id1, id2, id3) {
+                                document.getElementById(id1).disabled = false;
+                                document.getElementById(id2).disabled = true;
+                                document.getElementById(id3).disabled = true;
+                            }
+                        </script>
+                        
+                        <fieldset id="_pais" name ="localidade_" >
+                            <input type="radio" name="localidade" value=0 id="consPais" onchange="paisChange('pais', 'estado', 'cidade')">
+                            <select name="pais" id="pais" disabled>
+                                <option>PAÍS</option>
+                            </select><br>
+                            <input type="radio" name="localidade" value=1 id="consEstado" onchange="paisChange('estado', 'cidade', 'pais')">
+                            <select name="estado" id="estado" disabled>
                                 <option>ESTADO</option>"
-                            </select>
-                        </fieldset>
-                        <fieldset id="_cidade" name ="_cidade" >
-                            <input type="checkbox" name="consCidade" id="consCidade">
-                            <select name="cidade" id="ano">
+                            </select><br>
+                            <input type="radio" name="localidade" value =2 id="consCidade" onchange= "paisChange('cidade', 'pais', 'estado')">
+                            <select name="cidade" id="cidade" disabled>
                                 <option>CIDADE</option>"
-                            </select>
+                            </select><br>
                         </fieldset>
+                        
+
                         <fieldset method ="post" id="tipograf"><legend><h1>Gráfico</h1></legend>
-                            <input type="radio" name="graf" id="idgrafp" checked value=0 /><label for="idgrafp">Pizza</label>
-                            <input type="radio" name="graf" id="idgrafb" value=1 /><label for="idgrafb">Barra</label>
+                            <input type="radio" name="graf" id="idgrafp"  value=0 /><label for="idgrafp">Pizza</label>
+                            <input type="radio" name="graf" id="idgrafb" checked value=1 /><label for="idgrafb">Barra</label>
                         </fieldset>
 
                         <br>
-
                         <p class="submit">
                             <input type="image" src="Imagens/bottoes/gerar.png" height="30px" width="100px"
                                    type="submit" name="commit" value="gerar"
@@ -260,6 +175,8 @@
 
 
 
+
+
                 </aside><!-- .right-sidebar -->
 
 
@@ -273,49 +190,157 @@
 
     </body>
 
-
 </html>
 
 <?php
-//graphBar(document.getElementById("GraficoBarra"));
+include '../Back/AdmDB.php';
+$query = "SELECT nome FROM pais";
+$conn = new AdmDB;
+$result = $conn->executeQuery($query);
+
+$i = 0;
+$paises = array();
+foreach ($result as $r1) {
+    $paises[$i] = $r1["nome"];
+    $i++;
+}
+$r = json_encode($paises);
+echo "<script>
+                                    var pais = $r;
+                                    for (i = 0; i < pais.length; i++) {
+                            document.getElementById(\"pais\").innerHTML +=\"<option >\"+pais[i]
+                                    + \"</option><br>\";
+                              
+                            }
+                           
+                        </script> --";
+
+//---------------------------------
+$query2 = "SELECT nome FROM estado";
+
+$result2 = $conn->executeQuery($query2);
+
+$i1 = 0;
+$estados = array();
+foreach ($result2 as $r1) {
+    $estados[$i1] = $r1["nome"];
+    $i1++;
+}
+$r1 = json_encode($estados);
+
+echo "<script>
+                                    var estados = $r1;
+                                    for (i = 0; i < estados.length; i++) {
+                            document.getElementById(\"estado\").innerHTML +=\"<option>\"+estados[i]
+                                    + \"</option><br>\";
+                              
+                            }
+                            
+                        </script> --";
+//---------
+$query3 = "SELECT nome FROM cidade";
+
+$result3 = $conn->executeQuery($query3);
+
+$i2 = 0;
+$cidade = array();
+foreach ($result3 as $r1) {
+
+    $cidade[$i2] = $r1["nome"];
+    $i2++;
+}
+$r2 = json_encode($cidade);
+
+echo "<script>
+                                var cidade = $r2;
+                                for (i = 0; i < cidade.length-1; i++) {
+                            document.getElementById(\"cidade\").innerHTML +=\"<option>\"+cidade[i]
+                            + \"</option><br>\";
+                              
+                            }
+                            alert(cidades[0]);
+                        </script> --";
+//----------------------------------
+$query4 = "SELECT EXTRACT(YEAR FROM data) FROM `despesa` 
+UNION
+SELECT EXTRACT(YEAR FROM data) FROM `receita`";
+
+$result4 = $conn->executeQuery($query4);
+
+$i4 = 0;
+$anos = array();
+foreach ($result4 as $r1) {
+    $anos[$i4] = $r1["EXTRACT(YEAR FROM data)"];
+    $i4++;
+}
+$r4 = json_encode($anos);
+echo $r4;
+
+echo "<script>
+                                var ano = $r4;
+                                for (i = 0; i < ano.length; i++) {
+                            document.getElementById(\"ano\").innerHTML +=\"<option value=\"+ano[i] +\">\"
+                            +ano[i]
+                            + \"</option><br>\";
+                              
+                            }
+                            alert(cidades[0]);
+                            alert(\"LOAD\");
+                        </script> --";
+//--------------------------------
+
 if (@$_GET['go'] == "gerar") {
+   include '../Back/relatorios.php';
     echo "pressionado<br>";
     //considero despesas ou receitas
+    $tipo = $categorias = $faixa = $ano = $pais = NULL;
+    $estado = $cidade = $grafico = NULL;
     if (isset($_POST['finan'])) {
-        echo $_POST['finan'] . "<br>";
+        $tipo = $_POST['finan'];
+    } else {
+        echo "<script> alert(\"SELECIONE RECEITA OU DESPESA!\")</script>";
+        return;
     }
-
     if (isset($_POST['categoria'])) {
         // vejo as categorias que foram marcadas
-        foreach ($_POST['categoria'] as $cat) {
-            echo $cat . " ";
-        }
-        echo"<br>";
+        $categorias = $_POST['categoria'];
     }
     if (isset($_POST['faixa'])) {
         //vejo quais faixas foram marcadas
-        foreach ($_POST['faixa1'] as $cat) {
-            echo $cat . " ";
-        }
-        echo"<br>";
+        $faixa = $_POST['faixa'];
+    }
+    
+    if (isset($_POST['pais'])) {
+        $ano = $_POST['pais'];
+    }
+    if (isset($_POST['estado'])) {
+        $estado = $_POST['estado'];
+    }
+    if (isset($_POST['cidade'])) {
+        $cidade = $_POST['cidade'];
     }
     if (isset($_POST['consAno'])) {
-        echo "considerar ano<br>";
+        $ano = $_POST['ano'];
+        echo $ano;
     }
-    if (isset($_POST['consPais'])) {
-        echo "considerar pais<br>";
+    
+    $res = new relatorios;
+                         //$tipo, $categorias, $faixa, $ano, $pais, $estado, $cidade, $grafico)
+    $dado = $res->getDados($tipo, $categorias, $faixa, $ano, $pais, $estado, $cidade, $grafico);
+    if ($dado <= 0) {
+        echo "<script> alert(\"A pesquisa não retornou resultado\");</script>";
+        return;
     }
-    if (isset($_POST['consEstado'])) {
-        echo "considerar ESTADO<br>";
-    }
-    if (isset($_POST['consCidade'])) {
-        echo "considerar Cidade<br>";
-    }
+    $dados = json_encode($dado);
+
     if ($_POST['graf'] == 0) {
-        echo "<script> graphPie(document.getElementById(\"GraficoBarra\"))</script>";
-        //echo $_POST['graf'];
+        echo "<script>"
+        . "var dad = $dados;"
+        . "graphPie(document.getElementById(\"GraficoBarra\"),dad);</script>";
     } else {
-        echo "<script> graphBar(document.getElementById(\"GraficoBarra\"))</script>";
+        echo "<script> "
+        . "var dad = $dados;"
+        . "graphBar(document.getElementById(\"GraficoBarra\"),dad)</script>";
     }
 }
 if (@$_GET['go'] == "voltar") {
@@ -324,7 +349,6 @@ if (@$_GET['go'] == "voltar") {
     $text = 4;
     $en = json_encode($array);
     $e = 1;
-    
     echo "---<script>
     var arr = $en;
 var x = 2;    
@@ -332,11 +356,11 @@ for(i=0;i<arr.length;i++){
     document.write(arr[i]+\"<br>\");
         }
     </script>---";
-    
+
     $r = "<script> document.write(x)</script>";
     echo $r;
-    $b = $r+1;
-    echo "   --  ".$b;
+    $b = $r + 1;
+    echo "   --  " . $b;
 }
 
     
