@@ -48,26 +48,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript">
-        function Show( pais ) {
-            var label = pais.options[pais.selectedIndex].text;
-            //alert( label );
-            var div;
-            div = document.getElementById("divEC");
-            div.classList.add("escondido");
-            if (label == "Brasil") {
-                div.classList.remove("escondido");
-            }
-        }
-        window.onload = function(){
-            document.getElementById( 'idpais' ).onchange = function(){
-                Show( this );
-            }
-        };
     </script>
     <meta charset="UTF-8">
     <title>Editar Administrador</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="scriptEstado.js"></script>
     <style>
         input {
             font-family:sans-serif;
@@ -97,7 +83,7 @@
             margin-bottom: 15px;
             margin-top: 20px;
         }
-        select#idestado{
+        select{
             width: 267px;
         }
         select#idpais{
@@ -198,25 +184,35 @@
                             $estadotabela = $linha['nome'];
                             $idestadotabela = $linha['idestado'];
                             if ($estadotabela == $estadoinput){
-                                echo "<option value='$estadotabela' selected> $estadotabela</option>";
-                            }else echo "<option value='$estadotabela'>$estadotabela</option>";
+                                echo "<option value='$idestadotabela' selected> $estadotabela</option>";
+                            }else echo "<option value='$idestadotabela'>$estadotabela</option>";
                         }
                         ?>
                     </select>
-                <p><label for="idcidade">Cidade:</label>
-                    <input type="text" name="ncidade" id="idcidade" maxlength="20" size="25" placeholder="Digite sua Cidade" list="cidades" value="<?php print $cidadeinput;?>">
-                    <datalist id="cidades" >
-                        <option value="pelotas">Pelotas</option>
-                        <option value="porto alegre">Porto Alegre</option>
-                        <option value="rio de janeiro">Rio de Janeiro</option>
-                        <option value="sao paulo">São Paulo</option>
-                        <option value="brasilia">Brasilia</option>
-                        <option value="santa maria">Santa Maria</option>
-                        <option value="rio grande">Rio Grande</option>
-                        <option value="cacapava">Caçapava</option>
-                        <option value="cangucu">Canguçu</option>
-                        <option value="florianopolis">Florianopolis</option>
-                    </datalist>
+                    <div id="resultado">
+                    </div>
+                    <div id="loading">
+                    <label for="idcidade2">Cidade:</label>
+                    <select name="ncidade2" id="idcidade2">
+                        <?php
+                        try {
+                            $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
+                            $conexao->exec("SET CHARACTER SET utf8");
+                        }catch(PDOException $e){
+                            echo $e->getMessage();
+                        }
+                        $resultadoteste=$conexao->prepare("SELECT * FROM Cidade");
+                        $resultadoteste->execute();
+                        while($linha=$resultadoteste->fetch(PDO::FETCH_ASSOC)) {
+                            $cidadetabela = $linha['nome'];
+                            $idcidadetabela = $linha['idcidade'];
+                            if ($cidadetabela == $cidadeinput) {
+                                echo "<option value='$cidadetabela' selected> $cidadetabela</option>";
+                            } else echo "<option value='$cidadetabela'>$cidadetabela</option>";
+                        }
+                        ?>
+                    </select>
+                    </div>
             </div>
             <fieldset id="sexo"><legend>Sexo</legend>
                 <?php
@@ -253,8 +249,15 @@ if (@$_POST['enviar'] == 'Editar'){
     $sexo = $_POST['tsexo'];
     $pais = $_POST['nomepais'];
 
+    // como recebemos o id do estado temos que pegar o nome do mesmo para poder inserir no banco
+    $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado WHERE idestado = $estado");
+    $resultado->execute();
+    while($linha=$resultado->fetch(PDO::FETCH_ASSOC)) {
+        $estadoFinal = $linha['nome'];
+    }
+
     if ($pais !== "Brasil"){
-        $estado ="Sem Estado";
+        $estadoFinal ="Sem Estado";
         $cidade = "Sem Cidade";
     }
 
@@ -270,16 +273,17 @@ if (@$_POST['enviar'] == 'Editar'){
         echo "<script>alert('Preencha a data para poder editar.'); history.back();</script>";
     }elseif(empty($pais) && $estado == "Selecione o País"){
         echo "<script>alert('Preencha o Pais para se cadastrar.'); history.back();</script>";
-    }elseif(empty($estado) && $estado == "Selecione o Estado"){
+    }elseif(empty($estadoFinal) && $estado == "Selecione o Estado"){
         echo "<script>alert('Preencha o estado para se cadastrar.'); history.back();</script>";
     }elseif(empty($cidade)){
         echo "<script>alert('Preencha a cidade para poder editar.'); history.back();</script>";
     }elseif(empty($sexo)){
         echo "<script>alert('Preencha sexo para se poder editar.'); history.back();</script>";
     }else{
-        $usuario = new Usuario($cpf, $nome, $cidade, $estado, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
+        $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
         $usuario->atualizarUsuariodb();
     }
+    echo "cidade id = ".$cidadeid;
 }
     if(@$_POST['enviar'] == "Voltar"){
          echo "<script>window.location.href='GerenciarUsuarios.php';</script>";

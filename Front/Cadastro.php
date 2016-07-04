@@ -5,29 +5,31 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-
+<!-- Pegar o nome do pais quando o usuario faz a troca de pais na pagina -->
+<script type="text/javascript">
+    /*function Show( pais ) {
+        var label = pais.options[pais.selectedIndex].text;
+        //alert( label );
+        var div;
+        div = document.getElementById("divEC");
+        div.classList.add("escondido");
+        if (label == "Brasil") {
+            div.classList.remove("escondido");
+        }
+    }
+    window.onload = function(){
+        document.getElementById( 'idpais' ).onchange = function(){
+            Show( this );
+        }
+    };*/
+</script>
 <html>
     <head>
-        <script type="text/javascript">
-            function Show( pais ) {
-                var label = pais.options[pais.selectedIndex].text;
-                //alert( label );
-                var div;
-                div = document.getElementById("divEC");
-                div.classList.add("escondido");
-                if (label == "Brasil") {
-                    div.classList.remove("escondido");
-                }
-            }
-            window.onload = function(){
-                document.getElementById( 'idpais' ).onchange = function(){
-                    Show( this );
-                }
-            };
-        </script>
         <meta charset="UTF-8">
         <title>Cadastro</title>
 		<link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="scriptEstado.js"></script>
 		<style>
 			input {
 				font-family:sans-serif;
@@ -68,7 +70,7 @@ and open the template in the editor.
                 font-size:18px;
                 font-family:sans-serif;
                 margin-left:30px;
-                margin-bottom: 0px;
+                margin-bottom: 0;
                 width: 100px;
             }
             select#idpais{
@@ -115,29 +117,19 @@ and open the template in the editor.
                                     }catch(PDOException $e){
                                         echo $e->getMessage();
                                     }
-                                    $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado WHERE idPais=?");
-                                    $resultado->execute(array());
+                                    //$variavelphp = "<script>document.write(label)</script>";
+                                    $idpaisselect = 1;
+                                    $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado WHERE idPais = $idpaisselect");
+                                    $resultado->execute();
                                     while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
                                         $estadotabela = $linha['nome'];
                                         $idestadotabela = $linha['idestado'];
-                                        echo "<option value='$estadotabela'>$estadotabela</option>";
+                                        echo "<option value='$idestadotabela'>$estadotabela</option>";
                                     }
                                 ?>
                             </select>
-                        <p><label for="idcidade">Cidade:</label>
-                            <input type="text" name="ncidade" id="idcidade" maxlength="20" size="25" placeholder="Digite sua Cidade" list="cidades">
-                            <datalist id="cidades" >
-                                <option value="pelotas">Pelotas</option>
-                                <option value="porto alegre">Porto Alegre</option>
-                                <option value="rio de janeiro">Rio de Janeiro</option>
-                                <option value="sao paulo">São Paulo</option>
-                                <option value="brasilia">Brasilia</option>
-                                <option value="santa maria">Santa Maria</option>
-                                <option value="rio grande">Rio Grande</option>
-                                <option value="cacapava">Caçapava</option>
-                                <option value="cangucu">Canguçu</option>
-                                <option value="florianopolis">Florianopolis</option>
-                            </datalist>
+                            <div id="resultado">
+                            </div>
                     </div>
                     <fieldset id="sexo"><legend>Sexo</legend>
                         <input type="radio" name="tsexo" id="idmasc" checked value=2 /><label for="idmasc">Masculino</label><br/>
@@ -169,8 +161,14 @@ if (@$_POST['enviar'] == 'Cadastrar'){
     $sexo = $_POST['tsexo'];
     $pais = $_POST['nomepais'];
 
+    // como recebemos o id do estado temos que pegar o nome do mesmo para poder inserir no banco
+    $resultado=$conexao->prepare("SELECT idestado, nome FROM Estado WHERE idestado = $estado");
+    $resultado->execute();
+    while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+        $estadoFinal= $linha['nome'];
+    }
     if ($pais !== "Brasil"){
-        $estado = $pais;
+        $estadoFinal = $pais;
         $cidade = $pais;
     }
 
@@ -184,18 +182,22 @@ if (@$_POST['enviar'] == 'Cadastrar'){
         echo "<script>alert('Preencha o CPF de nascimento para se cadastrar.'); history.back();</script>";
     }elseif(empty($data_nasc)){
         echo "<script>alert('Preencha a data para se cadastrar.'); history.back();</script>";
-    }elseif(empty($pais) && $estado == "Selecione o País"){
+    }elseif(empty($pais)){
         echo "<script>alert('Preencha o Pais para se cadastrar.'); history.back();</script>";
-    }elseif(empty($estado) && $estado == "Selecione o Estado"){
+    }elseif(empty($estadoFinal)){
         echo "<script>alert('Preencha o estado para se cadastrar.'); history.back();</script>";
     }elseif(empty($cidade)){
         echo "<script>alert('Preencha a cidade para se cadastrar.'); history.back();</script>";
     }elseif(empty($sexo)){
         echo "<script>alert('Preencha sexo para se cadastrar.'); history.back();</script>";
     }else{
-        $usuario = new Usuario($cpf, $nome, $cidade, $estado, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
+        $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
         $usuario->cadastroUsuarioDB();
     }
+    //echo "estado final id = ".$estado;
+    //echo "estado final =".$estadoFinal;
+    //echo "a cidade é = ".$cidade;
+//    echo "<script> echo <$variavelx  = document.write(label)</script>";
 }
     if(@$_POST['enviar'] == "Voltar"){
         echo "<script>window.location.href='Inicial.php';</script>";
