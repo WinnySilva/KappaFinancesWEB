@@ -5827,7 +5827,10 @@ CREATE TABLE `Usuario` (
 
 INSERT INTO `Usuario` (`cpf`, `nome`, `data_nasc`, `senha`, `ultimo_envio`, `idcidade`, `sexo`) VALUES
 (2491785080, 'Simao Martin', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 1, 'M'),
-(12345678901, 'Teste da Silva', '2003-09-06', 'teste', '2016-06-15 00:00:00', 2, 'F');
+(12345678901, 'Teste da Silva', '2003-09-06', 'teste', '2016-06-15 00:00:00', 2, 'F'),
+(1, 'Joana', '2016-06-29', '00', '2015-04-23 00:00:00', 1, 'F'),
+(291785080, 'Simao Martin', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 14, 'M'),
+(145678901, 'Teste da Silva', '2003-09-06', 'teste', '2016-06-15 00:00:00', 2, 'F');
 
 
 --
@@ -5934,6 +5937,8 @@ ALTER TABLE `Pais`
 ALTER TABLE `Admin`
   ADD CONSTRAINT `fk_Admin_Usuario1` FOREIGN KEY (`usuario_cpf`) REFERENCES `Usuario` (`cpf`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+INSERT INTO `Admin` (`usuario_cpf`) VALUES (1);
+
 --
 -- Limitadores para a tabela `Cidade`
 --
@@ -5965,6 +5970,30 @@ ALTER TABLE `Receita`
 --
 ALTER TABLE `Usuario`
   ADD CONSTRAINT `fk_Usuario_Cidade1` FOREIGN KEY (`idcidade`) REFERENCES `Cidade` (`id_cidade`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+INSERT INTO `despesa` (`valor`, `data`, `idDespesa`, `idCategoriaDespesa`, `usuario_cpf`) VALUES
+(-400, '2014-06-20', 0, 3, 1),
+(-900, '2014-06-07', 1, 3, 1),
+(-900, '2015-06-07', 2, 6, 1),
+(-123.8, '2015-06-07', 3, 6, 1),
+(-676, '2015-05-24', 4, 5, 1),
+(-400, '2015-06-20', 5, 3, 1),
+(-900, '2016-06-07', 6, 3, 1),
+(-900, '2016-06-07', 7, 6, 1),
+(-120, '2016-06-07', 8, 2, 1),
+(-123.8, '2016-06-07', 9, 6, 1),
+(-676, '2016-05-24', 10, 5, 1),
+(-120, '2015-06-07', 11, 2, 1),
+(-420, '2015-06-07', 12, 12, 1),
+(-120, '2015-06-07', 13, 13, 1),
+(-400, '2014-11-17', 0, 4, 2491785080),
+(-2121, '2014-06-20', 1, 1, 2491785080),
+(-2121, '2015-06-20', 2, 2, 2491785080),
+(-400, '2015-11-17', 3, 4, 2491785080),
+(-2121, '2016-06-20', 4, 1, 2491785080),
+(-2121, '2016-06-20', 5, 2, 2491785080),
+(-400, '2014-07-11', 0, 13, 12345678901),
+(-400, '2015-07-11', 1, 1, 12345678901);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

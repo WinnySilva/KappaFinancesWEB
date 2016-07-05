@@ -97,9 +97,16 @@ class Relatorios {
             } else {
                 $psq = " WHERE ";
             }
-
-            $queryJoins.= " JOIN (SELECT cidade.idEstado FROM usuario JOIN cidade ON cidade.id_cidade = usuario.idcidade) as t ";
-            $psq.= "t.idEstado = " . $estado;
+//SELECT * FROM usuario JOIN ( SELECT cidade.id_cidade,cidade.nome,t1.nome as n FROM cidade JOIN (SELECT estado.idestado, estado.nome FROM estado JOIN pais ON estado.idPais=pais.idPais) as t1 ON t1.idestado = cidade.idEstado )as t2 ON t2.id_cidade = usuario.idcidade WHERE t2.n = 'São Paulo'
+            $queryJoins.= " JOIN (SELECT * FROM usuario "
+                    . "JOIN ( SELECT cidade.id_cidade,t1.nome as n FROM cidade "
+                    . "JOIN (SELECT estado.idestado, estado.nome FROM estado JOIN pais ON estado.idPais=pais.idPais) "
+                    . "as t1 ON t1.idestado = cidade.idEstado )"
+                    . "as t2 ON t2.id_cidade = usuario.idcidade) "
+                    . "as t3 ON t3.cpf = "
+                    . $tipoNome.".usuario_cpf ";
+            
+            $psq.= "t3.n = '" . $estado."'";
             $queryWHERE.=" " . $psq;
         }
 

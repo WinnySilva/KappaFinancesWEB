@@ -1,14 +1,16 @@
 
 <!DOCTYPE html>
+
 <html>
     <head>
+    <!-- #include file="Inicial.php" -->
         <meta charset="utf-8" />
         <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
         <title></title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <script src="Chart.min.js"></script>
-        <script src="graficos.js"></script>
+        <script src="relatorios.js"></script>
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <link href="style2.css" rel="stylesheet">
 
@@ -35,68 +37,7 @@
                     </main><!-- .content -->
                 </div><!-- .container-->
 
-                <script type="text/javascript">
-                    var desp = ["Vestuario",
-                        "Energia",
-                        "Agua",
-                        "Internet",
-                        "Aluguel",
-                        "Remedios",
-                        "Lazer",
-                        "Educacao",
-                        "Alimentos",
-                        "Produtos Domesticos",
-                        "Transporte",
-                        "Combustivel",
-                        "Bens_Duraveis"];
-                    function allcat() {
-                        //document.write(0);
-                        document.getElementById("categorias2").innerHTML = "<legend><h1>Tipos de Finança</h1></legend>";
-                        for (i = 0; i < desp.length; i++) {
-                            document.getElementById("categorias2").innerHTML +=
-                                    "<input type=\"checkbox\" name=\"categoria[]\" value=" + i
-                                    + " > "
-                                    + desp[i]
-                                    + "<br>";
-                        }
-                        document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=" + i++
-                                + " > "
-                                + "Salario"
-                                + "<br>";
-                        document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=" + i++
-                                + " > "
-                                + "Renda Alternativa"
-                                + "<br>";
-                        document.getElementById("categorias2").innerHTML += "<br><br><br>";
-                    }
-                    function desCat() {
-                        document.getElementById("categorias2").innerHTML = "<legend><h1>Tipos de Finança</h1></legend>";
-                        for (i = 0; i < desp.length; i++) {
-                            document.getElementById("categorias2").innerHTML +=
-                                    "<input type=\"checkbox\" name=\"categoria[]\" value="
-                                    + (i + 1)
-                                    + " > "
-                                    + desp[i]
-                                    + "<br>";
-                        }
-                        document.getElementById("categorias2").innerHTML += "<br><br><br><br>";
-                    }
-                    function recCat() {
-                        document.getElementById("categorias2").innerHTML = "<legend><h1>Tipos de Finança</h1></legend>";
-                        document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=1"
-                                + " > "
-                                + "Salario"
-                                + "<br>";
-                        document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=2"
-                                + " > "
-                                + "Renda Alternativa"
-                                + "";
-                    }
-                </script>
+                
                 <aside class="right-sidebar" name = "lateral" id="lateral">
 
                     <form id="allforms" name ="allforms" method = post action="?go=gerar">
@@ -127,27 +68,18 @@
                                 <option>ANO</option>"
                             </select>
                         </fieldset>
-                        <script>
-                            function paisChange(id1, id2, id3) {
-                                document.getElementById(id1).disabled = false;
-                                document.getElementById(id2).disabled = true;
-                                document.getElementById(id3).disabled = true;
-                            }
-                        </script>
+                        
                         
                         <fieldset id="_pais" name ="localidade_" >
-                            <input type="radio" name="localidade" value=0 id="consPais" onchange="paisChange('pais', 'estado', 'cidade')">
+                            <input type="radio" name="localidade" value=0 id="consPais" onchange="paisChange('pais','cidade')">
                             <select name="pais" id="pais" disabled>
                                 <option>PAÍS</option>
                             </select><br>
-                            <input type="radio" name="localidade" value=1 id="consEstado" onchange="paisChange('estado', 'cidade', 'pais')">
+                            <input type="radio" name="localidade" value=1 id="consEstado" onchange="paisChange('estado','pais')">
                             <select name="estado" id="estado" disabled>
                                 <option>ESTADO</option>"
                             </select><br>
-                            <input type="radio" name="localidade" value =2 id="consCidade" onchange= "paisChange('cidade', 'pais', 'estado')">
-                            <select name="cidade" id="cidade" disabled>
-                                <option>CIDADE</option>"
-                            </select><br>
+                           
                         </fieldset>
                         
 
@@ -305,9 +237,9 @@ if (@$_GET['go'] == "gerar") {
         // vejo as categorias que foram marcadas
         $categorias = $_POST['categoria'];
     }
-    if (isset($_POST['faixa'])) {
+    if (isset($_POST['faixa1'])) {
         //vejo quais faixas foram marcadas
-        $faixa = $_POST['faixa'];
+        $faixa = $_POST['faixa1'];
     }
     
     if (isset($_POST['pais'])) {
