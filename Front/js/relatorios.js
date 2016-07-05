@@ -25,13 +25,13 @@ function graphPie(canvas, dados) {
         });
            
     }
-    document.write("<br>_+_<br>");
+    
     window.onload = function () {
         var ctx = canvas.getContext("2d");
         var PizzaChart = new Chart(ctx).Pie(data1, options);
     };
 }
-;
+
 
 //<script type="text/javascript">
                     var desp = ["Vestuario",
@@ -49,7 +49,7 @@ function graphPie(canvas, dados) {
                         "Bens_Duraveis"];
                     function allcat() {
                         //document.write(0);
-                        document.getElementById("categorias2").innerHTML = "<legend><h1>Tipos de Finança</h1></legend>";
+                        document.getElementById("categorias2").innerHTML = "<legend><h5>Tipos de Finança</h5></legend>";
                         for (i = 0; i < desp.length; i++) {
                             document.getElementById("categorias2").innerHTML +=
                                     "<input type=\"checkbox\" name=\"categoria[]\" value=" + i
@@ -70,7 +70,7 @@ function graphPie(canvas, dados) {
                         document.getElementById("categorias2").innerHTML += "<br><br><br>";
                     }
                     function desCat() {
-                        document.getElementById("categorias2").innerHTML = "<legend><h1>Tipos de Finança</h1></legend>";
+                        document.getElementById("categorias2").innerHTML = "<legend><h5>Tipos de Finança</h5></legend>";
                         for (i = 0; i < desp.length; i++) {
                             document.getElementById("categorias2").innerHTML +=
                                     "<input type=\"checkbox\" name=\"categoria[]\" value="

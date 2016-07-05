@@ -31,7 +31,7 @@ if(!$minhaConexao->executeQuery("SELECT * FROM usuario")){
                     $this->username, $this->password);
 
            
-            echo "<p>".$stringQuery."<p>";
+          //  echo "<p>".$stringQuery."<p>";
             $result = $this->conn->query($stringQuery);
             return $result;
             
