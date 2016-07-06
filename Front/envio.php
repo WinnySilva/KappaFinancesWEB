@@ -1,49 +1,57 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-     <link rel="stylesheet" href="style.css">
-        <style>
-        form{
-            margin-top: 30px;
-            text-align: center;
-        }
-        fieldset{
-            width: 380px;
-            margin: auto;
-        }
-        input#botaoenviar{
-            margin-left:0px;
-            margin-top:20px;
-            width: 250px;
-        }
-        label#titulo{
-            font-size: 20pt;
-            font-weight: bold;
-                    }
-        label#arquivo{
-            font-size:14pt;
-            font-weight: normal;
-        }
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
 
-    </style>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-    <form method="post" action= "?go=enviar" enctype="multipart/form-data">
+	
+	
+  <nav class="light-green lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" class="brand-logo"><img src ="09.jpg"  width="150" height="60" alt ="KappaDolar"/></a>
+      <ul class="right hide-on-med-and-down">
+			<li><a href="../Front/index.html"><h5>Home</h5></a></li>
+			<li><a href="../Front/Inicial.php"><h5>Login</h5></a></li>
+			<li><a href="../Front/Cadastro.php"><h5>Criar Conta</h5></a></li>
+			<li><a href="#"><h5>Download</h5></a></li>
+      </ul>
 
-            <label id="titulo">Faça o Upload de seu arquivo XML<p></label>
-        <fieldset id="inicio">
-        <label id="arquivo">Arquivo:</label>
-            <input type="file" name="arquivo" /> <br/>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <div class="row center">
+          <h4 class="header col s12 orange-text">Faça o Upload de seu arquivo XML</h4>
+      </div>
+      
+      <br>
 
+    </div>
+  </div>
+<center>
+	<form method="post" action= "?go=enviar" enctype="multipart/form-data">
 
-        </fieldset>
+            <input type="file"  name="arquivo"  id="download-button" class="btn waves-effect waves-light green" />
 
-            <input type="submit" value="Enviar" id="botaoenviar"/>
-			
-            <a href= "Inicial.php" <p></p><img src="Imagens/bottoes/voltar.png"	height="50px" width="180px"	/></a>
-
+			<button class="btn waves-effect waves-light green" type="submit" title="Enviar Arquivo XML" name="action">Enviar<br>	
+				<i class="material-icons right">send</i>
+			</button> 
+  </center>
     </form>
-</body>
+    </body>
 </html>
+
 <?php
 if(@$_GET['go']=='enviar'){    
     
@@ -127,27 +135,82 @@ if(@$_GET['go']=='enviar'){
                 }
             }
             
-            echo '<b><center><font color=\'#006400\'> Registros inseridos
+            echo '<p></p><b><center><font color=\'#006400\'> Registros inseridos
             com sucesso! :).</font></center><b>';
             ?>
             <html>
 				<center>
-					<a href= "PaginaUsuario.php" <p></p><img src="Imagens/bottoes/continuar.png"	height="50px" width="180px"	/></a>
+					<a href= "PaginaUsuario.php" class="waves-effect waves-light green btn-large" title="Fazer login no site..." ><i class="material-icons right">label_outline</i>Continuar</a>
 				</center>
             </html>
             
             <?php
         }
         else{
-            echo '<b><center><font color=\'#FF0000\'> Você não selecionou um arquivo XML. '
+            echo '<p><b><center><font color=\'#FF0000\'> Você não selecionou um arquivo XML. '
             . 'Por favor selecione um arquivo válido :).</font></center><b>';
         }
     }
     else{
-        echo '<b><center><font color=\'#FF0000\'> Você não selecionou nenhum arquivo. '
+        echo '<p><b><center><font color=\'#FF0000\'> Você não selecionou nenhum arquivo. '
         . 'Por favor selecione um arquivo válido :).</font></center><b>';
         
     }
 
+} 
+else
+{
+	 ?>
+	<html>
+				<center>
+					<p><a class="btn-large disabled" title="Primeiro você deve enviar o arquivo XML"><i class="material-icons right">label_outline</i>Continuar</a>
+				</center>
+            </html>		
+            
+    <?php
 }
-    ?>
+   ?>
+
+<html>
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+ 
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col l6 s12">
+          <h5 class="white-text">Quem somos</h5>
+          <p class="grey-text text-lighten-4">Estudantes da Universidade Federal de Pelotas que pretendem tirar uma nota razoável no trabalho de Desenvolvimento de Software e se formar no futuro!</p>
+        </div>
+          
+      </div>
+    </div>
+      
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Edited by <a class="orange-text text-lighten-3" href="#">Eduardo Lemos, o pró dos TimPleit</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  
+</html>
