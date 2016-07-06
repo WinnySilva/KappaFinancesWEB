@@ -44,8 +44,8 @@
 
             <input type="file"  name="arquivo"  id="download-button" class="btn waves-effect waves-light green" />
 
-			<button class="btn waves-effect waves-light green" type="submit" title="Enviar Arquivo XML" name="action">Enviar<br>	
-				<i class="material-icons right">send</i>
+			<button class="btn waves-effect waves-light green" type="submit" title="Enviar Arquivo XML" name="action"> <i class="material-icons right">send</i> Enviar<br>	
+				
 			</button> 
   </center>
     </form>
