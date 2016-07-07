@@ -39,7 +39,7 @@
 <?php
 if(@$_GET['go']=='enviar'){    
     
-    error_reporting(0);
+    //error_reporting(0);
     
     $filepath= $_FILES['arquivo']['tmp_name'];
     
@@ -70,6 +70,7 @@ if(@$_GET['go']=='enviar'){
 			//$lastUpload = "2016-06-06";
             $timeLastUpload = strtotime($lastUpload);   // TimeStamp do ultimo envio. 
             
+            
             /* Percorre o XML e coloca no banco as informações */
             //Primeiro para as receitas
             $idReceita = 1;
@@ -95,7 +96,17 @@ if(@$_GET['go']=='enviar'){
                 }
             }
             
-            $idDespesa = 1;             // TEM QUE MUDAR ISSO
+            $hoje = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+            $hoje = date("Y-m-d", $hoje);
+            
+            $query = sprintf("UPDATE `Usuario` SET `ultimo_envio`= '".$hoje."' WHERE cpf=".$userCPF);
+            
+            echo $query;
+            
+            mysqli_query($link, $query) or die(mysqli_error($link));
+            
+            
+            $idDespesa = 0;             // TEM QUE MUDAR ISSO
             //Agora para as despesas
             foreach ($xml  as $mes){
                 foreach ($mes->financas->despesa as $despesa){
@@ -115,7 +126,6 @@ if(@$_GET['go']=='enviar'){
                                 . " $idCat, $userCPF)";
 
                         mysqli_query ($link, $sql);
-                        $idDespesa= $idDespesa +1;
                     }
                         
                 }
@@ -130,7 +140,7 @@ if(@$_GET['go']=='enviar'){
 				</center>
             </html>
             
-     x       <?php
+           <?php
         }
         else{
             echo '<p><b><center><font color=\'#FF0000\'> Você não selecionou um arquivo XML. '

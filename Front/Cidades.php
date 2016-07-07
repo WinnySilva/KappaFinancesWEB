@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <?php
     try {
-        $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
+        $conexao=new PDO("mysql:host=localhost;dbname=KappaDB","root", "");
         $conexao->exec("SET CHARACTER SET utf8");
         }catch(PDOException $e){
             echo $e->getMessage();

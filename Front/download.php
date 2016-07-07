@@ -27,7 +27,7 @@
 		
 		<center><br>
 			<a href= "downloads/KappaFinances.tar" onclick="Materialize.toast('Seu dowload será iniciado!', 2600, 'rounded')" class="waves-effect waves-light green btn-large" title="Clique para realizar o download." ><i class="material-icons right">play_for_work</i>Download</a><br>
-			Erro no dowload? Clique<a href= "downloads/erro.php"> aqui</a>.
+			Erro no dowload? Clique<a href= "erro.php"> aqui</a>.
 		</center>		
 
 </html>
