@@ -113,11 +113,12 @@
 <?php
 include '../Back/AdmDB.php';
 include '../Back/html.inc.php';
-
-//session_start();
- 
+ob_start();
+session_start();
+if(!isset($_SESSION['logado'])){
+     echo "<script>window.location.href='login.php';</script>";    
+} 
 Temp::template($_SESSION['admin'],$_SESSION['logado']);
-
 $query = "SELECT nome FROM pais";
 $conn = new AdmDB;
 $result = $conn->executeQuery($query);

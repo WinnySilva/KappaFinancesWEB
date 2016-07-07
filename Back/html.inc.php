@@ -28,8 +28,7 @@ class Temp {
     <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.html\" class=\"brand-logo\"><img src =\"09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
         <ul class=\"right hide-on-med-and-down\">
             <li><a href=\"../Front/index.html\">Home</a></li>
-
-            <li><a href=\"../Front/Inicial.php\">Login</a></li>
+            <li><a href=\"../Front/login.php\">Login</a></li>
             <li><a href=\"../Front/Cadastro.php\">Criar Conta</a></li>
             <li><a href=\"#\">Download</a></li>
         </ul>
@@ -42,11 +41,11 @@ class Temp {
     private static $navLogadoADMIN = "<nav class=\"light-green lighten-1\" role=\"navigation\">
     <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.html\" class=\"brand-logo\"><img src =\"09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
         <ul class=\"right hide-on-med-and-down\">
-            <li><a href=\"../Front/index.html\">Home</a></li>
-            <li><a href=\"../Front/Inicial.php\">Perfil</a></li>
-            <li><a href=\"../Front/Cadastro.php\">Relatórios</a></li>
-            <li><a href=\"#\">Enviar Finanças</a></li>
-              <li><a href=\"#\">Gerenciar Usuarios</a></li>
+            <li><a href=\"../Front/home.php\">Home</a></li>
+            <li><a href=\"../Front/EditarUsuario.php\">Editar Perfil</a></li>
+            <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
+            <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
+              <li><a href=\"../Front/GerenciarUsuarios.php\">Gerenciar Usuarios</a></li>
             <li><a href=\"#\">Download</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
@@ -58,10 +57,10 @@ class Temp {
     private static $navLogadoUSUARIO = "<nav class=\"light-green lighten-1\" role=\"navigation\">
     <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.html\" class=\"brand-logo\"><img src =\"09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
         <ul class=\"right hide-on-med-and-down\">
-            <li><a href=\"../Front/index.html\">Home</a></li>
-            <li><a href=\"../Front/Inicial.php\">Perfil</a></li>
-            <li><a href=\"../Front/Cadastro.php\">Relatórios</a></li>
-            <li><a href=\"#\">Enviar Finanças</a></li>
+            <li><a href=\"../Front/home.php\">Home</a></li>
+            <li><a href=\"../Front/EditarUsuario.php\">Editar Perfil</a></li>
+            <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
+            <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
             <li><a href=\"#\">Download</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">

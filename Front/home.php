@@ -12,22 +12,7 @@
 </head>
 <body>
   
-     <nav class="light-green lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a><img src ="09.jpg" style = "width:150px;height:60px;">
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="../Front/index.html"><h5>Home</h5></a></li>
-                    <li><a href="../Front/Inicial.php"><h5>Login</h5></a></li>
-                    <li><a href="../Front/Cadastro.php"><h5>Criar Conta</h5></a></li>
-                    <li><a href="#"><h5>Download</h5></a></li>
-                    <li><a href="#"><h5>Sobre</h5></a></li>
-                </ul>
-
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Navbar Link</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
+    
     
     <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -79,27 +64,7 @@
     </div>
   </div>
 
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col l6 s12">
-          <h5 class="white-text">Quem somos</h5>
-          <p class="grey-text text-lighten-4">Estudantes da Universidade Federal de Pelotas que pretendem tirar uma nota razoÃ¡vel no trabalho de Desenvolvimento de Software e se formar no futuro!</p>
-        </div>
-          
-      </div>
-    </div>
-      
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      Edited by <a class="orange-text text-lighten-3" href="#">Eduardo Lemos, o prÃ³ dos TimPleit</a>
-      </div>
-    </div>
-  </footer>
-
-
+ 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
@@ -107,3 +72,12 @@
 
   </body>
 </html>
+<?php
+include '../Back/AdmDB.php';
+include '../Back/html.inc.php';
+ob_start();
+session_start();
+if(!isset($_SESSION['admin'])){
+     echo "<script>window.location.href='login.php';</script>";    
+} 
+Temp::template($_SESSION['admin'],$_SESSION['logado']);

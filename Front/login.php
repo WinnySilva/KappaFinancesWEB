@@ -38,6 +38,7 @@
 <?php
 include '../Back/usuario.php';
 include '../Back/html.inc.php';
+ob_start();
 session_start();
 Temp::template(NULL,NUll);
 
@@ -68,7 +69,7 @@ if (@$_GET['go'] == "login") {
             echo "ADM";
             $_SESSION["admin"] = true;
            // header('Location: PaginaAdministrador.php');
-            echo "<script>window.location.href='PaginaAdministrador.php';</script>";
+            echo "<script>window.location.href='home.php';</script>";
         } else {
             $_SESSION["admin"] = false;
             date_default_timezone_set('America/Sao_Paulo');
@@ -81,7 +82,7 @@ if (@$_GET['go'] == "login") {
             if ($hoje <= $trintadias) {
                 echo "no prazo";
                 //header('Location: PaginaUsuario.php');
-                echo "<script>window.location.href='PaginaUsuario.php';</script>";
+                echo "<script>window.location.href='home.php';</script>";
             } else {
                 echo "fora do prazo";
                 echo "<script>window.location.href='envio.php';</script>";

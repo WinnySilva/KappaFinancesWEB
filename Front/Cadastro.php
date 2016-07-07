@@ -7,6 +7,7 @@ and open the template in the editor.
 -->
 <!-- Pegar o nome do pais quando o usuario faz a troca de pais na pagina -->
 <script type="text/javascript">
+    
     /*function Show( pais ) {
         var label = pais.options[pais.selectedIndex].text;
         //alert( label );
@@ -28,8 +29,12 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Cadastro</title>
 		<link rel="stylesheet" href="style.css">
-        <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="scriptEstado.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/scriptEstado.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+        <link href="css/style.css" rel="stylesheet">        
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 		<style>
 			input {
 				font-family:sans-serif;
@@ -149,7 +154,8 @@ and open the template in the editor.
 
 <?php
 include '../Back/usuario.php';
-
+include '../Back/html.inc.php';
+Temp::template(false,false);
 if (@$_POST['enviar'] == 'Cadastrar'){
     $nome = $_POST['tnome'];
     $senha = $_POST['tsenha'];
@@ -193,13 +199,15 @@ if (@$_POST['enviar'] == 'Cadastrar'){
     }else{
         $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
         $usuario->cadastroUsuarioDB();
+        echo "<script>alert(\"CADASTRO REALIZADO\"); window.location.href='login.php';</script>";
     }
     //echo "estado final id = ".$estado;
     //echo "estado final =".$estadoFinal;
     //echo "a cidade é = ".$cidade;
 //    echo "<script> echo <$variavelx  = document.write(label)</script>";
+     
 }
     if(@$_POST['enviar'] == "Voltar"){
-        echo "<script>window.location.href='Inicial.php';</script>";
+        echo "<script>window.location.href='login.php';</script>";
     }
 ?>

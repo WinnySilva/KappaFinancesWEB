@@ -49,11 +49,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        
         <title>Editar Usuário</title>
         <link rel="stylesheet" href="style.css">
-        <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="scriptEstado.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/scriptEstado.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+        <link href="css/style.css" rel="stylesheet">  
+        <meta charset="UTF-8">
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/styleRelatorios.css" rel="stylesheet">
         <style>
             input {
                 font-family:sans-serif;
@@ -138,6 +144,7 @@
         ?>
     </head>
     <body>
+        
     <div id="interface">
         <form method="post" id="ideditar" action="EditarUsuario.php">
             <fieldset id="editar"><legend>Editar Usuário</legend>
@@ -237,7 +244,12 @@
 </html>
 <?php
 include '../Back/usuario.php';
-
+include '../Back/html.inc.php';
+session_start();
+if(!isset($_SESSION['admin'])){
+     echo "<script>window.location.href='login.php';</script>";    
+} 
+Temp::template($_SESSION['admin'],$_SESSION['logado']);
 if (@$_POST['enviar'] == 'Editar'){
     $nome = $_POST['tnome'];
     $senha = $_POST['tsenha'];
