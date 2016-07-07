@@ -126,10 +126,10 @@ if (@$_GET['go'] == "cpf") {
      
                         <center>
 							<form method="post" action="?go=excluir">
-								<button  class="btn waves-effect waves-light green" type="submit" name="action" >Excluir Usuário <i class="material-icons right">delete</i> </button>
+								<button  class="btn waves-effect waves-light green" type="submit" name="action" >Excluir Usuário <i class="material-icons right"></i> </button>
 							</form><br>
 							<form method="post" action="?go=editar">
-								<button  class="btn waves-effect waves-light green" type="submit" name="action" >Editar Usuário <i class="material-icons right">mode_edit</i> </button>
+								<button  class="btn waves-effect waves-light green" type="submit" name="action" >Editar Usuário <i class="material-icons right"></i> </button>
 							</form><br>
 						</center>
                         

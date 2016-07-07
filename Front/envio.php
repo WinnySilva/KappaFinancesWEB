@@ -18,29 +18,29 @@
       <div class="row center">
           <h4 class="header col s12 orange-text">Faça o Upload de seu arquivo XML</h4>
       </div>
-      
       <br>
-
     </div>
   </div>
-<center>
-	<form method="post" action= "?go=enviar" enctype="multipart/form-data">
-
-            <input type="file"  name="arquivo"  id="download-button" class="btn waves-effect waves-light green" />
-
-			<button class="btn waves-effect waves-light green" type="submit" title="Enviar Arquivo XML" name="action"> <i class="material-icons right">send</i> Enviar<br>	
-				
+  
+  <!-- Botões principais -->
+	<center>
+		<form method="post" action= "?go=enviar" enctype="multipart/form-data">
+			<input type="file"  name="arquivo"  id="download-button" class="btn waves-effect waves-light green" />
+			<button class="btn waves-effect waves-light green" type="submit" title="Enviar Arquivo XML" name="action">
+				 <i class="material-icons right">send</i> Enviar<br>	
 			</button> 
-  </center>
-    </form>
-    </body>
+	   </form>
+	</center>
+</body>
 </html>
 
 <?php
 if(@$_GET['go']=='enviar'){    
     
-    //error_reporting(0);
+	// Desabilita Warnings
+    error_reporting(0);
     
+    // Pega caminho do arquivo XML
     $filepath= $_FILES['arquivo']['tmp_name'];
     
     /* Conectar com o banco de dados da aplicação */
@@ -73,7 +73,7 @@ if(@$_GET['go']=='enviar'){
             
             /* Percorre o XML e coloca no banco as informações */
             //Primeiro para as receitas
-            $idReceita = 1;
+            $idReceita = 0;
             foreach ($xml  as $mes){
                 foreach ($mes->financas->receita as $receita){
                     $data = $receita->data;
@@ -96,17 +96,7 @@ if(@$_GET['go']=='enviar'){
                 }
             }
             
-            $hoje = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
-            $hoje = date("Y-m-d", $hoje);
-            
-            $query = sprintf("UPDATE `Usuario` SET `ultimo_envio`= '".$hoje."' WHERE cpf=".$userCPF);
-            
-            echo $query;
-            
-            mysqli_query($link, $query) or die(mysqli_error($link));
-            
-            
-            $idDespesa = 0;             // TEM QUE MUDAR ISSO
+            $idDespesa = 0;		// Receita autoIncrementa
             //Agora para as despesas
             foreach ($xml  as $mes){
                 foreach ($mes->financas->despesa as $despesa){
@@ -131,12 +121,20 @@ if(@$_GET['go']=='enviar'){
                 }
             }
             
+            
+            // Atualiza data de último envio
+            $hoje = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+            $hoje = date("Y-m-d", $hoje);
+            $query = sprintf("UPDATE `Usuario` SET `ultimo_envio`= '".$hoje."' WHERE cpf=".$userCPF);
+            mysqli_query($link, $query) or die(mysqli_error($link));
+            
             echo '<p></p><b><center><font color=\'#006400\'> Registros inseridos
             com sucesso! :).</font></center><b>';
             ?>
             <html>
 				<center>
-					<a href= "home.php" class="waves-effect waves-light green btn-large" title="Fazer login no site..." ><i class="material-icons right">label_outline</i>Continuar</a>
+					<a href= "home.php" class="waves-effect waves-light green btn-large" 
+						title="Fazer login no site..." ><i class="material-icons right">label_outline</i>Continuar</a>
 				</center>
             </html>
             
@@ -158,33 +156,18 @@ else
 {
 	 ?>
 	<html>
-				<center>
-					<br><a class="btn-large disabled tooltipped" data-position="bottom" data-delay="100" data-tooltip="Primeiro você deve enviar o arquivo XML"  
-						><i class="material-icons right">label_outline</i>Continuar</a>
-				</center>
-            </html>		
+		<center>
+			<br><a class="btn-large disabled tooltipped" data-position="bottom"
+				data-delay="100" data-tooltip="Primeiro você deve enviar o arquivo XML"  
+					><i class="material-icons right">label_outline</i>Continuar</a>
+		</center>
+    </html>		
             
     <?php
 }
    ?>
 
 <html>
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
- 
-    </div>
-    <br><br>
-
-    <div class="section">
-
-    </div>
-  </div>
-
- 
-
-
 
   <!--  Scripts-->
   <script src="js/jquery-2.1.1.min.js"></script>
