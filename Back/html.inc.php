@@ -30,7 +30,7 @@ class Temp {
             <li><a href=\"../Front/index.html\">Home</a></li>
             <li><a href=\"../Front/login.php\">Login</a></li>
             <li><a href=\"../Front/Cadastro.php\">Criar Conta</a></li>
-            <li><a href=\"#\">Download</a></li>
+            <li><a href=\"../Front/download.php\">Download</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
             <li><a href=\"#\">Navbar Link</a></li>
@@ -46,7 +46,7 @@ class Temp {
             <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
             <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
               <li><a href=\"../Front/GerenciarUsuarios.php\">Gerenciar Usuarios</a></li>
-            <li><a href=\"#\">Download</a></li>
+            <li><a href=\"../Front/download.php\">Download</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
             <li><a href=\"#\">Navbar Link</a></li>
@@ -61,7 +61,7 @@ class Temp {
             <li><a href=\"../Front/EditarUsuario.php\">Editar Perfil</a></li>
             <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
             <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
-            <li><a href=\"#\">Download</a></li>
+            <li><a href=\"../Front/download.php\">Download</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
             <li><a href=\"#\">Navbar Link</a></li>

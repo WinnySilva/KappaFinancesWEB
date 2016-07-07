@@ -39,6 +39,8 @@
 <?php
 if(@$_GET['go']=='enviar'){    
     
+    error_reporting(0);
+    
     $filepath= $_FILES['arquivo']['tmp_name'];
     
     /* Conectar com o banco de dados da aplicação */
@@ -128,7 +130,7 @@ if(@$_GET['go']=='enviar'){
 				</center>
             </html>
             
-            <?php
+     x       <?php
         }
         else{
             echo '<p><b><center><font color=\'#FF0000\'> Você não selecionou um arquivo XML. '
@@ -147,7 +149,8 @@ else
 	 ?>
 	<html>
 				<center>
-					<p><a class="btn-large disabled" title="Primeiro você deve enviar o arquivo XML"><i class="material-icons right">label_outline</i>Continuar</a>
+					<br><a class="btn-large disabled tooltipped" data-position="bottom" data-delay="100" data-tooltip="Primeiro você deve enviar o arquivo XML"  
+						><i class="material-icons right">label_outline</i>Continuar</a>
 				</center>
             </html>		
             
