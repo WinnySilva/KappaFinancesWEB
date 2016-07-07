@@ -1,0 +1,32 @@
+.middle:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+.container {
+    width: 100%;
+    float: left;
+    //overflow: hidden;
+}
+.content {
+    padding: 0 500px 0 0;
+    //width: 50%;
+}
+
+
+/* Right Sidebar
+-----------------------------------------------------------------------------*/
+.right-sidebar {
+    float: left;
+    // width: 40%;
+    width: 450px;
+    margin-left: -450px;// 60%;
+    position: relative;
+    background: #FFFFFF;
+}
+select {
+  width: 70%;
+  padding: 5px;
+  height: 3rem;
+}
+

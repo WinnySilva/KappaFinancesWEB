@@ -47,52 +47,31 @@ function graphPie(canvas, dados) {
                         "Transporte",
                         "Combustivel",
                         "Bens_Duraveis"];
-                    function allcat() {
-                        //document.write(0);
-                        document.getElementById("categorias2").innerHTML = "<legend><h5>Tipos de Finança</h5></legend>";
-                        for (i = 0; i < desp.length; i++) {
-                            document.getElementById("categorias2").innerHTML +=
-                                    "<input type=\"checkbox\" name=\"categoria[]\" value=" + i
-                                    + " > "
-                                    + desp[i]
-                                    + "<br>";
-                        }
-                        document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=" + i++
-                                + " > "
-                                + "Salario"
-                                + "<br>";
-                        document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=" + i++
-                                + " > "
-                                + "Renda Alternativa"
-                                + "<br>";
-                        document.getElementById("categorias2").innerHTML += "<br><br><br>";
-                    }
+                    
                     function desCat() {
-                        document.getElementById("categorias2").innerHTML = "<legend><h5>Tipos de Finança</h5></legend>";
+                        document.getElementById("categorias2").innerHTML = "<legend>Tipos de Finança</legend>";
                         for (i = 0; i < desp.length; i++) {
                             document.getElementById("categorias2").innerHTML +=
-                                    "<input type=\"checkbox\" name=\"categoria[]\" value="
+                                    "<input type=\"checkbox\" class=\"filled-in\" name=\"categoria[]\" value="
                                     + (i + 1)
-                                    + " > "
+                                    + " id = \"categoria"+i+"\"><label for= \"categoria"+i+"\"> "
                                     + desp[i]
-                                    + "<br>";
+                                    + "</label><br>";
                         }
-                        document.getElementById("categorias2").innerHTML += "<br><br><br><br>";
+                        //document.getElementById("categorias2").innerHTML += "<br>";
                     }
                     function recCat() {
-                        document.getElementById("categorias2").innerHTML = "<legend><h1>Tipos de Finança</h1></legend>";
+                        document.getElementById("categorias2").innerHTML = "<legend>Tipos de Finança</legend>";
                         document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=1"
-                                + " > "
+                                "<input type=\"checkbox\" class=\"filled-in\" name=\"categoria[]\" value=1"
+                                 + " id = \"categoria1\"><label for= \"categoria1\"> "
                                 + "Salario"
-                                + "<br>";
+                                + "</label><br>";
                         document.getElementById("categorias2").innerHTML +=
-                                "<input type=\"checkbox\" name=\"categoria[]\" value=2"
-                                + " > "
+                                "<input type=\"checkbox\" class=\"filled-in\" name=\"categoria[]\" value=2"
+                                + " id = \"categoria2\"><label for= \"categoria2\"> "
                                 + "Renda Alternativa"
-                                + "";
+                                + "</label>";
                     }
  //               </script>
  //<script>
