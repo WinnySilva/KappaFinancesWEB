@@ -31,6 +31,7 @@ class Temp {
             <li><a href=\"../Front/login.php\">Login</a></li>
             <li><a href=\"../Front/Cadastro.php\">Criar Conta</a></li>
             <li><a href=\"../Front/download.php\">Download</a></li>
+            
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
             <li><a href=\"#\">Navbar Link</a></li>
@@ -47,6 +48,7 @@ class Temp {
             <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
               <li><a href=\"../Front/GerenciarUsuarios.php\">Gerenciar Usuarios</a></li>
             <li><a href=\"../Front/download.php\">Download</a></li>
+            <li><a href=\"../Front/index.html\">Sair</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
             <li><a href=\"#\">Navbar Link</a></li>
@@ -62,6 +64,7 @@ class Temp {
             <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
             <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
             <li><a href=\"../Front/download.php\">Download</a></li>
+            <li><a href=\"../Front/index.html\">Sair</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
             <li><a href=\"#\">Navbar Link</a></li>
@@ -84,7 +87,7 @@ class Temp {
     <div class=\"footer-copyright\">
       <div class=\"container\">
       Made by <a class=\"orange-text text-lighten-3\" href=\"http://materializecss.com\">Materialize</a>
-      Edited by <a class=\"orange-text text-lighten-3\" href=\"#\">Eduardo Lemos, o pró dos TimPleit</a>
+      Copyright (c) 20016 Kappa Finances All Rights Reserved
       </div>
     </div>
   </footer>";
