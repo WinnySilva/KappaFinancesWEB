@@ -236,16 +236,14 @@
     <input type="submit" value="Voltar" id="idbvoltar" name= "enviar">
     </form>
     </fieldset>
-    <footer id="rodape">
-        <p>Copyright © 2016 - KappaFinance Developer</p>
-    </footer>
+   
     </div>
     </body>
 </html>
 <?php
 include '../Back/usuario.php';
 include '../Back/html.inc.php';
-session_start();
+//session_start();
 if(!isset($_SESSION['admin'])){
      echo "<script>window.location.href='login.php';</script>";    
 } 

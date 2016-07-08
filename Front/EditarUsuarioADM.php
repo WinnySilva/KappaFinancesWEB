@@ -234,9 +234,7 @@
                     <input type="submit" value="Voltar" id="idbvoltar" name= "enviar">
     </form>
         </fieldset>
-    <footer id="rodape">
-        <p>Copyright © 2016 - KappaFinance Developer</p>
-    </footer>
+    
 </div>
 </body>
 </html>

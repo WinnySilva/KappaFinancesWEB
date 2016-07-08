@@ -3,17 +3,18 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>HOME</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/material-icons.css" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
 </head>
 <body>
-  
-    
-    
     <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
@@ -63,21 +64,17 @@
 
     </div>
   </div>
-
- 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
+  
   </body>
+
 </html>
 <?php
 include '../Back/AdmDB.php';
 include '../Back/html.inc.php';
-ob_start();
+//ob_start();
 session_start();
 if(!isset($_SESSION['admin'])){
-     echo "<script>window.location.href='login.php';</script>";    
+  //   echo "<script>window.location.href='login.php';</script>";    
 } 
-Temp::template($_SESSION['admin'],$_SESSION['logado']);
+//$_SESSION['admin'],$_SESSION['logado']
+Temp::template(true,true);
