@@ -191,8 +191,8 @@
                             $estadotabela = $linha['nome'];
                             $idestadotabela = $linha['idestado'];
                             if ($estadotabela == $estadoinput){
-                                echo "<option value='$estadotabela' selected> $estadotabela</option>";
-                            }else echo "<option value='$estadotabela'>$estadotabela</option>";
+                                echo "<option value='$idestadotabela' selected> $estadotabela</option>";
+                            }else echo "<option value='$idestadotabela'>$estadotabela</option>";
                         }
                         ?>
                     </select>
@@ -200,7 +200,7 @@
                         </div>
                         <div id="loading">
                             <label for="idcidade2">Cidade:</label>
-                            <select name="ncidade2" id="idcidade2">
+                            <select name="ncidade" id="idcidade2">
                                 <?php
                                 try {
                                     $conexao=new PDO("mysql:host=localhost;dbname=kappadb","root", "");
@@ -267,8 +267,8 @@ if (@$_POST['enviar'] == 'Editar'){
     }
 
     if ($pais !== "Brasil"){
-        $estadoFinal ="Sem Estado";
-        $cidade = "Sem Cidade";
+        $estadoFinal =$pais;
+        $cidade = $pais;
     }
 
     if(empty($nome)){
@@ -292,8 +292,8 @@ if (@$_POST['enviar'] == 'Editar'){
     }else{
         $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
         $usuario->atualizarUsuariodb();
+        echo "<script>window.location.href='home.php';</script>";
     }
-    echo "cidade id = ".$cidadeid;
 }
 if(@$_POST['enviar'] == "Voltar"){
     echo "<script>window.location.href='GerenciarUsuarios.php';</script>";

@@ -72,7 +72,7 @@ class Usuario {
             echo "<script>alert('CPF já em uso.'); history.back();</script>";
         }else{
             $this->inserirUsuariodb();
-            //echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
+            echo "<script>alert('Usuário cadastrado com sucesso.'); window.location.href='../Front/Inicial.php';</script>";
         }
     }
     
@@ -92,8 +92,10 @@ class Usuario {
                 . "senha ='".$this->senha."',"
                 . "ultimo_envio ='".$this->ultimo_envio."',"
                 . "idcidade = ".$idcidade.","
-                . "`sexo`= ".$this->sexo
+                . "sexo = ".$this->sexo.","
+                . "email = '".$this->email."'"
                 ." WHERE cpf = ".$this->cpf;
+        echo $query;
         $conn = new AdmDB;
         $conn->executeQuery($query);
         

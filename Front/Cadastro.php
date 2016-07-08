@@ -199,13 +199,7 @@ if (@$_POST['enviar'] == 'Cadastrar'){
     }else{
         $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
         $usuario->cadastroUsuarioDB();
-        echo "<script>alert(\"CADASTRO REALIZADO\"); window.location.href='login.php';</script>";
     }
-    //echo "estado final id = ".$estado;
-    //echo "estado final =".$estadoFinal;
-    //echo "a cidade é = ".$cidade;
-//    echo "<script> echo <$variavelx  = document.write(label)</script>";
-     
 }
     if(@$_POST['enviar'] == "Voltar"){
         echo "<script>window.location.href='login.php';</script>";
