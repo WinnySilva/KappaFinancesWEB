@@ -16,10 +16,7 @@ class Relatorios {
         array(36, 45),
         array(46, 55),
         array(56, 200)];
-    private $selectTodasDespesas = "SELECT SUM(despesa.valor), categoriadespesa.nome FROM despesa JOIN categoriadespesa ON despesa.idCategoriaDespesa = categoriadespesa.idCategoriaDespesa GROUP BY despesa.idCategoriaDespesa";
-    private $selectTodasReceitas = "SELECT SUM(receita.valor), categoriareceita.nome FROM receita JOIN categoriareceita ON receita.idCategoriaReceita = categoriareceita.idCategoriaReceita GROUP BY receita.idCategoriaReceita";
-    private $selectTodasRECDES = "SELECT SUM(despesa.valor), categoriadespesa.nome FROM despesa JOIN categoriadespesa ON despesa.idCategoriaDespesa = categoriadespesa.idCategoriaDespesa GROUP BY despesa.idCategoriaDespesa UNION SELECT SUM(receita.valor), categoriareceita.nome FROM receita JOIN categoriareceita ON receita.idCategoriaReceita = categoriareceita.idCategoriaReceita GROUP BY receita.idCategoriaReceita";
-    private $tipo, $categorias, $faixaEtaria;
+   private $tipo, $categorias, $faixaEtaria;
     private $ano, $pais, $estado, $cidade, $grafico;
     private $tipoNome;
 

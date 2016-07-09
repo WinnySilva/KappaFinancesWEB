@@ -4,7 +4,6 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
         <title></title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
@@ -20,13 +19,14 @@
     <body>
 
 
-        <header class="header">
-            Relatorios
+<!--        <header class="header">-->
+            <h1 class="header center orange-text">Relatórios</h1>
 
-        </header><!-- .header-->
-
+<!--        </header> .header-->
+<!--<div class="container">
+            <div class="section">-->
         <div class="middle">
-            <div class="container">
+            <div class="containerex">
                 <main class="content">
                     <div class="box-chart">
                         . <canvas id="GraficoBarra" style="width:100%;"></canvas>
@@ -36,7 +36,7 @@
 
                 </main><!-- .content -->
             </div><!-- .container-->
-
+  
 
             <aside class="right-sidebar" name = "lateral" id="lateral">
 
@@ -107,7 +107,9 @@
             </aside><!-- .right-sidebar -->
 
         </div><!-- .middle-->
-    </body>
+<!--    </div>
+           </div> -->
+            </body>
 
 </html>
 <?php
