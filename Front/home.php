@@ -109,7 +109,7 @@ if (!isset($_SESSION['admin'])) {
     //   echo "<script>window.location.href='login.php';</script>";    
 }
 //$_SESSION['admin'],$_SESSION['logado']
-Temp::template(true, true);
+Temp::template($_SESSION['admin'], $_SESSION['logado']);
 
 $query = "SELECT SUM(Despesa.valor),CategoriaDespesa.nome FROM Despesa 
                         JOIN CategoriaDespesa on Despesa.idCategoriaDespesa= CategoriaDespesa.idCategoriaDespesa
@@ -132,3 +132,4 @@ echo "<script>"
  . "var dad= $finacas;"
  . " graphBar(document.getElementById(\"GraficoBarra\"),dad);"
  . "</script>";
+
