@@ -30,10 +30,10 @@ class Relatorios {
             echo "ERRO";
             return null;
         }
-        $query = "SELECT SUM(" . $tipoNome . ".valor), categoria" . $tipoNome . ".nome FROM " . $tipoNome;
+        $query = "SELECT SUM(" . $tipoNome . ".valor), Categoria" . $tipoNome . ".nome FROM " . $tipoNome;
 
-        $queryJoins = " JOIN categoria"
-                . $tipoNome . " ON " . $tipoNome . ".idCategoria" . $tipoNome . " = categoria" . $tipoNome . ".idCategoria" . $tipoNome . " ";
+        $queryJoins = " JOIN Categoria"
+                . $tipoNome . " ON " . $tipoNome . ".idCategoria" . $tipoNome . " = Categoria" . $tipoNome . ".idCategoria" . $tipoNome . " ";
 
         $queryWHERE = "";
         if ($categorias != NULL) {
@@ -66,14 +66,14 @@ class Relatorios {
             for ($i = 0; $i < count($faixa); $i++) {
                 $ano1 = date("Y") - $this->faixa[$faixa[$i]][0];
                 $ano2 = date("Y") - $this->faixa[$faixa[$i]][1];
-                $pseudQ2.="(EXTRACT(YEAR FROM usuario.data_nasc)"
+                $pseudQ2.="(EXTRACT(YEAR FROM Usuario.data_nasc)"
                         . "BETWEEN " . $ano2 . " AND " . $ano1
                         . ")";
                 if ($i < (count($faixa) - 1)) {
                     $pseudQ2.=" OR ";
                 }
             }
-            $queryJoins .="JOIN usuario ON " . $tipoNome . ".usuario_cpf = usuario.cpf";
+            $queryJoins .="JOIN Usuario ON " . $tipoNome . ".usuario_cpf = Usuario.cpf";
             $queryWHERE.=$pseudQ . $pseudQ2;
         }
 
@@ -95,11 +95,11 @@ class Relatorios {
                 $psq = " WHERE ";
             }
 //SELECT * FROM usuario JOIN ( SELECT cidade.id_cidade,cidade.nome,t1.nome as n FROM cidade JOIN (SELECT estado.idestado, estado.nome FROM estado JOIN pais ON estado.idPais=pais.idPais) as t1 ON t1.idestado = cidade.idEstado )as t2 ON t2.id_cidade = usuario.idcidade WHERE t2.n = 'São Paulo'
-            $queryJoins.= " JOIN (SELECT * FROM usuario "
-                    . "JOIN ( SELECT cidade.id_cidade,t1.nome as n FROM cidade "
-                    . "JOIN (SELECT estado.idestado, estado.nome FROM estado JOIN pais ON estado.idPais=pais.idPais) "
-                    . "as t1 ON t1.idestado = cidade.idEstado )"
-                    . "as t2 ON t2.id_cidade = usuario.idcidade) "
+            $queryJoins.= " JOIN (SELECT * FROM Usuario "
+                    . "JOIN ( SELECT Cidade.id_cidade,t1.nome as n FROM Cidade "
+                    . "JOIN (SELECT Estado.idestado, Estado.nome FROM Estado JOIN Pais ON Estado.idPais=Pais.idPais) "
+                    . "as t1 ON t1.idestado = Cidade.idEstado )"
+                    . "as t2 ON t2.id_cidade = Usuario.idcidade) "
                     . "as t3 ON t3.cpf = "
                     . $tipoNome.".usuario_cpf ";
             
@@ -114,7 +114,7 @@ class Relatorios {
             } else {
                 $pseuquery .= " WHERE ";
             }
-            $queryWHERE.= $pseuquery . " usuario.idcidade = " . $cidade;
+            $queryWHERE.= $pseuquery . " Usuario.idcidade = " . $cidade;
         }
         if (($pais != NULL) && ($estado == NULL) && ($cidade == NULL)) {
             if (($ano != NULL) || ($faixa != NULL) || ($categorias != NULL)) {
@@ -123,9 +123,9 @@ class Relatorios {
                 $psq = " WHERE ";
             }
 
-            $queryJoins.=" JOIN (SELECT estado.idPais "
-                    . "FROM (SELECT cidade.idEstado FROM usuario JOIN cidade ON cidade.id_cidade= usuario.idcidade) as t1 "
-                    . "JOIN estado ON t1.idEstado = estado.idestado) as t2";
+            $queryJoins.=" JOIN (SELECT Estado.idPais "
+                    . "FROM (SELECT Cidade.idEstado FROM Usuario JOIN Cidade ON Cidade.id_cidade= Usuario.idcidade) as t1 "
+                    . "JOIN Estado ON t1.idEstado = Estado.idestado) as t2";
 
             $psq.= "t2.idPais =" . $pais;
             $queryWHERE.=" " . $psq;

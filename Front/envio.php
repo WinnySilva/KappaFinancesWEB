@@ -171,7 +171,32 @@ if (@$_GET['go'] == 'enviar') {
 error_reporting(0); // desativa as mensagens de erro
 include '../Back/html.inc.php';
 session_start();
+if(!isset($_SESSION['admin'])){
+     echo "<script>window.location.href='login.php';</script>";    
+} 
+
+$userCPF = $_SESSION["CPF"];
+
+/* Conectar com o banco de dados da aplicação */
+$link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
+mysqli_select_db($link, 'KappaDB') or die('Erro ao conectar com o banco de dados');
+
+$query = "SELECT cpf,senha,ultimo_envio FROM Usuario WHERE cpf = " . $userCPF;
+$dados = mysqli_query($link, $query) or die(mysqli_error($link));
+$linha = mysqli_fetch_assoc($dados);
+
+$ultimo_envio = $linha['ultimo_envio'];
+date_default_timezone_set('America/Sao_Paulo');
+                $ultienv = strtotime($ultimo_envio);
+                $hoje = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+                $trintadias = strtotime($ultimo_envio . "+ 30 days");
+                if (($hoje <= $trintadias) || $_SESSION['admin']) {
+					Temp::template($_SESSION['admin'],true);
+			}
+			else
+			{
+				Temp::template($_SESSION['admin'],false);
+			}
 if (!isset($_SESSION['admin'])) {
     echo "<script>window.location.href='login.php';</script>";
 }
-Temp::template($_SESSION['admin'], $_SESSION['logado']);

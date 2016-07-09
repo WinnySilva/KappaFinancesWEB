@@ -120,11 +120,11 @@ include '../Back/AdmDB.php';
 include '../Back/html.inc.php';
 ob_start();
 session_start();
-if (!isset($_SESSION['logado'])) {
-    echo "<script>window.location.href='login.php';</script>";
-}
-Temp::template($_SESSION['admin'], $_SESSION['logado']);
-$query = "SELECT nome FROM pais";
+if(!isset($_SESSION['logado'])){
+     echo "<script>window.location.href='login.php';</script>";    
+} 
+Temp::template($_SESSION['admin'],$_SESSION['logado']);
+$query = "SELECT nome FROM Pais";
 $conn = new AdmDB;
 $result = $conn->executeQuery($query);
 
@@ -146,7 +146,7 @@ echo "<script>
                         </script>";
 
 //---------------------------------
-$query2 = "SELECT nome FROM estado";
+$query2 = "SELECT nome FROM Estado";
 
 $result2 = $conn->executeQuery($query2);
 
@@ -168,7 +168,7 @@ echo "<script>
                             
                         </script>";
 //---------
-$query3 = "SELECT nome FROM cidade";
+$query3 = "SELECT nome FROM Cidade";
 
 $result3 = $conn->executeQuery($query3);
 
@@ -191,9 +191,9 @@ echo "<script>
                             alert(cidades[0]);
                         </script>";
 //----------------------------------
-$query4 = "SELECT EXTRACT(YEAR FROM data) FROM `despesa` 
+$query4 = "SELECT EXTRACT(YEAR FROM data) FROM `Despesa` 
 UNION
-SELECT EXTRACT(YEAR FROM data) FROM `receita`";
+SELECT EXTRACT(YEAR FROM data) FROM `Receita`";
 
 $result4 = $conn->executeQuery($query4);
 

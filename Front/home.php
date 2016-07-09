@@ -14,6 +14,23 @@
         <script src="js/init.js"></script>
         <script src="js/Chart.min.js"></script>
         <script src="js/relatorios.js"></script>
+
+
+	</head>
+
+
+	<style>
+body {	
+    background: url("Imagens/background.jpg");
+    background-size: 900px 650px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-blend-mode: color-dodge;
+}
+
+
+</style>
+
         <link rel="icon" href="09.png" type="image/x-icon" />
         <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
     </head>
@@ -30,41 +47,50 @@
                     </div>
                 </div>-->
 
+    <body>
+
+<?php
+	
+	// Desabilita Warnings
+    error_reporting(0);
+
+	/* Conectar com o banco de dados da aplicação */
+    $link = mysqli_connect('localhost', 'root', '') or die('Erro ao conectar');
+    mysqli_select_db($link, 'KappaDB') or die('Erro ao conectar com o banco de dados');
+    
+	session_start();
+	$cpf = $_SESSION["CPF"];
+	$query = sprintf("SELECT nome,sexo FROM Usuario WHERE cpf=".$cpf);
+    $dados = mysqli_query($link, $query) or die(mysqli_error($link));
+    $linha = mysqli_fetch_assoc($dados);
+	
+	
+	if($linha['sexo']=='F')
+		echo "<br><br><br><br><center> <font color='orange' size=14>Seja bem vinda ". $linha['nome']. "!</center> </font>";
+	else
+		echo "<br><br><br><br><center> <font color='orange' size=14>Seja bem vindo ". $linha['nome']. "!</center> </font>";
+	
+	
+?>
+
+    <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+      <div class="row center">
+          <h5 class="header col s12 light">Obrigado por usar o KappaFinances! Usufrua de nossos serviços com responsabilidade. Qualquer dúvida, sugestão ou reclamação é só entrar em contato conosco. 
+			Não esqueça que o KappaFinances é totalmente gratuito e sempre será assim! Logo abaixo você pode ser seu gráfico de finanças. Para
+			visualizar os dados de outros usuários pesquise em "Relatórios".</h5>
+      </div>
+      <br><br>
+    </div>
+  </div>
+
+<br><br><br><br>
         <div class="container">
             <div class="section">
                 <h1 class="header center orange-text">Relatório Pessoal</h1>
                 <canvas id="GraficoBarra" style="width:100%;"></canvas>
-
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-green-text"><i class="material-icons">trending_up</i></h2>
-                            <h5 class="center">Calculos Financeiros Rápidos</h5>
-                            <p class="light">Fazemos todos os calculos e gráficos para facilitar sua vida!</p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-green-text"><i class="material-icons">group</i></h2>
-                            <h5 class="center">Baseado nos Softwares Financeiros Pagos</h5>
-                            <p class="light">No mundo atual, o comprometimento entre as equipes desafia a capacidade de equalização do orçamento setorial.  </p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-green-text"><i class="material-icons">settings</i></h2>
-                            <h5 class="center">Fácil de usar</h5>
-
-                            <p class="light">É importante questionar o quanto o consenso sobre a necessidade de qualificação maximiza as possibilidades por conta do orçamento setorial.</div>
-                    </div>
-                </div>
-
-            </div>
             <br><br>
-
             <div class="section">
 
             </div>
@@ -77,7 +103,7 @@
 error_reporting(0); // desativa as mensagens de erro
 include '../Back/AdmDB.php';
 include '../Back/html.inc.php';
-//ob_start();
+
 session_start();
 if (!isset($_SESSION['admin'])) {
     //   echo "<script>window.location.href='login.php';</script>";    
