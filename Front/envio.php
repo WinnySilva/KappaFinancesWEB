@@ -168,6 +168,7 @@ if (@$_GET['go'] == 'enviar') {
 
 </html>
 <?php
+error_reporting(0); // desativa as mensagens de erro
 include '../Back/html.inc.php';
 session_start();
 if (!isset($_SESSION['admin'])) {

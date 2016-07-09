@@ -197,6 +197,7 @@ if (@$_GET['go'] == "delete") {
 </body>
 </html>
 <?php
+error_reporting(0); // desativa as mensagens de erro
 include '../Back/html.inc.php';
 if (!((isset($_SESSION['admin'])) && ($_SESSION['logado']))) {
     echo "<script>window.location.href='home.php';</script>";

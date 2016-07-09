@@ -1,4 +1,5 @@
 <?php
+error_reporting(0); // desativa as mensagens de erro
 try {
     $conexao = new PDO("mysql:host=localhost;dbname=KappaDB", "root", "");
     $conexao->exec("SET CHARACTER SET utf8");

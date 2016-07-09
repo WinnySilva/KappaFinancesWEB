@@ -9,6 +9,7 @@
 class Temp {
 
     static function template($admin,$logado=false) {
+        error_reporting(0); // desativa as mensagens de erro
         $navegacao = self::$navDeslogado;
         if ($logado) {
             if ($admin) {

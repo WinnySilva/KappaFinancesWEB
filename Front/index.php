@@ -117,6 +117,7 @@
     </body>
 </html>
 <?php
+error_reporting(0); // desativa as mensagens de erro
 session_start();
 $_SESSION = array();
 ?>

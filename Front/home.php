@@ -74,6 +74,7 @@
 
 </html>
 <?php
+error_reporting(0); // desativa as mensagens de erro
 include '../Back/AdmDB.php';
 include '../Back/html.inc.php';
 //ob_start();

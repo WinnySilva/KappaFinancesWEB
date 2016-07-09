@@ -109,7 +109,6 @@ and open the template in the editor.
                 </fieldset>
 
             </form>
-            
         </div>
     </body>
 </html>
@@ -117,6 +116,7 @@ and open the template in the editor.
 <?php
 include '../Back/usuario.php';
 include '../Back/html.inc.php';
+error_reporting(0); // desativa as mensagens de erro
 Temp::template(false, false);
 if (@$_POST['enviar'] == 'Cadastrar') {
     $nome = $_POST['tnome'];

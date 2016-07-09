@@ -10,6 +10,10 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link rel="icon" href="09.png" type="image/x-icon" />
         <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
+        <!--  Scripts-->
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
     </head>
     <body>
 
@@ -32,13 +36,11 @@
             </div>
         </div>
 
-        <!--  Scripts-->
-        <script src="js/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
+        
     </body>
 
     <?php
+    error_reporting(0); // desativa as mensagens de erro
     include '../Back/usuario.php';
     include '../Back/html.inc.php';
 
