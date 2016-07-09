@@ -26,7 +26,7 @@ class Temp {
             }
     
     private static $navDeslogado = "<nav class=\"light-green lighten-1\" role=\"navigation\">
-    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.php\" class=\"brand-logo\"><img src =\"09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
+    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.php\" class=\"brand-logo\"><img src =\"Imagens/09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
         <ul class=\"right hide-on-med-and-down\">
             <li><a href=\"../Front/index.php\">Home</a></li>
             <li><a href=\"../Front/login.php\">Login</a></li>
@@ -44,7 +44,7 @@ class Temp {
     </div>
 </nav>";
     private static $navLogadoADMIN = "<nav class=\"light-green lighten-1\" role=\"navigation\">
-    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.php\" class=\"brand-logo\"><img src =\"09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
+    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.php\" class=\"brand-logo\"><img src =\"Imagens/09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
         <ul class=\"right hide-on-med-and-down\">
             <li><a href=\"../Front/home.php\">Home</a></li>
             <li><a href=\"../Front/EditarUsuario.php\">Editar Perfil</a></li>
@@ -67,7 +67,7 @@ class Temp {
     </div>
 </nav>";
     private static $navLogadoUSUARIO = "<nav class=\"light-green lighten-1\" role=\"navigation\">
-    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.php\" class=\"brand-logo\"><img src =\"09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
+    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.php\" class=\"brand-logo\"><img src =\"Imagens/09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
         <ul class=\"right hide-on-med-and-down\">
             <li><a href=\"../Front/home.php\">Home</a></li>
             <li><a href=\"../Front/EditarUsuario.php\">Editar Perfil</a></li>
