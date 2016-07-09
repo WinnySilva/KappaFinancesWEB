@@ -27,14 +27,17 @@ class Temp {
     private static $navDeslogado = "<nav class=\"light-green lighten-1\" role=\"navigation\">
     <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"index.html\" class=\"brand-logo\"><img src =\"09.jpg\"  width=\"150\" height=\"60\" alt =\"KappaDolar\"/></a>
         <ul class=\"right hide-on-med-and-down\">
-            <li><a href=\"../Front/index.html\">Home</a></li>
+            <li><a href=\"../Front/index.php\">Home</a></li>
             <li><a href=\"../Front/login.php\">Login</a></li>
             <li><a href=\"../Front/Cadastro.php\">Criar Conta</a></li>
             <li><a href=\"../Front/download.php\">Download</a></li>
             
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
-            <li><a href=\"#\">Navbar Link</a></li>
+            <li><a href=\"../Front/index.php\">Home</a></li>
+            <li><a href=\"../Front/login.php\">Login</a></li>
+            <li><a href=\"../Front/Cadastro.php\">Criar Conta</a></li>
+            <li><a href=\"../Front/download.php\">Download</a></li>
         </ul>
         <a href=\"#\" data-activates=\"nav-mobile\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>
     </div>
@@ -48,10 +51,16 @@ class Temp {
             <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
               <li><a href=\"../Front/GerenciarUsuarios.php\">Gerenciar Usuarios</a></li>
             <li><a href=\"../Front/download.php\">Download</a></li>
-            <li><a href=\"../Front/index.html\">Sair</a></li>
+            <li><a href=\"../Front/index.php\">Sair</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
-            <li><a href=\"#\">Navbar Link</a></li>
+            <li><a href=\"../Front/home.php\">Home</a></li>
+            <li><a href=\"../Front/EditarUsuario.php\">Editar Perfil</a></li>
+            <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
+            <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
+              <li><a href=\"../Front/GerenciarUsuarios.php\">Gerenciar Usuarios</a></li>
+            <li><a href=\"../Front/download.php\">Download</a></li>
+            <li><a href=\"../Front/index.php\">Sair</a></li>
         </ul>
         <a href=\"#\" data-activates=\"nav-mobile\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>
     </div>
@@ -64,10 +73,15 @@ class Temp {
             <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
             <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
             <li><a href=\"../Front/download.php\">Download</a></li>
-            <li><a href=\"../Front/index.html\">Sair</a></li>
+            <li><a href=\"../Front/index.php\">Sair</a></li>
         </ul>
         <ul id=\"nav-mobile\" class=\"side-nav\">
-            <li><a href=\"#\">Navbar Link</a></li>
+            <li><a href=\"../Front/home.php\">Home</a></li>
+            <li><a href=\"../Front/EditarUsuario.php\">Editar Perfil</a></li>
+            <li><a href=\"../Front/Relatorios.php\">Relatórios</a></li>
+            <li><a href=\"../Front/envio.php\">Enviar Finanças</a></li>
+            <li><a href=\"../Front/download.php\">Download</a></li>
+            <li><a href=\"../Front/index.php\">Sair</a></li>
         </ul>
         <a href=\"#\" data-activates=\"nav-mobile\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>
     </div>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="br">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Download</title>
 
   <!-- CSS  -->
   <link href="css/material-icons.css" rel="stylesheet">
@@ -62,7 +62,14 @@
 
 include '../Back/html.inc.php';
 session_start();
-if(!isset($_SESSION['admin'])){
-     echo "<script>window.location.href='login.php';</script>";    
-} 
-Temp::template($_SESSION['admin'],$_SESSION['logado']);
+$log = false;
+if(isset($_SESSION['logado'])){
+$log = true;     
+//echo "<script>window.location.href='login.php';</script>";    
+}
+$adm = false;
+if(isset($_SESSION['admin'])){
+$adm = $_SESSION['admin'];     
+//echo "<script>window.location.href='login.php';</script>";    
+}
+Temp::template($adm,$log);

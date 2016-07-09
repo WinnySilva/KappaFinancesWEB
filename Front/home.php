@@ -85,8 +85,8 @@ Temp::template(true, true);
 
 $query = "SELECT SUM(Despesa.valor),CategoriaDespesa.nome FROM Despesa 
                         JOIN CategoriaDespesa on Despesa.idCategoriaDespesa= CategoriaDespesa.idCategoriaDespesa
-                        WHERE Despesa.usuario_cpf=1
-                        GROUP by CategoriaDespesa.idCategoriaDespesa";
+                        WHERE Despesa.usuario_cpf= ".$_SESSION['CPF']
+                        ." GROUP by CategoriaDespesa.idCategoriaDespesa";
 
 $conn2 = new AdmDB;
 $result = $conn2->executeQuery($query);
