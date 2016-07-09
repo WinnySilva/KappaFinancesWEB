@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
         <title>HOME</title>
-<meta charset="utf-8" />
+        <meta charset="utf-8" />
         <!-- CSS  -->
         <link href="css/material-icons.css" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -14,26 +14,27 @@
         <script src="js/init.js"></script>
         <script src="js/Chart.min.js"></script>
         <script src="js/relatorios.js"></script>
-
+        <link rel="icon" href="09.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
     </head>
     <body>
-<!--        <div class="section no-pad-bot" id="index-banner">
-            <div class="container">
-                <br><br>
-                <h1 class="header center orange-text">Что такое Lorem Ipsum?</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light">Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.<br>Totalmente gratuito!</h5>
-                </div>
-                <br><br>
-
-            </div>
-        </div>-->
+        <!--        <div class="section no-pad-bot" id="index-banner">
+                    <div class="container">
+                        <br><br>
+                        <h1 class="header center orange-text">Что такое Lorem Ipsum?</h1>
+                        <div class="row center">
+                            <h5 class="header col s12 light">Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.<br>Totalmente gratuito!</h5>
+                        </div>
+                        <br><br>
+        
+                    </div>
+                </div>-->
 
         <div class="container">
             <div class="section">
                 <h1 class="header center orange-text">Relatório Pessoal</h1>
                 <canvas id="GraficoBarra" style="width:100%;"></canvas>
-                
+
                 <!--   Icon Section   -->
                 <div class="row">
                     <div class="col s12 m4">
@@ -85,8 +86,8 @@ Temp::template(true, true);
 
 $query = "SELECT SUM(Despesa.valor),CategoriaDespesa.nome FROM Despesa 
                         JOIN CategoriaDespesa on Despesa.idCategoriaDespesa= CategoriaDespesa.idCategoriaDespesa
-                        WHERE Despesa.usuario_cpf= ".$_SESSION['CPF']
-                        ." GROUP by CategoriaDespesa.idCategoriaDespesa";
+                        WHERE Despesa.usuario_cpf= " . $_SESSION['CPF']
+        . " GROUP by CategoriaDespesa.idCategoriaDespesa";
 
 $conn2 = new AdmDB;
 $result = $conn2->executeQuery($query);
@@ -102,5 +103,5 @@ $finacas = json_encode($auxVet);
 
 echo "<script>"
  . "var dad= $finacas;"
-        . " graphBar(document.getElementById(\"GraficoBarra\"),dad);"
+ . " graphBar(document.getElementById(\"GraficoBarra\"),dad);"
  . "</script>";

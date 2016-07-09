@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title></title>
+        <title>Relatório</title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <script src="js/Chart.min.js"></script>
@@ -15,16 +15,18 @@
         <link href="css/style.css" rel="stylesheet">        
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/styleRelatorios.css" rel="stylesheet">
+        <link rel="icon" href="09.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
     </head>
     <body>
 
 
-<!--        <header class="header">-->
-            <h1 class="header center orange-text">Relatórios</h1>
+        <!--        <header class="header">-->
+        <h1 class="header center orange-text">Relatórios</h1>
 
-<!--        </header> .header-->
-<!--<div class="container">
-            <div class="section">-->
+        <!--        </header> .header-->
+        <!--<div class="container">
+                    <div class="section">-->
         <div class="middle">
             <div class="containerex">
                 <main class="content">
@@ -36,7 +38,7 @@
 
                 </main><!-- .content -->
             </div><!-- .container-->
-  
+
 
             <aside class="right-sidebar" name = "lateral" id="lateral">
 
@@ -107,9 +109,9 @@
             </aside><!-- .right-sidebar -->
 
         </div><!-- .middle-->
-<!--    </div>
-           </div> -->
-            </body>
+        <!--    </div>
+                   </div> -->
+    </body>
 
 </html>
 <?php
@@ -117,10 +119,10 @@ include '../Back/AdmDB.php';
 include '../Back/html.inc.php';
 ob_start();
 session_start();
-if(!isset($_SESSION['logado'])){
-     echo "<script>window.location.href='login.php';</script>";    
-} 
-Temp::template($_SESSION['admin'],$_SESSION['logado']);
+if (!isset($_SESSION['logado'])) {
+    echo "<script>window.location.href='login.php';</script>";
+}
+Temp::template($_SESSION['admin'], $_SESSION['logado']);
 $query = "SELECT nome FROM pais";
 $conn = new AdmDB;
 $result = $conn->executeQuery($query);
@@ -214,7 +216,7 @@ var ano = $r4;
                         </script> --";
 //--------------------------------
 
-    
+
 if (@$_GET['go'] == "gerar") {
 
     include '../Back/relatorios.php';

@@ -8,8 +8,11 @@
         <!-- CSS  -->
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link rel="icon" href="09.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
     </head>
     <body>
+
         <div class="container">
             <div class="section">
                 <div class="row">
@@ -38,7 +41,7 @@
     <?php
     include '../Back/usuario.php';
     include '../Back/html.inc.php';
-   
+
     session_start();
     if (isset($_SESSION['logado'])) {
         if ($_SESSION['logado'] == true) {

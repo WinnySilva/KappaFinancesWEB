@@ -3,13 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>Starter Template - Materialize</title>
+        <title>Gerenciar Usuário</title>
+        <link href="css/material-icons.css" rel="stylesheet">
 
-        <!-- CSS https://fonts.googleapis.com/icon?family=Material+Icons -->
-        <link href="css/material-icons.css" rel="stylesheet">
-        <link href="css/material-icons.css" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link rel="icon" href="09.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
     </head>
     <body>
 
@@ -34,17 +34,12 @@
                 <div class="col s12 m4 l3"><p> </p></div>
                 <div class="col s12 m4 l4"><p><input type="text" style= "ppadding-left: 1.8em " id="first_name" name="cpf" placeholder="Buscar Usuário..."/>
                     </p></div>
-                <div class="col s12 m4 l2"><p> <button class="btn center waves-effect waves-light green" type="submit" name="action">Procurar
-            <!--    <i class="material-icons right">send</i>-->
+                <div class="col s12 m4 l2"><p>
+                        <button class="btn center waves-effect waves-light green" type="submit" name="action">Procurar
+
                         </button>
                     </p></div>
             </div>
-
-
-
-
-
-
     </center>
 </div>
 
@@ -123,22 +118,22 @@ if (@$_GET['go'] == "cpf") {
                         <p>Último Envio do XML: <?= $linha['ultimo_envio'] ?><p>Sexo: <?= $linha['sexo'] ?></p>
                         <form> 
                         </form>
-     
+
                         <center>
-							<form method="post" action="?go=excluir">
-								<button  class="btn waves-effect waves-light green" type="submit" name="action" >Excluir Usuário <i class="material-icons right">delete</i> </button>
-							</form><br>
-							<form method="post" action="?go=editar">
-								<button  class="btn waves-effect waves-light green" type="submit" name="action" >Editar Usuário <i class="material-icons right">mode_edit</i> </button>
-							</form><br>
-						</center>
-                        
+                            <form method="post" action="?go=excluir">
+                                <button  class="btn waves-effect waves-light green" type="submit" name="action" >Excluir Usuário <i class="material-icons right">delete</i> </button>
+                            </form><br>
+                            <form method="post" action="?go=editar">
+                                <button  class="btn waves-effect waves-light green" type="submit" name="action" >Editar Usuário <i class="material-icons right">mode_edit</i> </button>
+                            </form><br>
+                        </center>
+
                     </div>
                 </center>
 
             </html>
-            
-            
+
+
             <?php
         } else {
             echo '<p></p><b><center><font color=\'#FF0000\'> Não existe nenhum usuário
@@ -152,17 +147,17 @@ if (@$_GET['go'] == "excluir") {
     echo '<p></p><b><center><font size="6" color=\'#FF0000\'> O usuário de CPF ' . $cpf . ' será excluído. Você tem certeza disso? </font></center><b>';
     ?>
     <html>
-		<form> 
-		</form>
-		<center>
-			<form method="post" action="?go=delete">
-				<button  class="btn waves-effect waves-light green" type="submit" name="action" >Excluir</button>
-			</form><br>
-			<form method="post" action="?go=cancel">
-				<button  class="btn waves-effect waves-light green" type="submit" name="action" >Cancelar</button>
-			</form><br>
-		</center>
-        
+        <form> 
+        </form>
+        <center>
+            <form method="post" action="?go=delete">
+                <button  class="btn waves-effect waves-light green" type="submit" name="action" >Excluir</button>
+            </form><br>
+            <form method="post" action="?go=cancel">
+                <button  class="btn waves-effect waves-light green" type="submit" name="action" >Cancelar</button>
+            </form><br>
+        </center>
+
     </html>
     <?php
 } else if (@$_GET['go'] == "editar") {
@@ -193,7 +188,6 @@ if (@$_GET['go'] == "delete") {
 
     echo '<p></p><b><center><font color=\'#006400\'> Usuário deletado com sucesso.</font></center><b>';
 }
-
 ?>
 
 <!--  Scripts-->
@@ -203,7 +197,6 @@ if (@$_GET['go'] == "delete") {
 </body>
 </html>
 <?php
-
 include '../Back/html.inc.php';
 if (!((isset($_SESSION['admin'])) && ($_SESSION['logado']))) {
     echo "<script>window.location.href='home.php';</script>";

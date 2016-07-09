@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/* Para Importar este arquivo CSS basta copiar a linha abaixo para dentro do head da sua pagina !!
+
+          <link rel="stylesheet" href="style.css">
+
+*/
+
+div#interface{
+    position:relative;
+    width:750px;
+    background-color: #ffffff;
+    margin: -20px 10px 10px 10px;
+    // box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+    padding: 10px 10px 10px 10px;
+    margin: auto
+}
+.escondido{
+    display: none;
+}
+input {
+    font-family:sans-serif;
+    font-weight: normal;
+    font-size: 13pt;
+}
+input:hover{
+    background-color: #dddddd;
+}
+legend {
+    color: #888888;
+    font-weight: bold;
+    font-size: 13pt;
+    font-family: sans-serif;
+}
+fieldset{
+    border-color: #cecece;
+    margin:20px;
+}
+fieldset#sexo{
+    width:200px;
+    margin-top:20px;
+}
+div{
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+select{
+    width: 267px;
+}
+#idcadastrar {
+    font-size:18px;
+    font-family:sans-serif;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+#idbvoltar{
+    font-size:18px;
+    font-family:sans-serif;
+    margin-left:30px;
+    margin-bottom: 0;
+    width: 100px;
+}
+select#idpais{
+    margin-left:20px;
+}
