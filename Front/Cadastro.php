@@ -27,20 +27,18 @@ and open the template in the editor.
 <html>
     <head>
         <link rel="icon" href="09.png" type="image/x-icon" />
-   <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
-        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="09.jpg" type="image/x-icon" />
+        <meta charset="UTF-8"/>
         <title>Cadastro</title>
         <link href="css/material-icons.css" rel="stylesheet">
-
-        
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/scriptEstado.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
-        <link href="css/style.css" rel="stylesheet">        
+        <link href="css/style.css" rel="stylesheet"/>        
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link rel="stylesheet" href="css/style_1.css">
-        
+        <link rel="stylesheet" href="css/style_1.css"/>
+
 
     </head>
     <body>
@@ -102,9 +100,9 @@ and open the template in the editor.
                     </fieldset>
                     <button class="btn waves-effect waves-light green"  type="submit" 
                             title="Cadastrar" value="Cadastrar" id="idcadastrar" name="enviar">
-                              <i class="material-icons right">done_all</i>Cadastrar<br>	  
+                        <i class="material-icons right">done_all</i>Cadastrar<br>	  
                     </button>
-                        
+
 <!--                        <input type="submit" value="Voltar" id="idbvoltar" name= "enviar">-->
                 </fieldset>
 

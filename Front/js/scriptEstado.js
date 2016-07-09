@@ -12,7 +12,7 @@ $(document).ready( function() {
 
         $.ajax({
                 "type": "GET",
-                "url" : "Cidades.php",
+                "url" : "../Back/Cidades.php",
                 data: {title:$(this).val()} ,
                 "success" : function(data){
 
