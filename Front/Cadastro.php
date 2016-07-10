@@ -47,7 +47,7 @@ and open the template in the editor.
                 <fieldset id="cadastro"><legend>Identificação do Usuário</legend>
                     <p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo"/>
                     <p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos"/>
-                    <p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="20"/>
+                    <p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="25" placeholder="email@kappafinance.com"/>
                     <p>CPF:&#160;&#160;&#160;&#160; <input type="text" class="text" name="tcpf" id="idcpf" size="25" maxlength="11" placeholder="Somente Numeros"/>
                     <p>Data Nascimento: <input type="date" name="tdata" id="iddata" placeholder="DD/MM/AAAA" </p>
                     <p><label for="idpais">País:</label>

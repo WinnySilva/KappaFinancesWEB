@@ -155,7 +155,7 @@ $paisinput = $linha4['nome'];
                 <fieldset id="editar"><legend>Editar Usuário</legend>
                     <p>Nome:&#160;&#160; <input type="text" name="tnome" id="idnome" size="25" maxlength="25" placeholder="Nome Completo" value="<?php print $nomeinput; ?>"/>
                     <p>Senha:&#160; <input type="password" name="tsenha" id="idsenha" size="25" maxlength="25" placeholder="Máximo 15 Digitos" value="<?php print $senhainput; ?>"/>
-                    <p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="20"value="<?php print $emailinput; ?>"/>
+                    <p>E-mail:&#160; <input type="email" name="temail" id="idemail" size="25" maxlength="25"value="<?php print $emailinput; ?>"/>
                     <p>CPF:&#160;&#160;&#160;&#160; <input type="text" name="tcpf" id="idcpf" size="25" maxlength="11" placeholder="Somente Numeros" value="<?php print $cpfinput; ?>"/>
                     <p>Data Nascimento: <input type="date" name="tdata" id="iddata" value="<?php print $nascinput; ?>"</p>
                     <p><label for="idpais">País:</label>
@@ -288,6 +288,12 @@ if (@$_POST['enviar'] == 'Editar') {
         $cidade = $pais;
     }
 
+    $resultado = $conexao->prepare("SELECT * FROM Usuario WHERE cpf = $cpf");
+    $resultado->execute();
+    while ($linha = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        $ultimoEnvio = $linha['ultimo_envio'];
+    }
+
     if (empty($nome)) {
         echo "<script>alert('Preencha o nome para poder editar.'); history.back();</script>";
     } elseif (empty($senha)) {
@@ -307,7 +313,7 @@ if (@$_POST['enviar'] == 'Editar') {
     } elseif (empty($sexo)) {
         echo "<script>alert('Preencha sexo para se poder editar.'); history.back();</script>";
     } else {
-        $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, "2015-04-23", $email);
+        $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, $ultimoEnvio, $email);
         $usuario->atualizarUsuariodb();
         echo "<script>window.location.href='home.php';</script>";
     }
