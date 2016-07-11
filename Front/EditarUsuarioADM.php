@@ -299,11 +299,11 @@ if (@$_POST['enviar'] == 'Editar') {
         echo "<script>alert('Preencha o CPF de nascimento para poder editar.'); history.back();</script>";
     } elseif (empty($data_nasc)) {
         echo "<script>alert('Preencha a data para poder editar.'); history.back();</script>";
-    } elseif (empty($pais) && $estado == "Selecione o País") {
+    } elseif (empty($pais) || $pais == "Selecione o País") {
         echo "<script>alert('Preencha o Pais para se cadastrar.'); history.back();</script>";
-    } elseif (empty($estadoFinal) && $estado == "Selecione o Estado") {
+    } elseif (empty($estadoFinal) || $estadoFinal == "Selecione o Estado") {
         echo "<script>alert('Preencha o estado para se cadastrar.'); history.back();</script>";
-    } elseif (empty($cidade)) {
+    } elseif (empty($cidade) || $cidade == "Selecione a Cidade") {
         echo "<script>alert('Preencha a cidade para poder editar.'); history.back();</script>";
     } elseif (empty($sexo)) {
         echo "<script>alert('Preencha sexo para se poder editar.'); history.back();</script>";
