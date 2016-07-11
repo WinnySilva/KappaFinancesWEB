@@ -27,7 +27,8 @@
                         <form method="post" action="?go=login ">
                             <p><input type="text" name="login" value="" placeholder="CPF"></p>
                             <p><input type="password" name="password" value="" placeholder="Password"></p>    
-                            <input type="submit" class="btn-large waves-effect waves-light orange submit" name="commit" value="Login"/>
+                            <button type="submit" class="btn-large waves-effect waves-light orange submit" name="commit" value="Login" id="btinput"/>
+                            <label for="btinput"> <font color="FFFFFF">Login </label>
                         </form>
                     </div>
 

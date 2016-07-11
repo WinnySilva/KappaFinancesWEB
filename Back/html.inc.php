@@ -102,7 +102,7 @@ class Temp {
     <div class=\"footer-copyright\">
       <div class=\"container\">
       Made by <a class=\"orange-text text-lighten-3\" href=\"http://materializecss.com\">Materialize</a>
-      Copyright (c) 20016 Kappa Finances All Rights Reserved
+      Copyright (c) 2016 Kappa Finances All Rights Reserved
       </div>
     </div>
   </footer>";
