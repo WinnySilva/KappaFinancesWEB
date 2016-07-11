@@ -40,7 +40,7 @@
 if (@$_GET['go'] == 'enviar') {
 
     // Desabilita Warnings
-    error_reporting(0);
+  //  error_reporting(0);
 
     // Pega caminho do arquivo XML
     $filepath = $_FILES['arquivo']['tmp_name'];
@@ -83,7 +83,7 @@ if (@$_GET['go'] == 'enviar') {
                     // Só adiciona no DB se for mais novo que o ultimo envio
                     if ($timeData > $timeLastUpload) {
                         $value = $receita->value;
-                        $idCat = $receita->receita->categoriaReceita;
+                        $idCat = $receita->receita->categoriaReceita+1; //o primeiro id eh 1
 
                         // Utilizamos a variável $sql como sendo a instrução SQL de inserção
                         $sql = "INSERT  INTO Receita (`valor`, `data`, `idReceita`,"
@@ -91,7 +91,7 @@ if (@$_GET['go'] == 'enviar') {
                                 . " $idCat, $userCPF)";
 
                         mysqli_query($link, $sql);
-                        $idReceita = $idReceita + 1;
+                      //  $idReceita = $idReceita + 1;
                     }
                 }
             }
@@ -106,7 +106,7 @@ if (@$_GET['go'] == 'enviar') {
                     if ($timeData > $timeLastUpload) {
                         //Pega valores do XML
                         $value = $despesa->value;
-                        $idCat = $despesa->despesa->categoriaDespesa;
+                        $idCat = $despesa->despesa->categoriaDespesa+1;
 
                         // Utilizamos a variável $sql como sendo a instrução SQL de inserção
                         $sql = "INSERT INTO Despesa (`valor`, `data`, `idDespesa`,"
