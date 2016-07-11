@@ -88,7 +88,7 @@ body {
 <br><br><br><br>
         <div class="container">
             <div class="section">
-                <h1 class="header center orange-text">Relatório Pessoal</h1>
+                <h1 class="header center orange-text">Relatório Pessoal de Despesas</h1>
                 <canvas id="GraficoBarra" style="width:100%;"></canvas>
             <br><br>
             <div class="section">
