@@ -23,7 +23,7 @@
                     <div class="col s12 m4">
                         <br>
                     </div>
-                    <div class="col s12 m4" >
+                    <div id="logform" class="col s12 m4" >
                         <form method="post" action="?go=login ">
                             <p><input type="text" name="login" value="" placeholder="CPF"></p>
                             <p><input type="password" name="password" value="" placeholder="Password"></p>    
@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        
+
     </body>
 
     <?php
@@ -59,7 +59,7 @@
         $conn = new AdmDB;
         $result = $conn->executeQuery($query);
         if (($senha == null) || ($cpf == null) || ($result == null)) {
-            echo "<script> alert(\"O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA;\");</script>";
+            echo "<script>document.getElementById(\"logform\").innerHTML +=\"<p><b><center><font color=\'#FF0000\'>O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA</font></center><b>\";</script>";
             return;
         }
         $line = $result->fetch(PDO::FETCH_ASSOC);
@@ -76,7 +76,6 @@
             $result1 = $conn2->executeQuery($query1);
             $line1 = $result1->fetch(PDO::FETCH_ASSOC);
             if ($line1["usuario_cpf"] == $cpf) {
-                echo "ADM";
                 $_SESSION["admin"] = true;
                 // header('Location: PaginaAdministrador.php');
                 echo "<script>window.location.href='home.php';</script>";
@@ -86,21 +85,18 @@
                 $ultienv = strtotime($ultimo_envio);
                 $hoje = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
                 $trintadias = strtotime($ultimo_envio . "+ 30 days");
-                echo "ULTIMO ENVIO: " . date("Y-m-d", $ultienv) . "<p>";
-                echo "HOJE: " . date("Y-m-d", $hoje) . "<p>";
-                echo "PRAZO: " . date("Y-m-d", $trintadias) . "<p>";
                 if ($hoje <= $trintadias) {
-                    echo "no prazo";
                     //header('Location: PaginaUsuario.php');
                     echo "<script>window.location.href='home.php';</script>";
                 } else {
-                    echo "fora do prazo";
                     echo "<script>window.location.href='envio.php';</script>";
                     //header('Location: envio.php');
                 }
             }
         } else {
-            echo "<red>O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA;";
+            //    echo "<script> alert(\"O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA;\");history.back();</script>";
+            //
+        echo "<script>document.getElementById(\"logform\").innerHTML +=\"<p><b><center><font color=\'#FF0000\'>O USUARIO NÃO EXISTE OU A SENHA ESTÁ ERRADA</font></center><b>\";</script>";
         }
     }
     ?>        
