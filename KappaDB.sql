@@ -5825,12 +5825,16 @@
 	-- Extraindo dados da tabela `Usuario`
 	--
 
-	INSERT INTO `Usuario` (`cpf`, `nome`, `data_nasc`, `senha`, `ultimo_envio`, `idcidade`, `sexo`) VALUES
-	(2491785080, 'Simao Martin', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 1, 'M'),
-	(12345678901, 'Teste da Silva', '2003-09-06', 'teste', '2016-06-15 00:00:00', 2, 'F'),
-	(1, 'Joana', '2016-06-29', '00', '2015-04-23 00:00:00', 1, 'F'),
-	(291785080, 'Simao Martin', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 14, 'M'),
-	(145678901, 'Teste da Silva', '2003-09-06', 'teste', '2016-06-15 00:00:00', 2, 'F');
+	INSERT INTO `Usuario` (`cpf`, `nome`, `data_nasc`, `senha`, `ultimo_envio`, `idcidade`, `sexo`, `email`) VALUES
+	(2491785080, 'Simao Martin', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 1, 'M', 'simao@kappafinance.com'),
+	(1233, 'Guilherme Hanauer', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 1, 'M', 'guilherme@kappafinance.com'),
+	(123, 'Fabio Abib Hecktheuer', '1988-12-12', 'kiko', '2016-06-15 00:00:00', 1, 'M', 'fabio@kappafinance.com'),
+	(12333, 'Eduardo Lemos', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 1, 'M', 'eduardo@kappafinance.com'),
+	(1233333, 'Alex', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 1, 'M', 'alex@kappafinance.com'),
+	(12345678901, 'Teste da Silva', '2003-09-06', 'teste', '2016-06-15 00:00:00', 2, 'F', 'simao@kappafinance.com'),
+	(1, 'Joana', '2016-06-29', '00', '2015-04-23 00:00:00', 1, 'F', 'joana@kappafinance.com'),
+	(291785080, 'Simao Martin', '1992-12-12', 'kiko', '2016-06-15 00:00:00', 14, 'M', 'simao@kappafinance.com'),
+	(145678901, 'Teste da Silva', '2003-09-06', 'teste', '2016-06-15 00:00:00', 2, 'F', 'teste@kappafinance.com');
 
 
 	--

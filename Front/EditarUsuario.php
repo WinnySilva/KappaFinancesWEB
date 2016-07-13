@@ -215,7 +215,7 @@ $paisinput = $linha4['nome'];
                                 } catch (PDOException $e) {
                                     echo $e->getMessage();
                                 }
-                                $resultadoteste = $conexao->prepare("SELECT * FROM Cidade");
+                                $resultadoteste = $conexao->prepare("SELECT * FROM Cidade WHERE idEstado = $estadoid");
                                 $resultadoteste->execute();
                                 while ($linha = $resultadoteste->fetch(PDO::FETCH_ASSOC)) {
                                     $cidadetabela = $linha['nome'];
@@ -315,7 +315,7 @@ if (@$_POST['enviar'] == 'Editar') {
     } else {
         $usuario = new Usuario($cpf, $nome, $cidade, $estadoFinal, $pais, $sexo, $data_nasc, $senha, $ultimoEnvio, $email);
         $usuario->atualizarUsuariodb();
-        echo "<script>window.location.href='home.php';</script>";
+        //echo "<script>window.location.href='home.php';</script>";
     }
 }
 if (@$_POST['enviar'] == "Voltar") {

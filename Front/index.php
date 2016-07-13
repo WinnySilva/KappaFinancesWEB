@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -67,7 +67,7 @@
                         <div class="icon-block">
                             <h2 class="center light-green-text"><i class="material-icons">group</i></h2>
                             <h5 class="center">Baseado nos Softwares Financeiros Pagos</h5>
-                            <p class="light">Não sei oque digitar aqui... Inventem algo pfv...  </p>
+                            <p class="light">Por que pagar por um serviço que você pode ter de graça? KappaFinances foi feito pra você, do tamanho de seu bolso</p>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
             <div class="footer-copyright">
                 <div class="container">
                     Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-                    Copyright (c) 20016 Kappa Finances All Rights Reserved
+                    Copyright (c) 2016 Kappa Finances All Rights Reserved
                 </div>
             </div>
         </footer>
